@@ -198,9 +198,9 @@
 .tagText {
   font-family: 'Google Sans Flex', sans-serif;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
-  letter-spacing: -0.16px;
+  letter-spacing: -0.14px;
   color: black;
   white-space: nowrap;
 }
@@ -229,21 +229,16 @@
 .learnMoreArrow {
   width: 25px;
   height: 25px;
-  border-radius: 50%;
-  border: 1.5px solid black;
+  background: #610203;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: background 0.2s, border-color 0.2s;
+  transition: background 0.2s;
 }
 
 .learnMore:hover .learnMoreArrow {
-  background: black;
-}
-
-.learnMore:hover .learnMoreArrow svg path {
-  stroke: white;
+  background: #440102;
 }
 
 /* ── Responsive ── */

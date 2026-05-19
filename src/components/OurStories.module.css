@@ -81,8 +81,7 @@
 .viewAllArrow {
   width: 25px;
   height: 25px;
-  border-radius: 50%;
-  border: 1.5px solid black;
+  background: #610203;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,11 +90,7 @@
 }
 
 .viewAll:hover .viewAllArrow {
-  background: black;
-}
-
-.viewAll:hover .viewAllArrow svg path {
-  stroke: white;
+  background: #440102;
 }
 
 /* ── Cards grid ── */
@@ -203,8 +198,7 @@
 .learnMoreArrow {
   width: 25px;
   height: 25px;
-  border-radius: 50%;
-  border: 1.5px solid black;
+  background: #610203;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -213,11 +207,7 @@
 }
 
 .learnMore:hover .learnMoreArrow {
-  background: black;
-}
-
-.learnMore:hover .learnMoreArrow svg path {
-  stroke: white;
+  background: #440102;
 }
 
 /* ── Responsive ── */

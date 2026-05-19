@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Navbar from "@/components/Navbar";
 import PreHero from "@/components/PreHero";
 import PartnerLogos from "@/components/PartnerLogos";
 import Services from "@/components/Services";
@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <main>
-      <Header />
+      <Navbar />
       <PreHero />
       <PartnerLogos />
       <Services />
