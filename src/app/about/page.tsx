@@ -1,11 +1,11 @@
-"use client";
-
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import styles from "./about.module.css";
+import { client } from "@/sanity/client";
+import { teamMembersQuery } from "@/sanity/queries";
 
 /* ── Decorative bar data for hero ── */
 const heroBars = [
@@ -77,14 +77,13 @@ const values = [
   },
 ];
 
-/* ── Team members (placeholder data from Figma) ── */
-const team = [
-  { name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner" },
-  { name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner" },
-  { name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner" },
-  { name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner" },
-  { name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner" },
-  { name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner" },
+const fallbackTeam = [
+  { _id: "1", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: null },
+  { _id: "2", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: null },
+  { _id: "3", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: null },
+  { _id: "4", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: null },
+  { _id: "5", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: null },
+  { _id: "6", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: null },
 ];
 
 /* ── LinkedIn icon SVG ── */
@@ -94,7 +93,15 @@ const LinkedInIcon = () => (
   </svg>
 );
 
-export default function AboutPage() {
+type TeamMember = { _id: string; name: string; credentials: string; role: string; linkedIn: string | null; photo: string | null };
+
+export default async function AboutPage() {
+  let team: TeamMember[] = [];
+  try {
+    team = await client.fetch<TeamMember[]>(teamMembersQuery);
+  } catch { /* Sanity not configured yet */ }
+  if (!team?.length) team = fallbackTeam;
+
   return (
     <main className={styles.page}>
       <Navbar />
@@ -240,9 +247,14 @@ export default function AboutPage() {
 
           {/* Team grid: 2 rows × 3 cards */}
           <div className={styles.teamGrid}>
-            {team.map((member, i) => (
-              <div key={i} className={styles.teamCard}>
-                <div className={styles.teamCardImage} />
+            {team.map((member) => (
+              <div key={member._id} className={styles.teamCard}>
+                <div className={styles.teamCardImage}>
+                  {member.photo && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={member.photo} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  )}
+                </div>
                 <div className={styles.teamCardInfo}>
                   <div className={styles.teamCardTitles}>
                     <p className={styles.teamCardName}>
@@ -251,7 +263,7 @@ export default function AboutPage() {
                     </p>
                     <p className={styles.teamCardRole}>{member.role}</p>
                   </div>
-                  <a href="#" className={styles.teamCardLinkedIn} aria-label="LinkedIn">
+                  <a href={member.linkedIn ?? '#'} className={styles.teamCardLinkedIn} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                     <LinkedInIcon />
                   </a>
                 </div>

@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import styles from './OurStories.module.css';
+import { client } from '@/sanity/client';
+import { featuredCaseStudiesQuery } from '@/sanity/queries';
 
 const ArrowIcon = () => (
   <svg width="7" height="10" viewBox="0 0 10 14" fill="none">
@@ -7,31 +9,34 @@ const ArrowIcon = () => (
   </svg>
 );
 
-const cases = [
+const fallbackCases = [
   {
+    _id: '1',
     image: '/images/Layout/484/Gemini_Generated_Image_mrnhjfmrnhjfmrnh 1.png',
-    imageAlt: 'E-Borders security infrastructure',
-    imagePosition: 'object-bottom',
     title: 'Enhancing National Security through E-Borders Infrastructure Modernization',
-    description:
-      'A government border agency successfully modernized its E-Borders infrastructure through strategic leadership, secure networks, and virtualization, enhancing national security and operational efficiency.',
-    href: '/case-studies/e-borders',
+    excerpt: 'A government border agency successfully modernized its E-Borders infrastructure through strategic leadership, secure networks, and virtualization, enhancing national security and operational efficiency.',
+    slug: 'e-borders',
   },
   {
+    _id: '2',
     image: '/images/Layout/484/NqA6w 1.png',
-    imageAlt: 'Global financial network transformation',
-    imagePosition: 'object-center',
     title: 'Strategic Network Transformation and Security Enhancement for Global Financial Institutions',
-    description:
-      'A global financial provider successfully deployed a secure IP-VPN across 5000 sites, achieving enhanced network security, major cost savings, and smooth merger integration.',
-    href: '/case-studies/financial-network',
+    excerpt: 'A global financial provider successfully deployed a secure IP-VPN across 5000 sites, achieving enhanced network security, major cost savings, and smooth merger integration.',
+    slug: 'financial-network',
   },
 ];
 
-export default function OurStories() {
+type FeaturedCase = { _id: string; title: string; excerpt: string; image: string; slug: { current: string } | string };
+
+export default async function OurStories() {
+  let cases: FeaturedCase[] = [];
+  try {
+    cases = await client.fetch<FeaturedCase[]>(featuredCaseStudiesQuery);
+  } catch { /* Sanity not configured yet */ }
+  if (!cases?.length) cases = fallbackCases as FeaturedCase[];
+
   return (
     <section className={styles.section}>
-      {/* Header */}
       <div className={styles.header}>
         <div className={styles.titleBlock}>
           <div className={styles.eyebrow}>
@@ -45,34 +50,32 @@ export default function OurStories() {
         </div>
         <Link href="/case-studies" className={styles.viewAll}>
           <span className={styles.viewAllText}>View All</span>
-          <span className={styles.viewAllArrow}>
-            <ArrowIcon />
-          </span>
+          <span className={styles.viewAllArrow}><ArrowIcon /></span>
         </Link>
       </div>
 
-      {/* Cards */}
       <div className={styles.grid}>
-        {cases.map((c, i) => (
-          <div key={i} className={styles.card}>
-            <div className={styles.cardImage}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={c.image} alt={c.imageAlt} className={c.imagePosition} />
-            </div>
-            <div className={styles.cardContent}>
-              <div className={styles.cardText}>
-                <p className={styles.cardTitle}>{c.title}</p>
-                <p className={styles.cardDesc}>{c.description}</p>
+        {cases.map((c) => {
+          const slug = typeof c.slug === 'string' ? c.slug : c.slug?.current;
+          return (
+            <div key={c._id} className={styles.card}>
+              <div className={styles.cardImage}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={c.image} alt={c.title} />
               </div>
-              <Link href={c.href} className={styles.learnMore}>
-                <span className={styles.learnMoreText}>Learn More</span>
-                <span className={styles.learnMoreArrow}>
-                  <ArrowIcon />
-                </span>
-              </Link>
+              <div className={styles.cardContent}>
+                <div className={styles.cardText}>
+                  <p className={styles.cardTitle}>{c.title}</p>
+                  <p className={styles.cardDesc}>{c.excerpt}</p>
+                </div>
+                <Link href={`/case-studies/${slug}`} className={styles.learnMore}>
+                  <span className={styles.learnMoreText}>Learn More</span>
+                  <span className={styles.learnMoreArrow}><ArrowIcon /></span>
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

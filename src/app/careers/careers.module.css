@@ -110,6 +110,79 @@
   width: 100%;
 }
 
+.rolesList {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(0,0,0,0.12);
+}
+
+.roleItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  gap: 24px;
+}
+
+.roleInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.roleTitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #000;
+  text-transform: uppercase;
+}
+
+.roleMeta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.roleTag {
+  background: #ededed;
+  padding: 4px 12px;
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: #000;
+}
+
+.roleDesc {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(0,0,0,0.7);
+  max-width: 600px;
+  margin-top: 4px;
+}
+
+.applyBtn {
+  background: #610203;
+  color: #fff;
+  padding: 12px 24px;
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.applyBtn:hover {
+  background: #440102;
+}
+
 /* ── WHY JOIN ── */
 .whySection {
   padding: 112px 64px;

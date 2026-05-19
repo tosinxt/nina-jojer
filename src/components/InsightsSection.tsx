@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import styles from './InsightsSection.module.css';
+import { client } from '@/sanity/client';
+import { featuredInsightsQuery } from '@/sanity/queries';
 
 const ChevronRight = () => (
   <svg className={styles.chevron} width="6" height="10" viewBox="0 0 6 10" fill="none">
@@ -22,111 +24,120 @@ const Tag = ({ label, variant }: { label: string; variant: TagVariant }) => (
   </span>
 );
 
-const insights = [
+const CATEGORY_VARIANT: Record<string, TagVariant> = {
+  'Tech & Innovation': 'tech',
+  'Tech & Innovations': 'tech',
+  'Policy Analysis': 'policy',
+};
+
+const fallbackInsights = [
   {
+    _id: '1',
     image: '/images/Blog/insight-1.png',
-    alt: 'Nigeria blockchain policy',
-    tag: { label: 'Tech & Innovations', variant: 'tech' as TagVariant },
+    category: 'Tech & Innovations',
     title: 'A Review of Nigeria’s National Blockchain Policy',
-    excerpt:
-      'Nigeria has displayed a growing interest in blockchain technology and cryptocurrencies, recognising their potential benefits in areas such as financial inclusion, transparency, and corruption reduction. The adoption of cryptocurrencies, with Bitcoin as the most popular, has been increasing in the country.',
+    excerpt: 'Nigeria has displayed a growing interest in blockchain technology and cryptocurrencies, recognising their potential benefits in areas such as financial inclusion, transparency, and corruption reduction.',
     author: 'EBERE OJADUA',
-    date: '5th May 2026',
+    publishedAt: '5th May 2026',
     readTime: '5 mins read',
-    href: '/insights/nigeria-blockchain-policy',
+    slug: 'nigeria-blockchain-policy',
   },
   {
+    _id: '2',
     image: '/images/Blog/insight-2.png',
-    alt: 'Trade development across West Africa',
-    tag: { label: 'Policy Analysis', variant: 'policy' as TagVariant },
+    category: 'Policy Analysis',
     title: 'Boosting Trade Development Across West Africa',
-    excerpt:
-      'Trade blocs play a pivotal role in promoting economic integration and cooperation among countries, fostering regional growth and prosperity.',
+    excerpt: 'Trade blocs play a pivotal role in promoting economic integration and cooperation among countries, fostering regional growth and prosperity.',
     author: 'DEJI MACAULAY',
-    date: '5th May 2026',
+    publishedAt: '5th May 2026',
     readTime: '5 mins read',
-    href: '/insights/west-africa-trade',
+    slug: 'west-africa-trade',
   },
   {
+    _id: '3',
     image: '/images/Blog/insight-3.png',
-    alt: 'Data Protection Act 2020',
-    tag: { label: 'Tech & Innovation', variant: 'tech' as TagVariant },
+    category: 'Tech & Innovation',
     title: 'A Review of the Data Protection Act 2020: Strengths and Weaknesses',
-    excerpt:
-      'Executive Summary This Policy Brief reviews the Data Protection Act 2020 (the Act), which protects the rights of data subjects and regulates the processing of personal data.',
+    excerpt: 'Executive Summary This Policy Brief reviews the Data Protection Act 2020 (the Act), which protects the rights of data subjects and regulates the processing of personal data.',
     author: 'CHINWE OHANELE',
-    date: '5th May 2026',
+    publishedAt: '5th May 2026',
     readTime: '5 mins read',
-    href: '/insights/data-protection-act',
-  },
-  {
-    image: '/images/Blog/insight-4.png',
-    alt: 'Big data and AI in Africa',
-    tag: { label: 'Policy Analysis', variant: 'policy' as TagVariant },
-    title: 'How Big Data Enables and Constrains AI Development in Africa',
-    excerpt:
-      'The report discusses the opportunities and challenges of using big data and AI for sustainable development in Africa and offers some recommendations for policymakers, businesses, and researchers.',
-    author: 'CHINWE OHANELE',
-    date: '5th May 2026',
-    readTime: '5 mins read',
-    href: '/insights/big-data-ai-africa',
+    slug: 'data-protection-act',
   },
 ];
 
-export default function InsightsSection() {
+type FeaturedInsight = {
+  _id: string;
+  image: string;
+  category: string;
+  title: string;
+  excerpt: string;
+  author: string;
+  publishedAt: string;
+  readTime: string;
+  slug: { current: string } | string;
+};
+
+export default async function InsightsSection() {
+  let insights: FeaturedInsight[] = [];
+  try {
+    insights = await client.fetch<FeaturedInsight[]>(featuredInsightsQuery);
+  } catch { /* Sanity not configured yet */ }
+  if (!insights?.length) insights = fallbackInsights as FeaturedInsight[];
+
   return (
-    <section className={styles.section} id="insights">
+    <section className={styles.section}>
       <div className={styles.container}>
         {/* Header */}
         <div className={styles.header}>
           <div className={styles.titleBlock}>
             <div className={styles.eyebrow}>
               <span className={styles.eyebrowLine} />
-              <span className={styles.eyebrowText}>Insights &amp; Perspective</span>
+              <span className={styles.eyebrowText}>Insights</span>
             </div>
-            <h2 className={styles.heading}>
-              Perspectives on policy, strategy, and technology.
-            </h2>
+            <h2 className={styles.heading}>Thinking Out Loud</h2>
           </div>
           <Link href="/insights" className={styles.viewAll}>
             <span className={styles.viewAllText}>View All</span>
-            <span className={styles.viewAllArrow}>
-              <ArrowIcon />
-            </span>
+            <span className={styles.viewAllArrow}><ArrowIcon /></span>
           </Link>
         </div>
 
         {/* Cards */}
         <div className={styles.grid}>
-          {insights.map((post, i) => (
-            <Link key={i} href={post.href} className={styles.card}>
-              <div className={styles.cardImage}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={post.image} alt={post.alt} />
-              </div>
-              <div className={styles.cardBody}>
-                <div className={styles.cardTop}>
-                  <div className={styles.cardMeta}>
-                    <Tag label={post.tag.label} variant={post.tag.variant} />
-                    <div className={styles.cardText}>
-                      <h3 className={styles.cardTitle}>{post.title}</h3>
-                      <p className={styles.cardExcerpt}>{post.excerpt}</p>
+          {insights.map((post) => {
+            const slug = typeof post.slug === 'string' ? post.slug : post.slug?.current;
+            const variant = CATEGORY_VARIANT[post.category] ?? 'tech';
+            return (
+              <Link key={post._id} href={`/insights/${slug}`} className={styles.card}>
+                <div className={styles.cardImage}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={post.image} alt={post.title} />
+                </div>
+                <div className={styles.cardBody}>
+                  <div className={styles.cardTop}>
+                    <div className={styles.cardMeta}>
+                      <Tag label={post.category} variant={variant} />
+                      <div className={styles.cardText}>
+                        <h3 className={styles.cardTitle}>{post.title}</h3>
+                        <p className={styles.cardExcerpt}>{post.excerpt}</p>
+                      </div>
+                    </div>
+                    <div className={styles.cardAuthor}>
+                      <p className={styles.authorName}>{post.author}</p>
+                      <p className={styles.authorDate}>
+                        {post.publishedAt} . <span className={styles.readTime}>{post.readTime}</span>
+                      </p>
                     </div>
                   </div>
-                  <div className={styles.cardAuthor}>
-                    <p className={styles.authorName}>{post.author}</p>
-                    <p className={styles.authorDate}>
-                      {post.date} . <span className={styles.readTime}>{post.readTime}</span>
-                    </p>
+                  <div className={styles.learnMore}>
+                    <span className={styles.learnMoreText}>Learn More</span>
+                    <ChevronRight />
                   </div>
                 </div>
-                <div className={styles.learnMore}>
-                  <span className={styles.learnMoreText}>Learn More</span>
-                  <ChevronRight />
-                </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

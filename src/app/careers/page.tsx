@@ -4,6 +4,8 @@ import CtaSection from '@/components/CtaSection';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
 import styles from './careers.module.css';
+import { client } from '@/sanity/client';
+import { jobOpeningsQuery } from '@/sanity/queries';
 
 const heroBars = [
   { left: 532.59, top: -221.54, width: 39.613 },
@@ -49,7 +51,14 @@ const whyCards = [
   },
 ];
 
-export default function CareersPage() {
+type JobOpening = { _id: string; title: string; department?: string; location?: string; type?: string; description?: string; applyLink?: string };
+
+export default async function CareersPage() {
+  let jobs: JobOpening[] = [];
+  try {
+    jobs = await client.fetch<JobOpening[]>(jobOpeningsQuery);
+  } catch { /* Sanity not configured yet */ }
+
   return (
     <main className={styles.page}>
       <Navbar />
@@ -89,7 +98,30 @@ export default function CareersPage() {
               {`We're looking for talented people to join our teams across Africa.`}
             </p>
           </div>
-          <div className={styles.rolesPlaceholder} />
+          {jobs.length > 0 ? (
+            <div className={styles.rolesList}>
+              {jobs.map((job) => (
+                <div key={job._id} className={styles.roleItem}>
+                  <div className={styles.roleInfo}>
+                    <h3 className={styles.roleTitle}>{job.title}</h3>
+                    <div className={styles.roleMeta}>
+                      {job.department && <span className={styles.roleTag}>{job.department}</span>}
+                      {job.location && <span className={styles.roleTag}>{job.location}</span>}
+                      {job.type && <span className={styles.roleTag}>{job.type}</span>}
+                    </div>
+                    {job.description && <p className={styles.roleDesc}>{job.description}</p>}
+                  </div>
+                  {job.applyLink ? (
+                    <a href={job.applyLink} className={styles.applyBtn} target="_blank" rel="noopener noreferrer">Apply</a>
+                  ) : (
+                    <Link href="/contact" className={styles.applyBtn}>Apply</Link>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className={styles.rolesPlaceholder} />
+          )}
         </div>
       </section>
 
