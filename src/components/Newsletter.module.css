@@ -131,47 +131,38 @@
   color: black;
 }
 
-/* ── Mobile — matches Figma node 927:13996 exactly ── */
-@media (max-width: 640px) {
+/* ── Mobile — Figma node 927:13465 ── */
+@media (max-width: 768px) {
   .section {
-    padding: 46px 30px; /* Figma: px-[30px] py-[46px] */
+    padding: 100px 30px;
   }
 
-  /* Single column: leftCol + rightCol stack vertically, gap 12px */
   .container {
     flex-direction: column;
     gap: 12px;
   }
 
-  /* Left column: heading shrinks to 30px (Figma H Body style) */
   .heading {
     font-size: 30px;
     letter-spacing: -0.9px;
-    line-height: 1.138;
   }
 
-  /* Right column: full width */
   .rightCol {
     width: 100%;
-    gap: 23px;
   }
 
-  /* Form stacks vertically: input on top, button full-width below */
   .form {
     flex-direction: column;
     gap: 16px;
   }
 
-  /* Input takes full width */
   .input {
     width: 100%;
     flex: none;
   }
 
-  /* Button fills full width, fixed height 51px (Figma spec) */
   .button {
     width: 100%;
     height: 51px;
-    padding: 12px 24px;
   }
 }

@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import styles from './AboutSection.module.css';
 
-const ArrowIcon = ({ color = 'white' }: { color?: string }) => (
-  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-    <path d="M2.5 6H9.5M9.5 6L6.5 3M9.5 6L6.5 9" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+const ArrowIcon = () => (
+  <svg width="7" height="10" viewBox="0 0 10 14" fill="none">
+    <path d="M2 1L8 7L2 13" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 

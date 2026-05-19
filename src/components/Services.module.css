@@ -185,6 +185,7 @@
   align-items: center;
   padding: 8px 20px 8px 14px;
   flex-shrink: 0;
+  max-width: 100%;
 }
 
 .tagDot {
@@ -202,7 +203,8 @@
   line-height: 1.5;
   letter-spacing: -0.14px;
   color: black;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
 }
 
 /* "LEARN MORE →" CTA */
@@ -249,18 +251,36 @@
 }
 
 @media (max-width: 768px) {
-  .section    { flex-direction: column; }
+  .section    { flex-direction: column; overflow: hidden; }
   .leftPanel  { position: static; width: 100%; min-height: unset; }
   .leftInner  { padding: 48px 24px 32px; }
   .cardWrapper {
-    padding: 40px 24px;
+    padding: 16px 16px 32px;
     position: static;
-    background: transparent;
+    background: #ededed;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     z-index: auto !important;
   }
   .card {
     box-shadow: none;
+    overflow: hidden;
+    width: 100%;
   }
-  .cardContent { padding: 32px 24px; }
+  .cardImageWrap {
+    aspect-ratio: 16 / 7;
+  }
+  .cardImageWrap img {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  .cardContent {
+    padding: 24px;
+    gap: 24px;
+  }
+  .cardTitle { font-size: 20px; }
+  .cardDesc  { font-size: 16px; }
+  .tags      { gap: 6px; }
+  .tag       { flex-shrink: 1; }
 }

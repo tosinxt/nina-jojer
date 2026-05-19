@@ -82,8 +82,7 @@
 .learnMoreArrow {
   width: 25px;
   height: 25px;
-  border-radius: 50%;
-  border: 1.5px solid white;
+  background: #610203;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,11 +91,7 @@
 }
 
 .learnMore:hover .learnMoreArrow {
-  background: white;
-}
-
-.learnMore:hover .learnMoreArrow svg path {
-  stroke: black;
+  background: #440102;
 }
 
 /* ── Stats grid ── */

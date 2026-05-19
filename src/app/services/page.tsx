@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Services from "@/components/Services";
+import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import styles from "./services.module.css";
 
@@ -47,35 +48,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ── NEWSLETTER ── */}
-      <section className={styles.newsletter}>
-        <div className={styles.newsletterInner}>
-          <div className={styles.newsletterLeft}>
-            <div className={styles.panelLabel}>
-              <span className={styles.labelLine} />
-              <span className={styles.labelText}>NEWSLETTERS</span>
-            </div>
-            <h2 className={styles.newsletterTitle}>Stay informed</h2>
-          </div>
-          <div className={styles.newsletterRight}>
-            <p className={styles.newsletterBody}>
-              Get our latest thinking delivered to your inbox each month
-            </p>
-            <div className={styles.newsletterForm}>
-              <div className={styles.formRow}>
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className={styles.emailInput}
-                />
-                <button className={styles.subscribeBtn}>Subscribe</button>
-              </div>
-              <p className={styles.newsletterDisclaimer}>
-                We respect your inbox. Unsubscribe anytime from any email.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Newsletter />
 
       <Footer />
     </main>

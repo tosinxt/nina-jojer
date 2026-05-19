@@ -82,21 +82,19 @@
 }
 
 .viewAllArrow {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: #8b1a24;
+  width: 25px;
+  height: 25px;
+  background: #610203;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background 0.2s;
 }
 
 .viewAll:hover .viewAllArrow {
-  background: #6e1019;
-  transform: scale(1.05);
+  background: #440102;
 }
 
 /* ── Cards grid ── */
