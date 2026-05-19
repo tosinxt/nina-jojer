@@ -1,3 +1,20 @@
+import type { Metadata } from 'next';
+import { canonicalUrl, buildKeywords } from '@/lib/seo';
+import { BreadcrumbJsonLd } from '@/components/JsonLd';
+
+export const metadata: Metadata = {
+  title: 'About Us',
+  description: 'Learn about Nina Jojer — a Strategic Advisory firm delivering transformative impact across Africa and LAC through expertise in public policy, business strategy, and technology.',
+  keywords: buildKeywords('About Nina Jojer', 'Advisory Team Africa', 'Consulting Firm History', 'Strategic Advisory Leadership'),
+  alternates: { canonical: canonicalUrl('/about') },
+  openGraph: {
+    title: 'About Nina Jojer | Strategic Advisory & Consulting',
+    description: 'Learn about Nina Jojer — a Strategic Advisory firm delivering transformative impact across Africa and LAC.',
+    url: canonicalUrl('/about'),
+    type: 'website',
+  },
+};
+
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
@@ -104,6 +121,7 @@ export default async function AboutPage() {
 
   return (
     <main className={styles.page}>
+      <BreadcrumbJsonLd items={[{ name: 'Home', href: '/' }, { name: 'About', href: '/about' }]} />
       <Navbar />
 
       {/* ── HEADER ── */}

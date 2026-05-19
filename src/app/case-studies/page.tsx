@@ -1,3 +1,20 @@
+import type { Metadata } from 'next';
+import { canonicalUrl, buildKeywords } from '@/lib/seo';
+import { BreadcrumbJsonLd } from '@/components/JsonLd';
+
+export const metadata: Metadata = {
+  title: 'Case Studies',
+  description: 'See how Nina Jojer delivers results — from E-Borders infrastructure modernisation to network transformation for global financial institutions across Africa and beyond.',
+  keywords: buildKeywords('Case Studies Africa', 'E-Borders Infrastructure', 'Network Transformation', 'Government Advisory Results', 'Security Modernisation'),
+  alternates: { canonical: canonicalUrl('/case-studies') },
+  openGraph: {
+    title: 'Case Studies | Nina Jojer',
+    description: 'Real results. Transformative impact. Explore our case studies across government, finance, and technology sectors.',
+    url: canonicalUrl('/case-studies'),
+    type: 'website',
+  },
+};
+
 import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
 import Newsletter from "@/components/Newsletter";
@@ -26,6 +43,7 @@ export default async function CaseStudiesPage() {
 
   return (
     <main className={styles.page}>
+      <BreadcrumbJsonLd items={[{ name: 'Home', href: '/' }, { name: 'Case Studies', href: '/case-studies' }]} />
       <Navbar />
 
       {/* ── HERO ── */}

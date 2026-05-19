@@ -1,3 +1,20 @@
+import type { Metadata } from 'next';
+import { canonicalUrl, buildKeywords } from '@/lib/seo';
+import { BreadcrumbJsonLd } from '@/components/JsonLd';
+
+export const metadata: Metadata = {
+  title: 'Careers',
+  description: 'Join Nina Jojer. We are looking for talented professionals to join our team of strategic advisors, policy experts, and technology specialists across Africa and LAC.',
+  keywords: buildKeywords('Careers Africa Consulting', 'Policy Jobs Africa', 'Advisory Firm Jobs', 'Strategy Consulting Careers', 'Jobs Lagos Nigeria'),
+  alternates: { canonical: canonicalUrl('/careers') },
+  openGraph: {
+    title: 'Careers | Nina Jojer',
+    description: 'Join our team of strategic advisors, policy experts, and technology specialists. Build your career at Nina Jojer.',
+    url: canonicalUrl('/careers'),
+    type: 'website',
+  },
+};
+
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import CtaSection from '@/components/CtaSection';
@@ -61,6 +78,7 @@ export default async function CareersPage() {
 
   return (
     <main className={styles.page}>
+      <BreadcrumbJsonLd items={[{ name: 'Home', href: '/' }, { name: 'Careers', href: '/careers' }]} />
       <Navbar />
 
       {/* ── HEADER ── */}

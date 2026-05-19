@@ -1,3 +1,20 @@
+import type { Metadata } from 'next';
+import { canonicalUrl, buildKeywords } from '@/lib/seo';
+import { BreadcrumbJsonLd } from '@/components/JsonLd';
+
+export const metadata: Metadata = {
+  title: 'Events',
+  description: 'Stay up to date with Nina Jojer events — conferences, roundtables, and thought leadership sessions on policy, strategy, and technology across Africa and global markets.',
+  keywords: buildKeywords('Policy Conferences Africa', 'Strategy Roundtables', 'Advisory Events Nigeria', 'Business Events Africa'),
+  alternates: { canonical: canonicalUrl('/events') },
+  openGraph: {
+    title: 'Events | Nina Jojer',
+    description: 'Conferences, roundtables, and thought leadership sessions on policy, strategy, and technology.',
+    url: canonicalUrl('/events'),
+    type: 'website',
+  },
+};
+
 import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
 import Newsletter from "@/components/Newsletter";
@@ -54,6 +71,7 @@ export default async function EventsPage() {
 
   return (
     <main className={styles.page}>
+      <BreadcrumbJsonLd items={[{ name: 'Home', href: '/' }, { name: 'Events', href: '/events' }]} />
       <Navbar />
 
       {/* ── HERO ── */}

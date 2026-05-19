@@ -1,3 +1,20 @@
+import type { Metadata } from 'next';
+import { canonicalUrl, buildKeywords } from '@/lib/seo';
+import { BreadcrumbJsonLd } from '@/components/JsonLd';
+
+export const metadata: Metadata = {
+  title: 'Insights & Perspectives',
+  description: 'Explore Nina Jojer\'s latest thinking on public policy, business strategy, technology, and African markets. Expert analysis from our advisory team.',
+  keywords: buildKeywords('Policy Analysis Africa', 'Business Strategy Insights', 'Tech Innovation Africa', 'Nigeria Blockchain Policy', 'West Africa Trade', 'AI Africa', 'Data Protection Policy'),
+  alternates: { canonical: canonicalUrl('/insights') },
+  openGraph: {
+    title: 'Insights & Perspectives | Nina Jojer',
+    description: 'Expert analysis on public policy, business strategy, and technology across Africa and LAC markets.',
+    url: canonicalUrl('/insights'),
+    type: 'website',
+  },
+};
+
 import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
 import Newsletter from "@/components/Newsletter";
@@ -110,6 +127,7 @@ export default async function InsightsPage() {
 
   return (
     <main className={styles.page}>
+      <BreadcrumbJsonLd items={[{ name: 'Home', href: '/' }, { name: 'Insights', href: '/insights' }]} />
       <Navbar />
       <InsightsClient articles={articles} />
       <CtaSection />
