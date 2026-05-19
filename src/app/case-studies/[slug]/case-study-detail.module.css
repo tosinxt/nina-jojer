@@ -1,0 +1,249 @@
+/* ── PAGE ── */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #fff;
+}
+
+/* ── HERO ── */
+.hero {
+  background: #eee;
+  display: flex;
+  align-items: stretch;
+  padding-left: 80px;
+  gap: 134px;
+  /* sits below the fixed/sticky nav */
+  padding-top: 85px;
+}
+
+.heroContent {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 700px;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.heroTitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1.138;
+  letter-spacing: -1.2px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.heroSubtitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: #000;
+}
+
+.heroImageWrap {
+  width: 700px;
+  height: 700px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #dcdcdc;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  pointer-events: none;
+}
+
+/* ── CONTENT ROW (About / Mission) ── */
+.contentRow {
+  background: #fff;
+  padding-top: 112px;
+  padding-left: 64px;
+  padding-right: 64px;
+  display: flex;
+  justify-content: center;
+}
+
+.contentRowInner {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: 16px;
+}
+
+.contentRowLabel {
+  width: 468px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contentRowBody {
+  flex: 1;
+  min-width: 0;
+  align-self: stretch;
+}
+
+/* ── SHARED LABEL STYLE ── */
+.sectionLabel {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: -0.24px;
+  text-transform: uppercase;
+  color: #000;
+  width: 100%;
+}
+
+/* ── BODY TEXT ── */
+.bodyText {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: #000;
+  word-break: break-word;
+}
+
+/* ── SERVICE RENDERED ── */
+.serviceSection {
+  background: #fff;
+  padding-top: 112px;
+  padding-left: 64px;
+  padding-right: 64px;
+  display: flex;
+  justify-content: center;
+}
+
+.serviceSectionInner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.serviceList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 635px;
+  max-width: 100%;
+}
+
+.serviceListItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Triangle bullet (Polygon 4, rotated 90°) */
+.listBullet {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 5.5px solid transparent;
+  border-bottom: 5.5px solid transparent;
+  border-left: 9px solid #000;
+  flex-shrink: 0;
+}
+
+/* ── THE RESULTS ── */
+.resultsSection {
+  background: #fff;
+  padding: 112px 64px;
+  display: flex;
+  justify-content: center;
+}
+
+.resultsSectionInner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  align-items: flex-start;
+}
+
+.resultsGrid {
+  display: flex;
+  gap: 84px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.resultItem {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.resultTitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.16px;
+  text-transform: uppercase;
+  color: #000;
+  word-break: break-word;
+}
+
+.resultBody {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: #000;
+  word-break: break-word;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero { padding-left: 40px; gap: 60px; }
+  .heroImageWrap { width: 480px; height: 480px; }
+  .heroContent { height: 480px; }
+  .contentRow { padding-left: 40px; padding-right: 40px; }
+  .serviceSection { padding-left: 40px; padding-right: 40px; }
+  .resultsSection { padding: 80px 40px; }
+  .resultsGrid { gap: 40px; }
+}
+
+@media (max-width: 768px) {
+  .hero { flex-direction: column; padding-left: 0; gap: 0; padding-top: 80px; }
+  .heroContent { height: auto; padding: 40px 24px; }
+  .heroImageWrap { width: 100%; height: 320px; }
+  .heroTitle { font-size: 28px; }
+  .contentRow { padding-top: 60px; padding-left: 24px; padding-right: 24px; }
+  .contentRowInner { flex-direction: column; gap: 24px; }
+  .contentRowLabel { width: 100%; }
+  .serviceSection { padding-top: 60px; padding-left: 24px; padding-right: 24px; }
+  .serviceList { width: 100%; }
+  .resultsSection { padding: 60px 24px; }
+  .resultsGrid { flex-direction: column; gap: 40px; }
+}

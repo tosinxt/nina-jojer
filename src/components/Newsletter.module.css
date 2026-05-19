@@ -1,0 +1,177 @@
+.section {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 46px 64px;
+  width: 100%;
+  border-top: 1px solid #e0e0e0;
+}
+
+.container {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.leftCol {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.eyebrow {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.eyebrowLine {
+  width: 39px;
+  height: 1px;
+  background: black;
+  flex-shrink: 0;
+}
+
+.eyebrowText {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: black;
+  white-space: nowrap;
+}
+
+.heading {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1.138;
+  letter-spacing: -1.2px;
+  text-transform: uppercase;
+  color: black;
+}
+
+.rightCol {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+}
+
+.desc {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: black;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.input {
+  flex: 1 0 0;
+  background: #eee;
+  border: none;
+  outline: none;
+  padding: 16px 22px;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.input::placeholder {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.button {
+  background: black;
+  border: 1px solid black;
+  color: white;
+  padding: 12px 24px;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+
+.button:hover {
+  background: #222;
+}
+
+.disclaimer {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.14px;
+  color: black;
+}
+
+/* ── Mobile — matches Figma node 927:13996 exactly ── */
+@media (max-width: 640px) {
+  .section {
+    padding: 46px 30px; /* Figma: px-[30px] py-[46px] */
+  }
+
+  /* Single column: leftCol + rightCol stack vertically, gap 12px */
+  .container {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Left column: heading shrinks to 30px (Figma H Body style) */
+  .heading {
+    font-size: 30px;
+    letter-spacing: -0.9px;
+    line-height: 1.138;
+  }
+
+  /* Right column: full width */
+  .rightCol {
+    width: 100%;
+    gap: 23px;
+  }
+
+  /* Form stacks vertically: input on top, button full-width below */
+  .form {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* Input takes full width */
+  .input {
+    width: 100%;
+    flex: none;
+  }
+
+  /* Button fills full width, fixed height 51px (Figma spec) */
+  .button {
+    width: 100%;
+    height: 51px;
+    padding: 12px 24px;
+  }
+}

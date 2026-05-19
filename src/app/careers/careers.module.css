@@ -1,0 +1,319 @@
+/* ── Page wrapper ── */
+.page {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+/* ── HEADER ── */
+.header {
+  padding-top: 112px;
+  display: flex;
+  flex-direction: column;
+  gap: 55px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.headerContent {
+  padding: 0 64px;
+  max-width: calc(768px + 128px);
+}
+
+.headerTitle {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1.138;
+  letter-spacing: -1.2px;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0 0 12px;
+}
+
+.headerBody {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: #000;
+  margin: 0;
+}
+
+/* Hero area with bars + portrait */
+.heroArea {
+  position: relative;
+  height: 322px;
+  background: #d8d6d9;
+  overflow: hidden;
+}
+
+.heroBar {
+  position: absolute;
+  height: 176.938px;
+  background: #e1e1e1;
+}
+
+.heroPortrait {
+  position: absolute;
+  right: 164px;
+  top: 17px;
+  width: 275px;
+  height: 275px;
+  object-fit: cover;
+}
+
+/* ── OPEN ROLES ── */
+.openRoles {
+  padding: 112px 64px;
+  background: #fff;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.openRolesHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.sectionHeading {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: -0.24px;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0;
+}
+
+.sectionBody {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: #000;
+  margin: 0;
+}
+
+.rolesPlaceholder {
+  background: #e8e8e8;
+  height: 1007px;
+  width: 100%;
+}
+
+/* ── WHY JOIN ── */
+.whySection {
+  padding: 112px 64px;
+  background: #fff;
+}
+
+.whyContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.whySectionTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 768px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.eyebrowLine {
+  display: block;
+  width: 39px;
+  height: 1px;
+  background: #000;
+  flex-shrink: 0;
+}
+
+.eyebrowText {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.403;
+  text-transform: uppercase;
+  color: #000;
+  white-space: nowrap;
+}
+
+.whyContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.whyHeading {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1.138;
+  letter-spacing: -1.2px;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0;
+}
+
+.whySubtitle {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: #000;
+  margin: 0;
+}
+
+/* Cards row */
+.whyCards {
+  display: flex;
+  gap: 32px;
+  align-items: stretch;
+}
+
+.whyCard {
+  flex: 1;
+  min-width: 0;
+  background: #eee;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.whyCardTop {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.whyCardIcon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.whyCardText {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.whyCardTitle {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 900;
+  font-size: 22px;
+  line-height: 1.3;
+  letter-spacing: -0.22px;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0;
+}
+
+.whyCardBody {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: #000;
+  margin: 0;
+}
+
+.whyCardActions {
+  margin-top: 24px;
+}
+
+.learnBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.14px;
+  color: #000;
+  text-decoration: none;
+}
+
+.learnBtn svg {
+  width: 24px;
+  height: 24px;
+  color: #000;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .header {
+    padding-top: 80px;
+    gap: 32px;
+  }
+
+  .headerContent {
+    padding: 0 24px;
+  }
+
+  .headerTitle {
+    font-size: 28px;
+  }
+
+  .heroPortrait {
+    right: 24px;
+    width: 180px;
+    height: 180px;
+  }
+
+  .openRoles,
+  .whySection {
+    padding: 64px 24px;
+  }
+
+  .whyCards {
+    flex-direction: column;
+  }
+
+  .whyCard {
+    padding: 32px;
+  }
+
+  .whyHeading {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .headerTitle {
+    font-size: 24px;
+  }
+
+  .heroArea {
+    height: 220px;
+  }
+
+  .heroPortrait {
+    width: 130px;
+    height: 130px;
+    right: 16px;
+    top: 30px;
+  }
+}

@@ -1,0 +1,236 @@
+.section {
+  background: #ffffff;
+  padding: 150px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 745px;
+}
+
+.eyebrow {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.eyebrowLine {
+  width: 39px;
+  height: 1px;
+  background: black;
+  flex-shrink: 0;
+}
+
+.eyebrowText {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.403;
+  text-transform: uppercase;
+  color: black;
+  white-space: nowrap;
+}
+
+.heading {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1.138;
+  letter-spacing: -1.2px;
+  text-transform: uppercase;
+  color: black;
+}
+
+.headingMuted {
+  color: #6e6e6e;
+}
+
+.viewAll {
+  display: inline-flex;
+  gap: 16px;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.viewAllText {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.14px;
+  text-transform: uppercase;
+  color: black;
+  white-space: nowrap;
+}
+
+.viewAllArrow {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1.5px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.viewAll:hover .viewAllArrow {
+  background: black;
+}
+
+.viewAll:hover .viewAllArrow svg path {
+  stroke: white;
+}
+
+/* ── Cards grid ── */
+.grid {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+}
+
+.card {
+  flex: 1 0 0;
+  min-width: 0;
+  height: 510px;
+  background: #eeeeee;
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Left: image half */
+.cardImage {
+  flex: 1 0 0;
+  min-width: 0;
+  height: 510px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cardImage img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.cardImage img.object-bottom {
+  object-position: bottom;
+}
+
+.cardImage img.object-center {
+  object-position: center;
+}
+
+/* Right: content half */
+.cardContent {
+  flex: 1 0 0;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 40px 40px 0;
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cardTitle {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 1.3;
+  letter-spacing: -0.6px;
+  text-transform: uppercase;
+  color: black;
+}
+
+.cardDesc {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: black;
+  margin-top: 4px;
+}
+
+/* Learn more CTA */
+.learnMore {
+  display: inline-flex;
+  gap: 16px;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.learnMoreText {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.14px;
+  text-transform: uppercase;
+  color: black;
+  white-space: nowrap;
+}
+
+.learnMoreArrow {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1.5px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.learnMore:hover .learnMoreArrow {
+  background: black;
+}
+
+.learnMore:hover .learnMoreArrow svg path {
+  stroke: white;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .section    { padding: 100px 40px; }
+  .titleBlock { width: 100%; max-width: 600px; }
+}
+
+@media (max-width: 768px) {
+  .section { padding: 80px 24px; }
+  .header  { flex-direction: column; gap: 24px; align-items: flex-start; }
+  .grid    { flex-direction: column; }
+  .card    { height: auto; flex-direction: column; gap: 0; }
+  .cardImage { height: 260px; flex: none; width: 100%; }
+  .cardContent { padding: 32px 24px; }
+}

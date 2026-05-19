@@ -1,0 +1,81 @@
+.section {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120px 64px;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 768px;
+  width: 100%;
+  gap: 13px;
+  text-align: center;
+}
+
+.heading {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 900;
+  font-size: 50px;
+  line-height: 1.2;
+  letter-spacing: -2.5px;
+  text-transform: uppercase;
+  color: black;
+}
+
+.subtext {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  color: black;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: #610203;
+  color: white;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  text-decoration: none;
+  margin-top: 8px;
+}
+
+.button:hover {
+  background: #4a0102;
+}
+
+/* ── Mobile — matches Figma node 927:13995 exactly ── */
+@media (max-width: 640px) {
+  .section {
+    padding: 183px 30px; /* Figma: py-[183px] px-[30px] */
+  }
+
+  /* Heading: 30px / tracking -0.9px (Figma H Body style) */
+  .heading {
+    font-size: 30px;
+    letter-spacing: -0.9px;
+    line-height: 1.138;
+  }
+
+  /* Button: auto width, centred by parent flex */
+  .button {
+    width: auto;
+    margin-top: 0;
+  }
+}
+

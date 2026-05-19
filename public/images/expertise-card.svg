@@ -1,0 +1,27 @@
+<svg width="416" height="677" viewBox="0 0 416 677" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="expertiseBg" x1="208" y1="0" x2="208" y2="677" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#DCDCDC"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="416" height="677" fill="url(#expertiseBg)"/>
+
+  <!-- Chevron watermarks -->
+  <path opacity="0.06" d="M-320 200 L80 550 L-320 900" stroke="black" stroke-width="133.819" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path opacity="0.06" d="M-50 200 L350 550 L-50 900" stroke="black" stroke-width="133.819" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- EXPERTISE label -->
+  <text x="32" y="68" font-family="'Google Sans Flex', sans-serif" font-weight="700" font-size="20" letter-spacing="-0.6" text-transform="uppercase" fill="black">EXPERTISE</text>
+
+  <!-- 22+ number -->
+  <text x="384" y="580" font-family="'Google Sans Flex', sans-serif" font-weight="800" font-size="80" letter-spacing="-2.4" fill="black" text-anchor="end">22+</text>
+
+  <!-- Divider -->
+  <line x1="32" y1="604" x2="384" y2="604" stroke="rgba(0,0,0,0.15)" stroke-width="1"/>
+
+  <!-- Description -->
+  <text x="384" y="635" font-family="'Google Sans Flex', sans-serif" font-weight="300" font-size="16" letter-spacing="-0.16" fill="black" text-anchor="end">Specialists in business strategy and policy.</text>
+</svg>

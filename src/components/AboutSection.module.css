@@ -1,0 +1,350 @@
+.section {
+  background: #0f0f0f;
+  padding: 150px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+
+/* ── Header row: title left, CTA right ── */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 745px;
+}
+
+.eyebrow {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.eyebrowLine {
+  width: 39px;
+  height: 1px;
+  background: white;
+  flex-shrink: 0;
+}
+
+.eyebrowText {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.403;
+  text-transform: uppercase;
+  color: white;
+  white-space: nowrap;
+}
+
+.heading {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1.138;
+  letter-spacing: -1.2px;
+  text-transform: uppercase;
+  color: white;
+}
+
+.headingMuted {
+  color: #6e6e6e;
+}
+
+.learnMore {
+  display: inline-flex;
+  gap: 16px;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.learnMoreText {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.14px;
+  text-transform: uppercase;
+  color: white;
+  white-space: nowrap;
+}
+
+.learnMoreArrow {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1.5px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.learnMore:hover .learnMoreArrow {
+  background: white;
+}
+
+.learnMore:hover .learnMoreArrow svg path {
+  stroke: black;
+}
+
+/* ── Stats grid ── */
+.grid {
+  display: flex;
+  gap: 32px;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Each column */
+.col {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.colFull {
+  align-self: stretch;
+}
+
+/* Base stat card */
+.stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 32px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Stat: Expertise (light gradient, full-height left col) ── */
+.statExpertise {
+  flex: 1 0 0;
+  background: linear-gradient(180deg, #ffffff 0%, #dcdcdc 100%);
+}
+
+.statExpertise .statLabel,
+.statExpertise .statNumber,
+.statExpertise .statDesc {
+  color: black;
+}
+
+.statExpertise .statDivider {
+  background: rgba(0,0,0,0.15);
+}
+
+/* ── Stat: Global Reach (dark gradient, bottom of centre col) ── */
+.statGlobalReach {
+  height: 377px;
+  background: linear-gradient(230.66deg, #131313 11%, #272727 93.7%);
+  flex-shrink: 0;
+}
+
+.statGlobalReach .statLabel,
+.statGlobalReach .statNumber,
+.statGlobalReach .statDesc {
+  color: white;
+}
+
+.statGlobalReach .statDivider {
+  background: rgba(255,255,255,0.2);
+}
+
+/* ── Stat: Client Trust (light grey) ── */
+.statClientTrust {
+  height: 376px;
+  background: #eeeeee;
+  flex-shrink: 0;
+}
+
+.statClientTrust .statLabel,
+.statClientTrust .statNumber,
+.statClientTrust .statDesc {
+  color: black;
+}
+
+.statClientTrust .statDivider {
+  background: rgba(0,0,0,0.2);
+}
+
+/* ── Stat: Employees (maroon gradient) ── */
+.statEmployees {
+  height: 269px;
+  background: linear-gradient(20.53deg, #66363b 1.4%, #ab3d49 96.1%);
+  flex-shrink: 0;
+}
+
+.statEmployees .statLabel,
+.statEmployees .statNumber,
+.statEmployees .statDesc {
+  color: white;
+}
+
+.statEmployees .statDivider {
+  background: rgba(255,255,255,0.25);
+}
+
+/* Stat internals */
+.statLabel {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.6px;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+.statBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.statNumber {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 800;
+  font-size: 80px;
+  line-height: 1.2;
+  letter-spacing: -2.4px;
+  text-align: right;
+}
+
+.statDivider {
+  width: 100%;
+  height: 1px;
+}
+
+.statDesc {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  text-align: right;
+}
+
+/* ── Polygon / star decorations ── */
+.polygonDecorLeft,
+.polygonDecorRight {
+  position: absolute;
+  width: 777.706px;
+  height: 1435.561px;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.polygonDecorLeft {
+  left: -744px;
+  top: -501.86px;
+  transform: rotate(90deg);
+}
+
+.polygonDecorRight {
+  left: -470.71px;
+  top: -501.86px;
+  transform: rotate(90deg);
+}
+
+.polygonDecorLeft img,
+.polygonDecorRight img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.polygonDecorGlobalReach {
+  position: absolute;
+  width: 1435.561px;
+  height: 777.706px;
+  left: -413px;
+  top: -699.24px;
+  transform: rotate(180deg);
+  pointer-events: none;
+  overflow: visible;
+}
+
+.polygonDecorGlobalReach img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.starDecor {
+  position: absolute;
+  width: 289px;
+  height: 289px;
+  left: 258px;
+  top: -99.86px;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.starDecor img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ── Centre column image ── */
+.imageCard {
+  flex: 1 0 0;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+  background: #d4d4d4;
+}
+
+.imageCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .section    { padding: 100px 40px; }
+  .titleBlock { width: 100%; max-width: 600px; }
+  .statNumber { font-size: 60px; }
+}
+
+@media (max-width: 768px) {
+  /* Figma: px-30px py-100px, gap 30px, single column */
+  .section  { padding: 100px 30px; gap: 30px; }
+
+  /* Header stacks vertically with 10px gap between titleBlock and CTA */
+  .header   { flex-direction: column; gap: 10px; align-items: flex-start; }
+  .titleBlock { width: 100%; }
+
+  /* Heading is 30px on mobile per Figma */
+  .heading  { font-size: 30px; letter-spacing: -0.9px; }
+
+  /* Single-column stats */
+  .grid     { flex-direction: column; gap: 32px; }
+  .col      { width: 100%; }
+
+  /* Exact card heights from Figma */
+  .statExpertise  { height: 503px; }
+  .statGlobalReach { height: 377px; }
+  .statClientTrust { height: 376px; }
+  .statEmployees  { height: 269px; }
+  .imageCard      { height: 283px; min-height: unset; flex: none; }
+}

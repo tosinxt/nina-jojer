@@ -1,0 +1,186 @@
+.preHero {
+  width: 100%;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 150px;
+  gap: 100px;
+}
+
+/* Text content block — right-aligned */
+.container {
+  width: 100%;
+  padding: 0 80px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.content {
+  width: 573px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 900;
+  font-size: 50px;
+  line-height: 1.2;
+  letter-spacing: -2.5px;
+  text-transform: uppercase;
+  color: black;
+  height: 110px;
+}
+
+.description {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: black;
+}
+
+/* CTA — icon box + label */
+.cta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+}
+
+.cta:hover .ctaText {
+  opacity: 0.7;
+}
+
+.iconBox {
+  width: 50px;
+  height: 46px;
+  background: #610203;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ctaText {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.16px;
+  text-transform: uppercase;
+  color: black;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+/* Hero image + floating badges */
+.imageSection {
+  width: 100%;
+  height: 955px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Badge overlay — sits centred over the image */
+.badgeOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Individual badge: dot + pill */
+.badge {
+  position: absolute;
+  height: 46px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.dot {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: #670101;
+  flex-shrink: 0;
+  margin-top: 0;
+}
+
+.pill {
+  background: white;
+  border-radius: 68px;
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.pillText {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.84px;
+  text-transform: uppercase;
+  color: black;
+}
+
+/* Left-side badges: dot is left of pill */
+.badgeLeft .dot  { order: 0; }
+.badgeLeft .pill { order: 1; margin-left: -4px; }
+
+/* Right-side badges: pill is left of dot */
+.badgeRight .pill { order: 0; }
+.badgeRight .dot  { order: 1; margin-left: -4px; margin-top: 2px; }
+
+@media (max-width: 1024px) {
+  .container { padding: 0 40px; }
+  .content   { width: 100%; max-width: 573px; }
+}
+
+@media (max-width: 768px) {
+  /* Figma mobile: sticky header ~54px + 81px gap to content = ~135px top offset */
+  .preHero    { padding-top: 135px; gap: 0; }
+  .container  { justify-content: flex-start; padding: 0 30px; }
+  .content    { width: 100%; gap: 42px; }
+  .textGroup  { gap: 16px; }
+  .title      { font-size: 40px; line-height: 1.138; letter-spacing: -1.2px; height: auto; }
+  .description { font-size: 18px; }
+
+  /* Image section: full 970px height, no gap above (gap lives in .content) */
+  .imageSection {
+    height: 970px;
+    margin-top: 42px;
+  }
+
+  /* Show badges on mobile with Figma-accurate positions */
+  .badge { display: flex; }
+
+  /* Transformative Impact — left side, top ~118px */
+  .badge:nth-child(1) { top: 118px; left: 37px; }
+  /* Strategic Advisory — left side, top ~464px */
+  .badge:nth-child(2) { top: 464px; left: 29px; }
+  /* Innovative Consulting — right side, top ~282px */
+  .badge:nth-child(3) { top: 282px; right: 0; left: auto; }
+  /* Growth Catalysts — right side, top ~633px */
+  .badge:nth-child(4) { top: 633px; right: 0; left: auto; }
+}

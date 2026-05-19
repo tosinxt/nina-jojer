@@ -1,0 +1,93 @@
+/* ── ROOT: items-end justify-between (Figma: flex items-end justify-between) ── */
+.root {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* ── LEFT: flex-1, max-w-768px, gap-12px ── */
+.left {
+  flex: 1 0 0;
+  min-width: 0;
+  max-width: 768px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── LABEL ROW: horizontal line + uppercase tag ── */
+.labelRow {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-shrink: 0;
+}
+
+/* Figma: h-0 w-39px container, SVG absolutely inset-[-0.7px_0_0_0] */
+.line {
+  width: 39px;
+  height: 1px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.403;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #000;
+  white-space: nowrap;
+}
+
+/* ── HEADING GROUP: gap-4px ── */
+.headingGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* H2: 40px, Black, uppercase, line-height 1.138, tracking -1.2px */
+.title {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1.138;
+  letter-spacing: -1.2px;
+  text-transform: uppercase;
+  color: #000;
+  width: 100%;
+}
+
+/* Subtitle: 16px, Light, line-height 1.5, tracking -0.16px */
+.subtitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: #000;
+}
+
+/* ── RIGHT: "view more" + arrow — SemiBold 14px uppercase ── */
+.viewMore {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  color: #000;
+  flex-shrink: 0;
+}
+
+.viewMore span {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.14px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}

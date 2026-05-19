@@ -1,0 +1,208 @@
+.header {
+  height: 85.19px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1001; /* Keep logo and hamburger above mobile drawer */
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+}
+
+.navLink {
+  font-family: var(--font-google-sans-flex);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #333333;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  color: #000000;
+}
+
+.chevron {
+  width: 11px;
+  height: 6px;
+  margin-left: 8px;
+  display: inline-block;
+}
+
+/* Mobile Toggle - CSS implementation of Figma hamburger node 883:11552 */
+.mobileToggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
+
+.hamburgerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4.5px;
+  width: 23px;
+  height: 43px;
+  align-items: flex-start;
+}
+
+.bar {
+  height: 2px;
+  background: #000000;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.barTop {
+  width: 16px;
+}
+
+.barMiddle {
+  width: 23px;
+}
+
+.barBottom {
+  width: 16px;
+}
+
+.activeToggle .barTop {
+  transform: translateY(6.5px) rotate(45deg);
+  width: 23px;
+}
+
+.activeToggle .barMiddle {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.activeToggle .barBottom {
+  transform: translateY(-6.5px) rotate(-45deg);
+  width: 23px;
+}
+
+/* Mobile Drawer Overlay */
+.mobileDrawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.drawerOpen {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobileNavList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobileNavLink {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #111111;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.mobileNavLink:hover {
+  color: #610203;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 2rem;
+  }
+  .navList {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .nav {
+    display: none;
+  }
+  .mobileToggle {
+    display: block;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    height: 53.6px; /* Matches Py 10px + logo height 33.6px = 53.6px closed height */
+  }
+
+  .container {
+    padding: 10px 30px; /* Figma: px-[30px] py-[10px] */
+  }
+
+  .logo {
+    width: 90px !important;
+    height: 33.614px !important;
+  }
+}
+

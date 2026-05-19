@@ -1,0 +1,638 @@
+/* ── PAGE ── */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #fff;
+}
+
+/* ── HEADER ── */
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: 150px;
+  background: #fff;
+}
+
+.headerContent {
+  padding: 0 80px 52px;
+}
+
+.headerText {
+  width: 573px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.headerTitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 50px;
+  line-height: 1.2;
+  letter-spacing: -2.5px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.headerBody {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: #000;
+}
+
+.heroWrap {
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+  background: #b8b8b8;
+  position: relative;
+}
+
+.heroImg {
+  position: absolute;
+  top: -16.67%;
+  left: -5.54%;
+  width: 111.24%;
+  height: 116.67%;
+  object-fit: cover;
+}
+
+/* ── CONTENT SECTION ── */
+.contentSection {
+  padding: 100px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  background: #fff;
+}
+
+/* Overview + Practice two-column */
+.richText {
+  display: flex;
+  gap: 77px;
+  align-items: flex-start;
+}
+
+.overviewCol {
+  width: 377px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.practiceCol {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.colHeading {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: -0.24px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.colBody {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.colBody p {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: #000;
+}
+
+/* Sub services */
+.subServices {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.subServicesTitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: -0.24px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.subServicesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 77px;
+}
+
+.subServiceCard {
+  width: 262px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.subServiceTitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.16px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.subServiceDesc {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: #000;
+}
+
+/* ── CASE STUDIES ── */
+.caseStudies {
+  padding: 0 64px 100px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.caseStudiesHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.caseStudiesTitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: -0.24px;
+  text-transform: uppercase;
+  color: #000;
+  max-width: 745px;
+}
+
+.viewAll {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.viewAll span {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.14px;
+  text-transform: uppercase;
+  color: #000;
+  white-space: nowrap;
+}
+
+.caseStudiesGrid {
+  display: flex;
+  gap: 32px;
+}
+
+/* Each card: #eee bg, 510px tall, two halves separated by gap-50px */
+.caseCard {
+  flex: 1;
+  min-width: 0;
+  background: #eee;
+  display: flex;
+  gap: 50px;
+  height: 510px;
+  overflow: hidden;
+}
+
+/* Image half — fills the left side */
+.caseCardImageWrap {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Card 1: tall AI image, cropped to show lower portion */
+.caseCardImg1 {
+  position: absolute;
+  width: 428px;
+  height: 957.65px;
+  left: -67px;
+  top: -224.37px;
+  object-fit: cover;
+  object-position: bottom;
+  pointer-events: none;
+}
+
+/* Card 2: standard cover image */
+.caseCardImg2 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Content half — right side, no left padding, right+vertical padding */
+.caseCardContent {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 40px 40px 0;
+}
+
+.caseCardText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.caseCardTitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 1.3;
+  letter-spacing: -0.6px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.caseCardDesc {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: #000;
+}
+
+.learnMore {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+}
+
+.learnMore span {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.14px;
+  text-transform: uppercase;
+  color: #000;
+  white-space: nowrap;
+}
+
+/* ── FAQ ── */
+.faqSection {
+  padding: 0 64px 100px;
+  background: #fff;
+}
+
+.faqInner {
+  display: flex;
+  gap: 78px;
+  align-items: flex-start;
+  max-width: 1280px;
+}
+
+.faqLeft {
+  width: 392px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.faqLeftTop {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.faqTitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: -0.24px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.faqSubtitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: #000;
+}
+
+.faqCta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faqCtaTitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 22px;
+  line-height: 1.3;
+  letter-spacing: -0.22px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.faqCtaBody {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: #000;
+}
+
+.faqCtaBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #670101;
+  border: 1px solid #fff;
+  padding: 12px 24px;
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.16px;
+  color: #fff;
+  text-decoration: none;
+  width: fit-content;
+  transition: opacity 0.2s;
+}
+
+.faqCtaBtn:hover {
+  opacity: 0.85;
+}
+
+.faqRight {
+  flex: 1;
+  min-width: 0;
+}
+
+/* FAQ list */
+.faqList {
+  display: flex;
+  flex-direction: column;
+}
+
+.faqItem {
+  border-bottom: 1px solid #000;
+}
+
+.faqQuestion {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #000;
+}
+
+.faqAnswer {
+  padding-bottom: 24px;
+}
+
+.faqAnswer p {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: #000;
+  max-width: 768px;
+}
+
+/* ── SEE OTHER SOLUTIONS ── */
+.otherSolutions {
+  background: #ededed;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.otherLeft {
+  width: 538px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  padding: 100px 46px 100px 64px;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+}
+
+.otherTitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1.138;
+  letter-spacing: -1.2px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.otherCards {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 100px 40px;
+  gap: 0;
+}
+
+.otherCardWrapper {
+  position: sticky;
+  top: 0;
+  background: #ededed;
+  padding-bottom: 80px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.otherCardWrapper:last-child {
+  padding-bottom: 150px;
+}
+
+.otherCard {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 780px;
+  overflow: hidden;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.otherCardImageWrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.otherCardImage {
+  width: 111.24%;
+  height: 116.67%;
+  object-fit: cover;
+  position: absolute;
+  top: -16.67%;
+  left: -5.54%;
+}
+
+.otherCardBody {
+  padding: 30px 50px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  flex-shrink: 0;
+  min-height: 435px;
+}
+
+.otherCardTop {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.otherCardTitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: -0.24px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.otherCardDesc {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: #000;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ededed;
+  padding: 8px 20px 8px 14px;
+  white-space: nowrap;
+}
+
+.tagDot {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #670101;
+  flex-shrink: 0;
+}
+
+.tag span + span {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: #000;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .headerContent { padding: 0 40px 40px; }
+  .contentSection { padding: 60px 40px; }
+  .richText { flex-direction: column; gap: 40px; }
+  .overviewCol { width: 100%; }
+  .caseStudies { padding: 0 40px 80px; }
+  .faqSection { padding: 0 40px 80px; }
+  .otherLeft { width: 360px; padding: 80px 32px 80px 40px; }
+}
+
+@media (max-width: 768px) {
+  .headerContent { padding: 0 24px 32px; }
+  .headerText { width: 100%; }
+  .headerTitle { font-size: 36px; }
+  .heroWrap { height: 300px; }
+  .contentSection { padding: 48px 24px; gap: 60px; }
+  .subServicesGrid { gap: 40px; }
+  .subServiceCard { width: 100%; }
+  .caseStudies { padding: 0 24px 60px; }
+  .caseStudiesGrid { flex-direction: column; }
+  .caseCard { height: auto; flex-direction: column; }
+  .caseCardImage { height: 240px; }
+  .caseCardContent { padding: 24px; }
+  .faqSection { padding: 0 24px 60px; }
+  .faqInner { flex-direction: column; gap: 40px; }
+  .faqLeft { width: 100%; }
+  .otherSolutions { flex-direction: column; }
+  .otherLeft { position: static; width: 100%; min-height: unset; padding: 48px 24px 32px; }
+  .otherCards { padding: 0 24px 48px; }
+  .otherCardWrapper { position: static; z-index: auto !important; }
+  .otherCard { height: auto; box-shadow: none; }
+  .otherCardBody { min-height: unset; padding: 24px; }
+}

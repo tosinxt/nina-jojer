@@ -1,0 +1,271 @@
+/* ── Outer shell ── */
+.section {
+  background: #ededed;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* ── Left: sticky label panel ── */
+/*
+ * KEY: position:sticky works within the nearest scrollable ancestor.
+ * Previously, overflow-x: hidden on <body> was silently creating a new
+ * scroll container, breaking all sticky descendants.
+ * Now that globals.css only applies overflow-x: hidden to <html>,
+ * the viewport is the correct scroll container and sticky works.
+ */
+.leftPanel {
+  width: 562px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px; /* offset for fixed navbar height */
+  align-self: flex-start;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: flex-start;
+}
+
+.leftInner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 80px 46px 80px 64px;
+}
+
+.eyebrow {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.eyebrowLine {
+  width: 39px;
+  height: 1px;
+  background: black;
+  flex-shrink: 0;
+}
+
+.eyebrowText {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.403;
+  text-transform: uppercase;
+  color: black;
+  white-space: nowrap;
+}
+
+.headingGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.heading {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1.138;
+  letter-spacing: -1.2px;
+  text-transform: uppercase;
+  color: black;
+}
+
+.subheading {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: black;
+}
+
+/* ── Right: scrolling cards column ── */
+.rightPanel {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Each card wrapper — sticky stacker */
+.cardWrapper {
+  padding: 80px 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  position: sticky;
+  top: 80px; /* offset for fixed navbar */
+  background: #ededed;
+}
+
+/* Sequential z-indices: later cards cover earlier ones */
+.cardWrapper:nth-child(1) { z-index: 1; }
+.cardWrapper:nth-child(2) { z-index: 2; }
+.cardWrapper:nth-child(3) { z-index: 3; }
+.cardWrapper:nth-child(4) { z-index: 4; }
+
+/* White card */
+.card {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Image area */
+.cardImageWrap {
+  width: 100%;
+  aspect-ratio: 797 / 316.21;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.cardImageWrap img {
+  width: 111.24%;
+  height: 116.67%;
+  object-fit: cover;
+  position: absolute;
+  top: -16.67%;
+  left: -5.54%;
+}
+
+/* Content area */
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 50px;
+  gap: 40px;
+}
+
+.cardTextGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cardTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cardTitle {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: -0.24px;
+  text-transform: uppercase;
+  color: black;
+}
+
+.cardDesc {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: black;
+  margin-top: 6px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  background: #ededed;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 20px 8px 14px;
+  flex-shrink: 0;
+}
+
+.tagDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #670101;
+  flex-shrink: 0;
+}
+
+.tagText {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: black;
+  white-space: nowrap;
+}
+
+/* "LEARN MORE →" CTA */
+.learnMore {
+  display: inline-flex;
+  gap: 16px;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.learnMoreText {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.14px;
+  text-transform: uppercase;
+  color: black;
+  white-space: nowrap;
+}
+
+.learnMoreArrow {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1.5px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.learnMore:hover .learnMoreArrow {
+  background: black;
+}
+
+.learnMore:hover .learnMoreArrow svg path {
+  stroke: white;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .leftPanel  { width: 420px; }
+  .leftInner  { padding: 60px 32px 60px 40px; }
+  .heading    { font-size: 32px; }
+}
+
+@media (max-width: 768px) {
+  .section    { flex-direction: column; }
+  .leftPanel  { position: static; width: 100%; min-height: unset; }
+  .leftInner  { padding: 48px 24px 32px; }
+  .cardWrapper {
+    padding: 40px 24px;
+    position: static;
+    background: transparent;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    z-index: auto !important;
+  }
+  .card {
+    box-shadow: none;
+  }
+  .cardContent { padding: 32px 24px; }
+}

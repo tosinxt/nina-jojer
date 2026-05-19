@@ -1,0 +1,432 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+/* ── HERO ── */
+.hero {
+  background: #eee;
+  padding: 150px 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.heroContent {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.heroTitle {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 900;
+  font-size: 50px;
+  line-height: 1.2;
+  letter-spacing: -2.5px;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.heroBody {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: #000;
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  align-self: center;
+}
+
+/* ── FORM SECTION ── */
+.formSection {
+  background: #fff;
+  padding: 112px 64px;
+}
+
+.formContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+/* Info column */
+.infoCol {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.sectionTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.eyebrowLine {
+  display: block;
+  width: 39px;
+  height: 1px;
+  background: #000;
+  flex-shrink: 0;
+}
+
+.eyebrowText {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.403;
+  text-transform: uppercase;
+  color: #000;
+  white-space: nowrap;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.heading {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1.138;
+  letter-spacing: -1.2px;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0;
+}
+
+.subheading {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: #000;
+  margin: 0;
+}
+
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.contactRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.contactIcon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* Form column */
+.form {
+  width: 796px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.inputGroup {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: #000;
+}
+
+.labelLg {
+  font-size: 18px;
+  letter-spacing: 0.18px;
+}
+
+.input {
+  background: #eee;
+  border: none;
+  border-bottom: 1px solid #d1d1d1;
+  height: 57px;
+  padding: 0 20px;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: #000;
+  width: 100%;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.input::placeholder {
+  color: #c7c7c7;
+}
+
+.input:focus {
+  border-bottom-color: #000;
+}
+
+.inputActive {
+  border-bottom-color: #000;
+}
+
+/* Phone field */
+.phoneInput {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  height: 57px;
+}
+
+.phonePrefix {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #e3e3e3;
+  height: 100%;
+  padding: 0 13px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.phonePrefixCode {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: #000;
+  white-space: nowrap;
+}
+
+.flagImg {
+  width: 27px;
+  height: 13.5px;
+  object-fit: cover;
+}
+
+.chevronImg {
+  width: 10px;
+  height: 5px;
+}
+
+.phoneInner {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0 20px;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: #000;
+  height: 100%;
+}
+
+.phoneInner::placeholder {
+  color: #c7c7c7;
+}
+
+/* Textarea */
+.textarea {
+  background: #eee;
+  border: none;
+  outline: none;
+  padding: 12px;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: #000;
+  width: 100%;
+  resize: vertical;
+  min-height: 180px;
+  box-sizing: border-box;
+}
+
+.textarea::placeholder {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Submit */
+.submitBtn {
+  align-self: flex-start;
+  background: #000;
+  border: 1px solid #000;
+  color: #fff;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.submitBtn:hover {
+  background: #222;
+}
+
+/* ── OFFICES ── */
+.officesSection {
+  background: #fff;
+  padding: 112px 64px;
+}
+
+.officesContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.officesHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.officesGrid {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.officeCard {
+  flex: 1;
+  min-width: 0;
+  border-left: 1px solid #000;
+  padding-left: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.officeCity {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 1.3;
+  letter-spacing: -0.16px;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0;
+}
+
+.officeAddress {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.14px;
+  color: #000;
+  margin: 0;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .formContainer {
+    flex-direction: column;
+  }
+
+  .form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 100px 24px 64px;
+  }
+
+  .heroContent {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .heroTitle {
+    font-size: 36px;
+  }
+
+  .formSection,
+  .officesSection {
+    padding: 64px 24px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .officesGrid {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .heading {
+    font-size: 28px;
+  }
+}
