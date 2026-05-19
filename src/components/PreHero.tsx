@@ -1,10 +1,12 @@
 import styles from './PreHero.module.css';
 
+// Positions derived from Figma's 1363px overlay centred over the full-width image.
+// left/right values are relative to the image edges.
 const badges = [
   { label: 'Transformative Impact',  top: 148, left: 118,  side: 'left'  },
   { label: 'Strategic Advisory',     top: 414, left: 280,  side: 'left'  },
-  { label: 'Innovative Consulting',  top: 222, right: 202, side: 'right' },
-  { label: 'Growth Catalysts',       top: 543, right: 227, side: 'right' },
+  { label: 'Innovative Consulting',  top: 222, right: 132, side: 'right' },
+  { label: 'Growth Catalysts',       top: 543, right: 157, side: 'right' },
 ] as const;
 
 export default function PreHero() {

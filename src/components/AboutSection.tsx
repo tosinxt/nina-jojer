@@ -67,16 +67,16 @@ export default function AboutSection() {
             number="22+"
             description="Specialists in business strategy and policy."
             decoration={
-              <>
-                <div className={styles.polygonDecorLeft}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/Layout/484/Polygon1.svg" alt="" aria-hidden="true" />
-                </div>
-                <div className={styles.polygonDecorRight}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/Layout/484/Polygon2.svg" alt="" aria-hidden="true" />
-                </div>
-              </>
+              <svg
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
+                viewBox="0 0 360 503"
+                preserveAspectRatio="xMidYMid slice"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path opacity="0.06" d="M-482.663 668.441L-482.663 -236.609L-58.045 215.916L-482.663 668.441Z" stroke="black" strokeWidth="133.819" />
+                <path opacity="0.06" d="M-209.37 668.441L-209.37 -236.609L215.248 215.916L-209.37 668.441Z" stroke="black" strokeWidth="133.819" />
+              </svg>
             }
           />
         </div>

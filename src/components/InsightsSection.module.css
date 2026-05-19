@@ -82,8 +82,8 @@
 }
 
 .viewAllArrow {
-  width: 25px;
-  height: 25px;
+  width: 36px;
+  height: 36px;
   background: #610203;
   color: white;
   display: flex;
@@ -309,18 +309,30 @@
   }
 }
 
-@media (max-width: 640px) {
+/* Mobile — matches Figma node 883:11062 exactly */
+@media (max-width: 768px) {
   .section {
-    padding: 60px 24px;
+    padding: 100px 30px;
   }
+
+  /* Header stacks: title above, VIEW ALL below */
   .header {
     flex-direction: column;
-    gap: 24px;
     align-items: flex-start;
+    gap: 20px;
   }
+
+  /* Cards: single column, 24px gap, each 572px tall */
+  .grid {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 24px;
+  }
+
   .card {
-    flex: 1 0 100%;
-    height: auto;
-    min-height: 520px;
+    flex: none;
+    width: 100%;
+    height: 572px;
+    min-height: unset;
   }
 }

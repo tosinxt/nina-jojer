@@ -127,8 +127,15 @@
 
 /* ── Stat: Expertise (light gradient, full-height left col) ── */
 .statExpertise {
-  flex: 1 0 0;
+  flex: 1 1 0;
+  min-height: 503px;
   background: linear-gradient(180deg, #ffffff 0%, #dcdcdc 100%);
+}
+
+/* Desktop: col must stretch — col is flex column so expertise card fills it */
+.colFull {
+  align-self: stretch;
+  min-height: 503px;
 }
 
 .statExpertise .statLabel,
@@ -337,7 +344,7 @@
   .col      { width: 100%; }
 
   /* Exact card heights from Figma */
-  .statExpertise  { height: 503px; }
+  .statExpertise  { flex: none; height: 503px; }
   .statGlobalReach { height: 377px; }
   .statClientTrust { height: 376px; }
   .statEmployees  { height: 269px; }

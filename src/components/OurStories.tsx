@@ -47,8 +47,12 @@ export default async function OurStories() {
             Delivering Results{' '}
             <span className={styles.headingMuted}>Making Impact</span>
           </h2>
+          <Link href="/case-studies" className={`${styles.viewAll} ${styles.viewAllMobile}`}>
+            <span className={styles.viewAllText}>View All</span>
+            <span className={styles.viewAllArrow}><ArrowIcon /></span>
+          </Link>
         </div>
-        <Link href="/case-studies" className={styles.viewAll}>
+        <Link href="/case-studies" className={`${styles.viewAll} ${styles.viewAllDesktop}`}>
           <span className={styles.viewAllText}>View All</span>
           <span className={styles.viewAllArrow}><ArrowIcon /></span>
         </Link>

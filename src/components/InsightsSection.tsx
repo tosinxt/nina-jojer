@@ -64,6 +64,17 @@ const fallbackInsights = [
     readTime: '5 mins read',
     slug: 'data-protection-act',
   },
+  {
+    _id: '4',
+    image: '/images/Blog/insight-4.png',
+    category: 'Policy Analysis',
+    title: 'How Big Data Enables and Constrains AI Development in Africa',
+    excerpt: 'The report discusses the opportunities and challenges of using big data and AI for sustainable development in Africa and offers some recommendations for policymakers, businesses, and researchers.',
+    author: 'CHINWE OHANELE',
+    publishedAt: '5th May 2026',
+    readTime: '5 mins read',
+    slug: 'big-data-ai-africa',
+  },
 ];
 
 type FeaturedInsight = {
@@ -93,9 +104,9 @@ export default async function InsightsSection() {
           <div className={styles.titleBlock}>
             <div className={styles.eyebrow}>
               <span className={styles.eyebrowLine} />
-              <span className={styles.eyebrowText}>Insights</span>
+              <span className={styles.eyebrowText}>Insights &amp; Perspective</span>
             </div>
-            <h2 className={styles.heading}>Thinking Out Loud</h2>
+            <h2 className={styles.heading}>Perspectives on policy, strategy, and technology.</h2>
           </div>
           <Link href="/insights" className={styles.viewAll}>
             <span className={styles.viewAllText}>View All</span>
