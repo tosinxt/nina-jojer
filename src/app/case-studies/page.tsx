@@ -1,82 +1,28 @@
-"use client";
-
-import { useState } from "react";
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import styles from "./case-studies.module.css";
+import CaseStudiesClient, { type CaseStudy } from "./CaseStudiesClient";
+import { client } from "@/sanity/client";
+import { caseStudiesQuery } from "@/sanity/queries";
 
-const FILTERS = [
-  "Policy & Advocacy Solutions",
-  "Corporate Solutions",
-  "Technology solutions",
-  "Strategic Communications",
+const fallbackCaseStudies: CaseStudy[] = [
+  { _id: "1", title: "A Review of Nigeria's National Blockchain Policy", excerpt: "We help businesses navigate and shape Africa's regulatory and political landscape.", image: "/images/case-studies/card-image.jpg", slug: "nigeria-blockchain-policy", category: "" },
+  { _id: "2", title: "A Review of Nigeria's National Blockchain Policy", excerpt: "We help businesses navigate and shape Africa's regulatory and political landscape.", image: "/images/case-studies/card-image.jpg", slug: "nigeria-blockchain-policy-2", category: "" },
+  { _id: "3", title: "A Review of Nigeria's National Blockchain Policy", excerpt: "We help businesses navigate and shape Africa's regulatory and political landscape.", image: "/images/case-studies/card-image.jpg", slug: "nigeria-blockchain-policy-3", category: "" },
+  { _id: "4", title: "A Review of Nigeria's National Blockchain Policy", excerpt: "We help businesses navigate and shape Africa's regulatory and political landscape.", image: "/images/case-studies/card-image.jpg", slug: "nigeria-blockchain-policy-4", category: "" },
+  { _id: "5", title: "A Review of Nigeria's National Blockchain Policy", excerpt: "We help businesses navigate and shape Africa's regulatory and political landscape.", image: "/images/case-studies/card-image.jpg", slug: "nigeria-blockchain-policy-5", category: "" },
 ];
 
-const caseStudies = [
-  {
-    id: 1,
-    title: "A Review of Nigeria's National Blockchain Policy",
-    excerpt: "We help businesses navigate and shape Africa's regulatory and political landscape.",
-    image: "/images/case-studies/card-image.jpg",
-    slug: "nigeria-blockchain-policy",
-  },
-  {
-    id: 2,
-    title: "A Review of Nigeria's National Blockchain Policy",
-    excerpt: "We help businesses navigate and shape Africa's regulatory and political landscape.",
-    image: "/images/case-studies/card-image.jpg",
-    slug: "nigeria-blockchain-policy-2",
-  },
-  {
-    id: 3,
-    title: "A Review of Nigeria's National Blockchain Policy",
-    excerpt: "We help businesses navigate and shape Africa's regulatory and political landscape.",
-    image: "/images/case-studies/card-image.jpg",
-    slug: "nigeria-blockchain-policy-3",
-  },
-  {
-    id: 4,
-    title: "A Review of Nigeria's National Blockchain Policy",
-    excerpt: "We help businesses navigate and shape Africa's regulatory and political landscape.",
-    image: "/images/case-studies/card-image.jpg",
-    slug: "nigeria-blockchain-policy-4",
-  },
-  {
-    id: 5,
-    title: "A Review of Nigeria's National Blockchain Policy",
-    excerpt: "We help businesses navigate and shape Africa's regulatory and political landscape.",
-    image: "/images/case-studies/card-image.jpg",
-    slug: "nigeria-blockchain-policy-5",
-  },
-];
-
-function CaseStudyCard({ study }: { study: typeof caseStudies[0] }) {
-  return (
-    <article className={styles.card}>
-      <div className={styles.cardImageWrap}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={study.image} alt={study.title} className={styles.cardImage} />
-      </div>
-      <div className={styles.cardContent}>
-        <div className={styles.cardTexts}>
-          <h3 className={styles.cardTitle}>{study.title}</h3>
-          <p className={styles.cardExcerpt}>{study.excerpt}</p>
-        </div>
-        <Link href={`/case-studies/${study.slug}`} className={styles.learnMore}>
-          <span>LEARN MORE</span>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/events/arrow-circle.svg" alt="" aria-hidden="true" width={25} height={25} />
-        </Link>
-      </div>
-    </article>
-  );
-}
-
-export default function CaseStudiesPage() {
-  const [activeFilter, setActiveFilter] = useState(FILTERS[0]);
+export default async function CaseStudiesPage() {
+  let caseStudies: CaseStudy[] = [];
+  try {
+    caseStudies = await client.fetch<CaseStudy[]>(caseStudiesQuery);
+  } catch {
+    /* Sanity not configured yet — use fallback */
+  }
+  if (!caseStudies || caseStudies.length === 0) caseStudies = fallbackCaseStudies;
 
   return (
     <main className={styles.page}>
@@ -84,7 +30,6 @@ export default function CaseStudiesPage() {
 
       {/* ── HERO ── */}
       <section className={styles.hero}>
-        {/* Text row */}
         <div className={styles.heroTextRow}>
           <h1 className={styles.heroTitle}>REAL PROBLEMS, REAL SOLUTIONS</h1>
           <p className={styles.heroBody}>
@@ -94,11 +39,8 @@ export default function CaseStudiesPage() {
           </p>
         </div>
 
-        {/* Decorative banner */}
         <div className={styles.heroBanner}>
-          {/* Left: geometric dark-red columns */}
           <div className={styles.heroColumns} aria-hidden="true">
-            {/* Column group — widths and heights from Figma */}
             <span className={styles.col} style={{ width: 74, height: 116, left: 101 }} />
             <span className={styles.col} style={{ width: 74, height: 116, left: 176 }} />
             <span className={styles.col} style={{ width: 75, height: 116, left: 251 }} />
@@ -118,61 +60,15 @@ export default function CaseStudiesPage() {
             <span className={styles.col} style={{ width: 75, height: 116, top: 391, left: 277 }} />
             <span className={styles.col} style={{ width: 75, height: 116, top: 391, left: 401 }} />
           </div>
-
-          {/* Right: binoculars image */}
           <div className={styles.heroImageArea}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/case-studies/hero-binoculars.png"
-              alt="Binoculars"
-              className={styles.heroBinoculars}
-            />
+            <img src="/images/case-studies/hero-binoculars.png" alt="Binoculars" className={styles.heroBinoculars} />
           </div>
         </div>
       </section>
 
       {/* ── PORTFOLIO GRID ── */}
-      <section className={styles.portfolioSection}>
-
-        {/* Category filter pills */}
-        <div className={styles.filters}>
-          {FILTERS.map((f) => (
-            <button
-              key={f}
-              className={`${styles.filterBtn} ${activeFilter === f ? styles.filterBtnActive : ""}`}
-              onClick={() => setActiveFilter(f)}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
-
-        <div className={styles.portfolioInner}>
-          {/* Row 1: 2 cards */}
-          <div className={styles.cardRow2}>
-            <CaseStudyCard study={caseStudies[0]} />
-            <CaseStudyCard study={caseStudies[1]} />
-          </div>
-
-          {/* Row 2: 1 full-width card */}
-          <div className={styles.cardRow1}>
-            <CaseStudyCard study={caseStudies[2]} />
-          </div>
-
-          {/* Row 3: 2 cards */}
-          <div className={styles.cardRow2}>
-            <CaseStudyCard study={caseStudies[3]} />
-            <CaseStudyCard study={caseStudies[4]} />
-          </div>
-
-          {/* View more */}
-          <Link href="#" className={styles.viewMore}>
-            <span>view more</span>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/events/arrow-circle.svg" alt="" aria-hidden="true" width={25} height={25} />
-          </Link>
-        </div>
-      </section>
+      <CaseStudiesClient caseStudies={caseStudies} />
 
       <CtaSection />
       <Newsletter />
