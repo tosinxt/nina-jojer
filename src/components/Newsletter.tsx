@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Reveal from './Reveal';
 import styles from './Newsletter.module.css';
 
 export default function Newsletter() {
@@ -9,14 +10,14 @@ export default function Newsletter() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <div className={styles.leftCol}>
+        <Reveal as="div" className={styles.leftCol}>
           <div className={styles.eyebrow}>
             <span className={styles.eyebrowLine} />
             <span className={styles.eyebrowText}>Newsletters</span>
           </div>
           <h2 className={styles.heading}>Stay informed</h2>
-        </div>
-        <div className={styles.rightCol}>
+        </Reveal>
+        <Reveal as="div" delay={150} className={styles.rightCol}>
           <p className={styles.desc}>
             Get our latest thinking delivered to your inbox each month
           </p>
@@ -44,7 +45,7 @@ export default function Newsletter() {
               We respect your inbox. Unsubscribe anytime from any email.
             </p>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,3 +1,4 @@
+import Reveal from './Reveal';
 import styles from './PreHero.module.css';
 
 // Positions derived from Figma's 1363px overlay centred over the full-width image.
@@ -16,19 +17,19 @@ export default function PreHero() {
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.textGroup}>
-            <h1 className={styles.title}>GLOBAL VISION, LOCAL IMPACT</h1>
-            <p className={styles.description}>
+            <Reveal as="h1" className={styles.title}>GLOBAL VISION, LOCAL IMPACT</Reveal>
+            <Reveal delay={150}><p className={styles.description}>
               A Strategic Advisory firm with strong technology implementation and delivery capabilities.
-            </p>
+            </p></Reveal>
           </div>
-          <div className={styles.cta}>
+          <Reveal delay={280} as="div" className={styles.cta}>
             <div className={styles.iconBox}>
               <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
                 <path d="M2 1L8 7L2 13" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
             <span className={styles.ctaText}>See What We Do</span>
-          </div>
+          </Reveal>
         </div>
       </div>
 

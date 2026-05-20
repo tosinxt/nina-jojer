@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Reveal from './Reveal';
 import styles from './OurStories.module.css';
 import { client } from '@/sanity/client';
 import { featuredCaseStudiesQuery } from '@/sanity/queries';
@@ -38,7 +39,7 @@ export default async function OurStories() {
   return (
     <section className={styles.section}>
       <div className={styles.header}>
-        <div className={styles.titleBlock}>
+        <Reveal as="div" className={styles.titleBlock}>
           <div className={styles.eyebrow}>
             <span className={styles.eyebrowLine} />
             <span className={styles.eyebrowText}>Case Studies</span>
@@ -51,18 +52,20 @@ export default async function OurStories() {
             <span className={styles.viewAllText}>View All</span>
             <span className={styles.viewAllArrow}><ArrowIcon /></span>
           </Link>
-        </div>
+        </Reveal>
+        <Reveal delay={150}>
         <Link href="/case-studies" className={`${styles.viewAll} ${styles.viewAllDesktop}`}>
           <span className={styles.viewAllText}>View All</span>
           <span className={styles.viewAllArrow}><ArrowIcon /></span>
         </Link>
+        </Reveal>
       </div>
 
       <div className={styles.grid}>
-        {cases.map((c) => {
+        {cases.map((c, i) => {
           const slug = typeof c.slug === 'string' ? c.slug : c.slug?.current;
           return (
-            <div key={c._id} className={styles.card}>
+            <Reveal key={c._id} as="div" delay={i * 100} className={styles.card}>
               <div className={styles.cardImage}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={c.image} alt={c.title} />
@@ -77,7 +80,7 @@ export default async function OurStories() {
                   <span className={styles.learnMoreArrow}><ArrowIcon /></span>
                 </Link>
               </div>
-            </div>
+            </Reveal>
           );
         })}
       </div>

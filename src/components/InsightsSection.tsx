@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Reveal from './Reveal';
 import styles from './InsightsSection.module.css';
 import { client } from '@/sanity/client';
 import { featuredInsightsQuery } from '@/sanity/queries';
@@ -101,26 +102,27 @@ export default async function InsightsSection() {
       <div className={styles.container}>
         {/* Header */}
         <div className={styles.header}>
-          <div className={styles.titleBlock}>
+          <Reveal as="div" className={styles.titleBlock}>
             <div className={styles.eyebrow}>
               <span className={styles.eyebrowLine} />
               <span className={styles.eyebrowText}>Insights &amp; Perspective</span>
             </div>
             <h2 className={styles.heading}>Perspectives on policy, strategy, and technology.</h2>
-          </div>
-          <Link href="/insights" className={styles.viewAll}>
+          </Reveal>
+          <Reveal delay={150}><Link href="/insights" className={styles.viewAll}>
             <span className={styles.viewAllText}>View All</span>
             <span className={styles.viewAllArrow}><ArrowIcon /></span>
-          </Link>
+          </Link></Reveal>
         </div>
 
         {/* Cards */}
         <div className={styles.grid}>
-          {insights.map((post) => {
+          {insights.map((post, i) => {
             const slug = typeof post.slug === 'string' ? post.slug : post.slug?.current;
             const variant = CATEGORY_VARIANT[post.category] ?? 'tech';
             return (
-              <Link key={post._id} href={`/insights/${slug}`} className={styles.card}>
+              <Reveal key={post._id} delay={i * 100}>
+              <Link href={`/insights/${slug}`} className={styles.card}>
                 <div className={styles.cardImage}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={post.image} alt={post.title} />
@@ -147,6 +149,7 @@ export default async function InsightsSection() {
                   </div>
                 </div>
               </Link>
+              </Reveal>
             );
           })}
         </div>

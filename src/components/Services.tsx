@@ -101,7 +101,7 @@ export default function Services() {
       <div className={styles.rightPanel}>
         {services.map((service) => (
           <div key={service.id} className={styles.cardWrapper}>
-            <div className={styles.card}>
+            <Link href={service.href} className={styles.card}>
               {/* Image */}
               <div className={styles.cardImageWrap}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -132,7 +132,7 @@ export default function Services() {
                   </span>
                 </Link>
               </div>
-            </div>
+            </Link>
           </div>
         ))}
       </div>

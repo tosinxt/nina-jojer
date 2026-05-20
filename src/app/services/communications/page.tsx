@@ -262,7 +262,7 @@ export default function StrategicCommunicationsPage() {
         <div className={styles.otherCards}>
           {otherSolutions.map((s, i) => (
             <div key={s.id} className={styles.otherCardWrapper} style={{ zIndex: i + 1 }}>
-              <div className={styles.otherCard}>
+              <Link href={s.href} className={styles.otherCard}>
                 <div className={styles.otherCardImageWrap}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={s.image} alt={s.title} className={styles.otherCardImage} />
@@ -280,12 +280,12 @@ export default function StrategicCommunicationsPage() {
                       ))}
                     </div>
                   </div>
-                  <Link href={s.href} className={styles.learnMore}>
+                  <div className={styles.learnMore}>
                     <span>LEARN MORE</span>
                     <ArrowIcon />
-                  </Link>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
           ))}
         </div>

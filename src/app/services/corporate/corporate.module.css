@@ -27,7 +27,7 @@
 }
 
 .headerTitle {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 900;
   font-size: 50px;
   line-height: 1.2;
@@ -37,7 +37,7 @@
 }
 
 .headerBody {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 300;
   font-size: 18px;
   line-height: 1.5;
@@ -95,7 +95,7 @@
 }
 
 .colHeading {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 900;
   font-size: 24px;
   line-height: 1.4;
@@ -105,7 +105,7 @@
 }
 
 .colBody {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 300;
   font-size: 18px;
   line-height: 1.5;
@@ -117,7 +117,7 @@
 }
 
 .colBody p {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 300;
   font-size: 18px;
   line-height: 1.5;
@@ -133,7 +133,7 @@
 }
 
 .subServicesTitle {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 900;
   font-size: 24px;
   line-height: 1.4;
@@ -156,21 +156,21 @@
 }
 
 .subServiceTitle {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 900;
-  font-size: 16px;
+  font-size: 24px;
   line-height: 1.3;
-  letter-spacing: -0.16px;
+  letter-spacing: -0.24px;
   text-transform: uppercase;
   color: #000;
 }
 
 .subServiceDesc {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
-  letter-spacing: -0.16px;
+  letter-spacing: 0.18px;
   color: #000;
 }
 
@@ -190,7 +190,7 @@
 }
 
 .caseStudiesTitle {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 900;
   font-size: 24px;
   line-height: 1.4;
@@ -209,7 +209,7 @@
 }
 
 .viewAll span {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 600;
   font-size: 14px;
   line-height: 1;
@@ -282,7 +282,7 @@
 }
 
 .caseCardTitle {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 900;
   font-size: 20px;
   line-height: 1.3;
@@ -308,7 +308,7 @@
 }
 
 .learnMore span {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 600;
   font-size: 14px;
   line-height: 1;
@@ -347,7 +347,7 @@
 }
 
 .faqTitle {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 900;
   font-size: 24px;
   line-height: 1.4;
@@ -357,7 +357,7 @@
 }
 
 .faqSubtitle {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 300;
   font-size: 16px;
   line-height: 1.5;
@@ -372,7 +372,7 @@
 }
 
 .faqCtaTitle {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 900;
   font-size: 22px;
   line-height: 1.3;
@@ -382,7 +382,7 @@
 }
 
 .faqCtaBody {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 300;
   font-size: 16px;
   line-height: 1.5;
@@ -397,7 +397,7 @@
   background: #670101;
   border: 1px solid #fff;
   padding: 12px 24px;
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 800;
   font-size: 16px;
   line-height: 1.5;
@@ -438,7 +438,7 @@
   border: none;
   cursor: pointer;
   text-align: left;
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 700;
   font-size: 18px;
   line-height: 1.5;
@@ -450,7 +450,7 @@
 }
 
 .faqAnswer p {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 300;
   font-size: 16px;
   line-height: 1.5;
@@ -480,7 +480,7 @@
 }
 
 .otherTitle {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 900;
   font-size: 40px;
   line-height: 1.138;
@@ -512,11 +512,14 @@
 
 .otherCard {
   background: #fff;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   height: 780px;
   overflow: hidden;
-  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.06);
+
 }
 
 .otherCardImageWrap {
@@ -551,7 +554,7 @@
 }
 
 .otherCardTitle {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 900;
   font-size: 24px;
   line-height: 1.4;
@@ -561,7 +564,7 @@
 }
 
 .otherCardDesc {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 300;
   font-size: 18px;
   line-height: 1.5;
@@ -576,6 +579,11 @@
 }
 
 .tag {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: -0.14px;
+  color: #000;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -594,11 +602,11 @@
 }
 
 .tag span + span {
-  font-family: var(--font-google-sans-flex), sans-serif;
+  font-family: 'Google Sans Flex', sans-serif;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
-  letter-spacing: -0.16px;
+  letter-spacing: -0.14px;
   color: #000;
 }
 

@@ -139,15 +139,9 @@
 
 /* ── ARTICLES GRID ── */
 .articlesGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.articlesRow {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
-  align-items: flex-start;
 }
 
 /* ── ARTICLE CARD ── */
@@ -207,6 +201,7 @@
   padding: 4px 12px;
   border-radius: 55px;
   align-self: flex-start;
+  margin-left: -12px;
 }
 
 .categoryDot {
@@ -349,12 +344,22 @@
 @media (max-width: 1024px) {
   .blogSection { padding: 120px 40px 80px; }
   .blogTitles { width: 100%; }
+  .articlesGrid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 768px) {
   .blogSection { padding: 100px 24px 60px; }
   .blogTitle { font-size: 36px; }
-  .articlesRow { flex-direction: column; gap: 16px; }
+  .articlesGrid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .articleCard { height: auto; }
   .filterTabs { gap: 8px; }
+}
+
+.noResults {
+  text-align: center;
+  padding: 80px 0;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  color: rgba(0,0,0,0.45);
 }

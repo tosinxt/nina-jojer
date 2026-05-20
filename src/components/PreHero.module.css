@@ -107,13 +107,33 @@
   pointer-events: none;
 }
 
+@keyframes badgeReveal {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0);
+  }
+}
+
 /* Individual badge: dot + pill */
 .badge {
   position: absolute;
   height: 46px;
   display: flex;
   align-items: flex-start;
+  opacity: 0;
+  animation: badgeReveal 0.7s ease forwards;
 }
+
+.badge:nth-child(1) { animation-delay: 0.4s; }
+.badge:nth-child(2) { animation-delay: 0.65s; }
+.badge:nth-child(3) { animation-delay: 0.55s; }
+.badge:nth-child(4) { animation-delay: 0.8s; }
 
 .dot {
   width: 17px;
@@ -122,6 +142,8 @@
   background: #670101;
   flex-shrink: 0;
   margin-top: 0;
+  position: relative;
+  z-index: 2;
 }
 
 .pill {
@@ -151,6 +173,10 @@
 /* Right-side badges: pill is left of dot */
 .badgeRight .pill { order: 0; }
 .badgeRight .dot  { order: 1; margin-left: -4px; margin-top: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .badge { animation: none; opacity: 1; }
+}
 
 @media (max-width: 1024px) {
   .container { padding: 0 40px; }

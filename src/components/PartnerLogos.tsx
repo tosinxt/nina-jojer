@@ -1,3 +1,4 @@
+import Reveal from './Reveal';
 import styles from './PartnerLogos.module.css';
 
 const logos = [
@@ -18,11 +19,9 @@ export default function PartnerLogos() {
   return (
     <section className={styles.partnerLogos}>
       <div className={styles.container}>
-        <p className={styles.tagline}>
-          {"Trusted by Africa's most important institutions"}
-        </p>
-        
-        <div className={styles.logosViewport}>
+        <Reveal><p className={styles.tagline}>{"Trusted by Africa's most important institutions"}</p></Reveal>
+
+        <Reveal delay={150}><div className={styles.logosViewport}>
           {/* Gradient overlays to create a majestic fade effect at the scroll bounds */}
           <div className={styles.leftFade} aria-hidden="true" />
           <div className={styles.rightFade} aria-hidden="true" />
@@ -54,7 +53,7 @@ export default function PartnerLogos() {
               </div>
             ))}
           </div>
-        </div>
+        </div></Reveal>
       </div>
     </section>
   );

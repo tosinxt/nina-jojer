@@ -53,17 +53,32 @@ const SearchIcon = () => (
   </svg>
 );
 
-const ARTICLES_PER_PAGE = 8;
+const ARTICLES_PER_PAGE = 24;
 
 export default function InsightsClient({ articles }: { articles: Article[] }) {
   const [activeFilter, setActiveFilter] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [query, setQuery] = useState('');
 
-  const totalPages = Math.ceil(articles.length / ARTICLES_PER_PAGE);
+  const q = query.trim().toLowerCase();
+  const filtered = q
+    ? articles.filter(
+        (a) =>
+          a.title.toLowerCase().includes(q) ||
+          a.excerpt.toLowerCase().includes(q) ||
+          a.author.toLowerCase().includes(q) ||
+          a.category.toLowerCase().includes(q),
+      )
+    : articles;
+
+  const totalPages = Math.ceil(filtered.length / ARTICLES_PER_PAGE);
   const start = (currentPage - 1) * ARTICLES_PER_PAGE;
-  const pageArticles = articles.slice(start, start + ARTICLES_PER_PAGE);
-  const row1 = pageArticles.slice(0, 4);
-  const row2 = pageArticles.slice(4, 8);
+  const pageArticles = filtered.slice(start, start + ARTICLES_PER_PAGE);
+
+  const handleSearch = (value: string) => {
+    setQuery(value);
+    setCurrentPage(1);
+  };
 
   return (
     <section className={styles.blogSection}>
@@ -75,7 +90,13 @@ export default function InsightsClient({ articles }: { articles: Article[] }) {
           </div>
           <div className={styles.searchAndFilters}>
             <div className={styles.searchBar}>
-              <input type="text" placeholder="Search Article" className={styles.searchInput} />
+              <input
+                type="text"
+                placeholder="Search Article"
+                className={styles.searchInput}
+                value={query}
+                onChange={(e) => handleSearch(e.target.value)}
+              />
               <button className={styles.searchBtn} aria-label="Search"><SearchIcon /></button>
             </div>
             <div className={styles.filterTabs}>
@@ -83,7 +104,7 @@ export default function InsightsClient({ articles }: { articles: Article[] }) {
                 <button
                   key={tab}
                   className={`${styles.filterTab} ${activeFilter === i ? styles.filterTabActive : ''}`}
-                  onClick={() => setActiveFilter(i)}
+                  onClick={() => { setActiveFilter(i); setCurrentPage(1); }}
                 >
                   {tab}
                 </button>
@@ -92,14 +113,13 @@ export default function InsightsClient({ articles }: { articles: Article[] }) {
           </div>
         </div>
 
-        <div className={styles.articlesGrid}>
-          <div className={styles.articlesRow}>
-            {row1.map((article) => <ArticleCard key={article._id} article={article} />)}
+        {pageArticles.length > 0 ? (
+          <div className={styles.articlesGrid}>
+            {pageArticles.map((article) => <ArticleCard key={article._id} article={article} />)}
           </div>
-          <div className={styles.articlesRow}>
-            {row2.map((article) => <ArticleCard key={article._id} article={article} />)}
-          </div>
-        </div>
+        ) : (
+          <p className={styles.noResults}>No articles found for &ldquo;{query}&rdquo;</p>
+        )}
 
         {totalPages > 1 && (
           <div className={styles.pagination}>

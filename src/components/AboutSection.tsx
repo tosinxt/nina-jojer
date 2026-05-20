@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Reveal from './Reveal';
 import styles from './AboutSection.module.css';
 
 const ArrowIcon = () => (
@@ -38,7 +39,7 @@ export default function AboutSection() {
     <section className={styles.section}>
       {/* Header */}
       <div className={styles.header}>
-        <div className={styles.titleBlock}>
+        <Reveal as="div" className={styles.titleBlock}>
           <div className={styles.eyebrow}>
             <span className={styles.eyebrowLine} />
             <span className={styles.eyebrowText}>About Us</span>
@@ -47,20 +48,22 @@ export default function AboutSection() {
             Our success is built on a strong network{' '}
             <span className={styles.headingMuted}>spanning the political.</span>
           </h2>
-        </div>
-        <Link href="/about" className={styles.learnMore}>
-          <span className={styles.learnMoreText}>Learn More</span>
-          <span className={styles.learnMoreArrow}>
-            <ArrowIcon />
-          </span>
-        </Link>
+        </Reveal>
+        <Reveal delay={150}>
+          <Link href="/about" className={styles.learnMore}>
+            <span className={styles.learnMoreText}>Learn More</span>
+            <span className={styles.learnMoreArrow}>
+              <ArrowIcon />
+            </span>
+          </Link>
+        </Reveal>
       </div>
 
       {/* Stats grid — 3 columns */}
       <div className={styles.grid}>
 
         {/* Col 1: Expertise */}
-        <div className={`${styles.col} ${styles.colFull}`}>
+        <Reveal as="div" delay={0} className={`${styles.col} ${styles.colFull}`}>
           <StatCard
             variant="statExpertise"
             label="Expertise"
@@ -79,10 +82,10 @@ export default function AboutSection() {
               </svg>
             }
           />
-        </div>
+        </Reveal>
 
         {/* Col 2: image on top + Global Reach stat below */}
-        <div className={styles.col}>
+        <Reveal as="div" delay={120} className={styles.col}>
           <div className={styles.imageCard}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -102,10 +105,10 @@ export default function AboutSection() {
               </div>
             }
           />
-        </div>
+        </Reveal>
 
         {/* Col 3: Client Trust + Employees */}
-        <div className={styles.col}>
+        <Reveal as="div" delay={240} className={styles.col}>
           <StatCard
             variant="statClientTrust"
             label="Client Trust"
@@ -130,7 +133,7 @@ export default function AboutSection() {
               </div>
             }
           />
-        </div>
+        </Reveal>
 
       </div>
     </section>
