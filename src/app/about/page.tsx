@@ -95,12 +95,12 @@ const values = [
 ];
 
 const fallbackTeam = [
-  { _id: "1", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: null },
-  { _id: "2", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: null },
-  { _id: "3", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: null },
-  { _id: "4", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: null },
-  { _id: "5", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: null },
-  { _id: "6", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: null },
+  { _id: "1", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png" },
+  { _id: "2", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png" },
+  { _id: "3", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png" },
+  { _id: "4", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png" },
+  { _id: "5", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png" },
+  { _id: "6", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png" },
 ];
 
 /* ── LinkedIn icon SVG ── */
