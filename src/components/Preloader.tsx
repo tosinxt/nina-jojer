@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import styles from './Preloader.module.css';
 
@@ -86,11 +87,10 @@ export default function Preloader() {
       aria-hidden="true"
       role="presentation"
     >
-      {/* Brand wordmark */}
+      {/* Brand logo */}
       <div className={styles.content}>
         <div className={styles.wordmark}>
-          <span className={styles.wordmarkTop}>Nina Jojer</span>
-          <span className={styles.wordmarkBottom}>Africa</span>
+          <Image src="/logo.svg" alt="Nina Jojer" width={280} height={109} priority />
         </div>
 
         {/* Percentage counter */}

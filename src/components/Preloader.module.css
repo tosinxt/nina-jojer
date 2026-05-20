@@ -3,7 +3,7 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #610203;
+  background: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -82,7 +82,7 @@
   font-weight: 300;
   font-size: 13px;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(0, 0, 0, 0.35);
   font-variant-numeric: tabular-nums;
   /* Hold at the bottom of the wordmark group */
   min-width: 3ch;
@@ -102,7 +102,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
@@ -110,7 +110,7 @@
 .fill {
   position: absolute;
   inset: 0;
-  background: #fff;
+  background: #70393F;
   transform-origin: left center;
   /* scaleX is set inline — use a transition for the smooth growth */
   transition: transform 80ms linear;

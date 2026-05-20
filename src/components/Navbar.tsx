@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
 
@@ -93,8 +94,7 @@ const Navbar = () => {
 
         {/* Logo */}
         <Link href="/" className={styles.logoLink}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/Nina jojer log 2.png" alt="Nina Jojer" className={styles.logoImg} />
+          <Image src="/logo.svg" alt="Nina Jojer" width={160} height={62} className={styles.logoImg} priority />
         </Link>
 
         {/* Desktop links */}
