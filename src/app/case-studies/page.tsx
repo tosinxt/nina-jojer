@@ -32,6 +32,7 @@ const fallbackCaseStudies: CaseStudy[] = [
   { _id: "5", title: "A Review of Nigeria's National Blockchain Policy", excerpt: "We help businesses navigate and shape Africa's regulatory and political landscape.", image: "/images/case-studies/card-image.jpg", slug: "nigeria-blockchain-policy-5", category: "" },
 ];
 
+
 export default async function CaseStudiesPage() {
   let caseStudies: CaseStudy[] = [];
   try {
@@ -57,31 +58,16 @@ export default async function CaseStudiesPage() {
           </p>
         </div>
 
-        <div className={styles.heroBanner}>
-          <div className={styles.heroColumns} aria-hidden="true">
-            <span className={styles.col} style={{ width: 74, height: 116, left: 101 }} />
-            <span className={styles.col} style={{ width: 74, height: 116, left: 176 }} />
-            <span className={styles.col} style={{ width: 75, height: 116, left: 251 }} />
-            <span className={styles.col} style={{ width: 49, height: 116, left: 336 }} />
-            <span className={styles.col} style={{ width: 26, height: 116, left: 385 }} />
-            <span className={styles.col} style={{ width: 146, height: 116, top: 157, left: -15 }} />
-            <span className={styles.col} style={{ width: 75, height: 116, top: 157, left: 131 }} />
-            <span className={styles.col} style={{ width: 75, height: 116, top: 157, left: 251 }} />
-            <span className={styles.col} style={{ width: 49, height: 116, top: 157, left: 336 }} />
-            <span className={styles.col} style={{ width: 26, height: 116, top: 157, left: 437 }} />
-            <span className={styles.col} style={{ width: 223, height: 116, top: 274, left: -47 }} />
-            <span className={styles.col} style={{ width: 75, height: 116, top: 274, left: 204 }} />
-            <span className={styles.col} style={{ width: 75, height: 116, top: 274, left: 326 }} />
-            <span className={styles.col} style={{ width: 49, height: 116, top: 274, left: 378 }} />
-            <span className={styles.col} style={{ width: 26, height: 116, top: 274, left: 489 }} />
-            <span className={styles.col} style={{ width: 294, height: 116, top: 391, left: -17 }} />
-            <span className={styles.col} style={{ width: 75, height: 116, top: 391, left: 277 }} />
-            <span className={styles.col} style={{ width: 75, height: 116, top: 391, left: 401 }} />
-          </div>
-          <div className={styles.heroImageArea}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/case-studies/hero-binoculars.png" alt="Binoculars" className={styles.heroBinoculars} />
-          </div>
+        {/* Desktop banner */}
+        <div className={`${styles.heroBanner} ${styles.heroDesktop}`} aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/casestudies.png" alt="" className={styles.heroFullImage} />
+        </div>
+
+        {/* Mobile banner */}
+        <div className={`${styles.heroBannerMobile} ${styles.heroMobile}`}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/casestudiesmobile.png" alt="" className={styles.heroFullImage} />
         </div>
       </section>
 

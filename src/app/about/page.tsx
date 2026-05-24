@@ -63,32 +63,32 @@ const stats = [
 /* ── Values ── */
 const values = [
   {
-    icon: "/images/icons/transparency.svg",
+    icon: "/images/icons/about-us/transparency.png",
     title: "Transparency",
     desc: "We are honest and open with our employees, customers and stakeholders about our goals, performance and challenges, and we foster trust in our relationships.",
   },
   {
-    icon: "/images/icons/innovation.svg",
+    icon: "/images/icons/about-us/innovation.png",
     title: "Innovation",
     desc: "We encourage creativity and innovation in our work environment, and we offer cutting-edge services that anticipate and respond to the changing needs of the market.",
   },
   {
-    icon: "/images/icons/data-driven.svg",
+    icon: "/images/icons/about-us/data-driven.png",
     title: "Data-Driven",
     desc: "We use data and insights to inform our decisions and actions, and to help our clients achieve their objectives.",
   },
   {
-    icon: "/images/icons/quality.svg",
+    icon: "/images/icons/about-us/quality.png",
     title: "Quality",
     desc: "We pay close attention to detail and listen to our customers' needs and expectations, and we deliver high-quality products and services that exceed their satisfaction.",
   },
   {
-    icon: "/images/icons/inclusivity.svg",
+    icon: "/images/icons/about-us/inclusivity.png",
     title: "Inclusivity",
     desc: "We embrace and respect the diversity of backgrounds, perspectives, and identities of our employees, customers, and stakeholders, and we create a culture of belonging and collaboration.",
   },
   {
-    icon: "/images/icons/social-responsibility.svg",
+    icon: "/images/icons/about-us/social-responsibility.png",
     title: "Social Responsibility",
     desc: "We are aware of our impact on the environment and society, and we align our services with the UN SDG goals.",
   },
@@ -295,7 +295,7 @@ export default async function AboutPage() {
               <h3 className={styles.joinTeamTitle}>Join our team</h3>
               <p className={styles.joinTeamBody}>We're building something that matters. If you think like we do, we want to hear from you.</p>
             </div>
-            <Link href="/career" className={styles.joinTeamBtn}>View Careers</Link>
+            <Link href="/careers" className={styles.joinTeamBtn}>View Careers</Link>
           </div>
         </div>
       </section>

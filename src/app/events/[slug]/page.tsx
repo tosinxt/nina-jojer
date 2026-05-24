@@ -91,7 +91,7 @@ export default function EventDetailPage() {
             </div>
 
             {/* CTA button */}
-            <Link href="#" className={styles.saveBtn}>Save my spot</Link>
+            <Link href="/contact" className={styles.saveBtn}>Save my spot</Link>
 
             {/* Event details */}
             <div className={styles.detailsList}>
@@ -133,22 +133,22 @@ export default function EventDetailPage() {
           <div className={styles.articleCol}>
             <div className={styles.richText}>
               <p className={styles.bodyText}>
-                Mi tincidunt elit, id quisque ligula ac diam, amet. Vel etiam suspendisse morbi eleifend faucibus eget vestibulum felis. Dictum quis montes, sit sit. Tellus aliquam enim urna, etiam. Mauris posuere vulputate arcu amet, vitae nisi, tellus tincidunt. At feugiat sapien varius id.
+                Africa's science, technology and innovation landscape is at a pivotal moment. With the African Union's STISA-2034 framework setting bold targets for the continent, the challenge now is execution — moving from strategy to real, measurable outcomes that serve African citizens.
               </p>
               <p className={styles.bodyText}>
-                Eget quis mi enim, leo lacinia pharetra, semper. Eget in volutpat mollis at volutpat lectus velit, sed auctor. Porttitor fames arcu quis fusce augue enim. Quis at habitant diam at. Suscipit tristique risus, at donec. In turpis vel et quam imperdiet. Ipsum molestie aliquet sodales id est ac volutpat.
+                This Policy Forum brings together heads of state advisors, ministers, development finance institution leaders, and private sector innovators to examine the structural, financial, and governance conditions needed to translate Africa's STI commitments into coordinated action.
               </p>
               <p className={`${styles.bodyText} ${styles.bodyTextBold}`}>
-                Dolor enim eu tortor urna sed duis nulla. Aliquam vestibulum, nulla odio nisl vitae. In aliquet pellentesque aenean hac vestibulum turpis mi bibendum diam. Tempor integer aliquam in vitae malesuada fringilla.
+                Across three days, delegates will examine case studies from Ethiopia, Nigeria, Kenya, and South Africa — countries where STI policy has produced measurable development dividends — and extract transferable lessons for the wider continent.
               </p>
               <p className={styles.bodyText}>
-                Elit nisi in eleifend sed nisi. Pulvinar at orci, proin imperdiet commodo consectetur convallis risus. Sed condimentum enim dignissim adipiscing faucibus consequat, urna. Viverra purus et erat auctor aliquam. Risus, volutpat vulputate posuere purus sit congue convallis aliquet. Arcu id augue ut feugiat donec porttitor neque. Mauris, neque ultricies eu vestibulum, bibendum quam lorem id. Dolor lacus, eget nunc lectus in tellus, pharetra, porttitor.
+                Sessions will be structured around three themes: financing innovation ecosystems, building regulatory frameworks that attract technology investment, and aligning national STI plans with the AU's continental agenda. Each session combines keynote addresses with closed-door working groups designed to produce actionable policy recommendations.
               </p>
               <p className={styles.bodyText}>
-                Tristique odio senectus nam posuere ornare leo metus, ultricies. Blandit duis ultricies vulputate morbi feugiat cras placerat elit. Aliquam tellus lorem sed ac. Montes, sed mattis pellentesque suscipit accumsan. Cursus viverra aenean magna risus elementum faucibus molestie pellentesque. Arcu ultricies sed mauris vestibulum.
+                Attendance is by invitation and application only. Delegates represent a carefully selected cross-section of public sector decision-makers, multilateral institutions, and leading African technology enterprises. The Forum's outcomes will be compiled into a policy brief circulated to AU Commission leadership and relevant national ministries.
               </p>
             </div>
-            <Link href="#" className={styles.saveSpotBtn}>Save my spot</Link>
+            <Link href="/contact" className={styles.saveSpotBtn}>Save my spot</Link>
           </div>
 
           {/* Speaker sidebar */}
@@ -229,7 +229,7 @@ export default function EventDetailPage() {
                     </div>
 
                     <div className={styles.eventActions}>
-                      <Link href="#" className={styles.registerBtn}>Register here</Link>
+                      <Link href="/contact" className={styles.registerBtn}>Register here</Link>
                       <span className={styles.detailsLink}>See more details</span>
                     </div>
                   </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
@@ -13,6 +13,37 @@ const offices = [
   { city: 'Sierra Leone Office', address: '12A Main Motor Road, Congo Cross, Freetown, Sierra Leone' },
 ];
 
+const countries = [
+  { name: 'Nigeria',        code: '+234', flag: '🇳🇬' },
+  { name: 'South Africa',   code: '+27',  flag: '🇿🇦' },
+  { name: 'Ghana',          code: '+233', flag: '🇬🇭' },
+  { name: 'Kenya',          code: '+254', flag: '🇰🇪' },
+  { name: 'Sierra Leone',   code: '+232', flag: '🇸🇱' },
+  { name: 'Ethiopia',       code: '+251', flag: '🇪🇹' },
+  { name: 'Tanzania',       code: '+255', flag: '🇹🇿' },
+  { name: 'Uganda',         code: '+256', flag: '🇺🇬' },
+  { name: 'Cameroon',       code: '+237', flag: '🇨🇲' },
+  { name: 'Senegal',        code: '+221', flag: '🇸🇳' },
+  { name: 'Côte d\'Ivoire', code: '+225', flag: '🇨🇮' },
+  { name: 'Rwanda',         code: '+250', flag: '🇷🇼' },
+  { name: 'Zambia',         code: '+260', flag: '🇿🇲' },
+  { name: 'Zimbabwe',       code: '+263', flag: '🇿🇼' },
+  { name: 'Angola',         code: '+244', flag: '🇦🇴' },
+  { name: 'Mozambique',     code: '+258', flag: '🇲🇿' },
+  { name: 'Egypt',          code: '+20',  flag: '🇪🇬' },
+  { name: 'Morocco',        code: '+212', flag: '🇲🇦' },
+  { name: 'Tunisia',        code: '+216', flag: '🇹🇳' },
+  { name: 'Algeria',        code: '+213', flag: '🇩🇿' },
+  { name: 'United Kingdom', code: '+44',  flag: '🇬🇧' },
+  { name: 'United States',  code: '+1',   flag: '🇺🇸' },
+  { name: 'France',         code: '+33',  flag: '🇫🇷' },
+  { name: 'Germany',        code: '+49',  flag: '🇩🇪' },
+  { name: 'China',          code: '+86',  flag: '🇨🇳' },
+  { name: 'India',          code: '+91',  flag: '🇮🇳' },
+  { name: 'UAE',            code: '+971', flag: '🇦🇪' },
+  { name: 'Brazil',         code: '+55',  flag: '🇧🇷' },
+];
+
 export default function ContactPage() {
   const [form, setForm] = useState({
     firstName: '',
@@ -21,6 +52,22 @@ export default function ContactPage() {
     phone: '',
     message: '',
   });
+  const [focused, setFocused] = useState<string | null>(null);
+  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [search, setSearch] = useState('');
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+        setSearch('');
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -29,6 +76,15 @@ export default function ContactPage() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
   }
+
+  function isActive(field: string) {
+    return focused === field || form[field as keyof typeof form] !== '';
+  }
+
+  const filteredCountries = countries.filter(c =>
+    c.name.toLowerCase().includes(search.toLowerCase()) ||
+    c.code.includes(search)
+  );
 
   return (
     <main className={styles.page}>
@@ -83,22 +139,27 @@ export default function ContactPage() {
               <div className={styles.inputGroup}>
                 <label className={styles.label}>First name</label>
                 <input
-                  className={`${styles.input} ${styles.inputEmpty}`}
+                  className={`${styles.input} ${isActive('firstName') ? styles.inputActive : ''}`}
                   type="text"
                   name="firstName"
                   placeholder="Enter first name here"
                   value={form.firstName}
                   onChange={handleChange}
+                  onFocus={() => setFocused('firstName')}
+                  onBlur={() => setFocused(null)}
                 />
               </div>
               <div className={styles.inputGroup}>
                 <label className={styles.label}>Last name</label>
                 <input
-                  className={`${styles.input} ${styles.inputActive}`}
+                  className={`${styles.input} ${isActive('lastName') ? styles.inputActive : ''}`}
                   type="text"
                   name="lastName"
+                  placeholder="Enter last name here"
                   value={form.lastName}
                   onChange={handleChange}
+                  onFocus={() => setFocused('lastName')}
+                  onBlur={() => setFocused(null)}
                 />
               </div>
             </div>
@@ -107,23 +168,72 @@ export default function ContactPage() {
               <div className={styles.inputGroup}>
                 <label className={styles.label}>Email</label>
                 <input
-                  className={styles.input}
+                  className={`${styles.input} ${isActive('email') ? styles.inputActive : ''}`}
                   type="email"
                   name="email"
+                  placeholder="Enter email address here"
                   value={form.email}
                   onChange={handleChange}
+                  onFocus={() => setFocused('email')}
+                  onBlur={() => setFocused(null)}
                 />
               </div>
               <div className={styles.inputGroup}>
                 <label className={styles.label}>Phone Number</label>
-                <div className={`${styles.input} ${styles.phoneInput}`}>
-                  <div className={styles.phonePrefix}>
-                    <span className={styles.phonePrefixCode}>+234</span>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/images/contact/flag-ng.png" alt="Nigeria" className={styles.flagImg} />
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/images/contact/chevron-down.svg" alt="" className={styles.chevronImg} />
+                <div className={`${styles.input} ${styles.phoneInput} ${(focused === 'phone' || form.phone !== '') ? styles.inputActive : ''}`}>
+                  {/* Country code dropdown */}
+                  <div className={styles.phonePrefix} ref={dropdownRef}>
+                    <button
+                      type="button"
+                      className={styles.phonePrefixBtn}
+                      onClick={() => { setDropdownOpen(o => !o); setSearch(''); }}
+                      aria-expanded={dropdownOpen}
+                    >
+                      <span className={styles.flagEmoji}>{selectedCountry.flag}</span>
+                      <span className={styles.phonePrefixCode}>{selectedCountry.code}</span>
+                      <svg className={`${styles.chevron} ${dropdownOpen ? styles.chevronUp : ''}`} width="10" height="6" viewBox="0 0 10 6" fill="none">
+                        <path d="M1 1L5 5L9 1" stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </button>
+
+                    {dropdownOpen && (
+                      <div className={styles.dropdown}>
+                        <div className={styles.dropdownSearch}>
+                          <input
+                            className={styles.dropdownSearchInput}
+                            type="text"
+                            placeholder="Search country..."
+                            value={search}
+                            onChange={e => setSearch(e.target.value)}
+                            autoFocus
+                          />
+                        </div>
+                        <ul className={styles.dropdownList}>
+                          {filteredCountries.map(c => (
+                            <li key={c.code + c.name}>
+                              <button
+                                type="button"
+                                className={`${styles.dropdownItem} ${selectedCountry.name === c.name ? styles.dropdownItemActive : ''}`}
+                                onClick={() => {
+                                  setSelectedCountry(c);
+                                  setDropdownOpen(false);
+                                  setSearch('');
+                                }}
+                              >
+                                <span className={styles.flagEmoji}>{c.flag}</span>
+                                <span className={styles.dropdownItemName}>{c.name}</span>
+                                <span className={styles.dropdownItemCode}>{c.code}</span>
+                              </button>
+                            </li>
+                          ))}
+                          {filteredCountries.length === 0 && (
+                            <li className={styles.dropdownEmpty}>No results</li>
+                          )}
+                        </ul>
+                      </div>
+                    )}
                   </div>
+
                   <input
                     className={styles.phoneInner}
                     type="tel"
@@ -131,6 +241,8 @@ export default function ContactPage() {
                     placeholder="Enter phone number here"
                     value={form.phone}
                     onChange={handleChange}
+                    onFocus={() => setFocused('phone')}
+                    onBlur={() => setFocused(null)}
                   />
                 </div>
               </div>
@@ -139,12 +251,14 @@ export default function ContactPage() {
             <div className={styles.inputGroup}>
               <label className={`${styles.label} ${styles.labelLg}`}>Message</label>
               <textarea
-                className={styles.textarea}
+                className={`${styles.textarea} ${isActive('message') ? styles.textareaActive : ''}`}
                 name="message"
                 placeholder="Tell us more about your inquiry"
                 rows={6}
                 value={form.message}
                 onChange={handleChange}
+                onFocus={() => setFocused('message')}
+                onBlur={() => setFocused(null)}
               />
             </div>
 

@@ -17,14 +17,14 @@ const solutionsLinks = [
 
 const aboutLinks = [
   { label: 'Who We Are', href: '/about' },
-  { label: 'Our Team', href: '/about/team' },
-  { label: 'Our Values', href: '/about/values' },
+  { label: 'Our Team', href: '/about#team' },
+  { label: 'Our Values', href: '/about#values' },
 ];
 
 const otherLinks = [
   { label: 'Case studies', href: '/case-studies' },
   { label: 'Insights & Perspectives', href: '/insights' },
-  { label: 'Career', href: '/career' },
+  { label: 'Career', href: '/careers' },
   { label: 'Events', href: '/events' },
 ];
 

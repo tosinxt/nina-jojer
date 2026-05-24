@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Reveal from './Reveal';
 import styles from './PreHero.module.css';
 
@@ -22,13 +23,15 @@ export default function PreHero() {
               A Strategic Advisory firm with strong technology implementation and delivery capabilities.
             </p></Reveal>
           </div>
-          <Reveal delay={280} as="div" className={styles.cta}>
-            <div className={styles.iconBox}>
-              <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
-                <path d="M2 1L8 7L2 13" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <span className={styles.ctaText}>See What We Do</span>
+          <Reveal delay={280}>
+            <Link href="/services" className={styles.cta}>
+              <div className={styles.iconBox}>
+                <svg width="10" height="14" viewBox="0 0 10 14" fill="none">
+                  <path d="M2 1L8 7L2 13" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <span className={styles.ctaText}>See What We Do</span>
+            </Link>
           </Reveal>
         </div>
       </div>

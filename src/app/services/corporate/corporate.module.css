@@ -16,7 +16,7 @@
 }
 
 .headerContent {
-  padding: 0 80px 52px;
+  padding: 0 64px 52px;
 }
 
 .headerText {
@@ -328,7 +328,6 @@
   display: flex;
   gap: 78px;
   align-items: flex-start;
-  max-width: 1280px;
 }
 
 .faqLeft {
@@ -473,7 +472,7 @@
   position: sticky;
   top: 0;
   align-self: flex-start;
-  padding: 100px 46px 100px 64px;
+  padding: 100px 64px;
   min-height: 100vh;
   display: flex;
   align-items: flex-start;

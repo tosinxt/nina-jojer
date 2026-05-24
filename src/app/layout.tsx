@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Google_Sans_Flex } from 'next/font/google';
 import './globals.css';
 import Preloader from '@/components/Preloader';
+import CookieBanner from '@/components/CookieBanner';
 import { OrganizationJsonLd } from '@/components/JsonLd';
 import { siteConfig } from '@/lib/seo';
 
@@ -103,6 +104,7 @@ export default function RootLayout({
       <body className={googleSansFlex.variable}>
         <Preloader />
         {children}
+        <CookieBanner />
       </body>
     </html>
   );

@@ -16,9 +16,7 @@
 }
 
 .headerContainer {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 80px;
+  padding: 0 64px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -218,7 +216,6 @@
 .chartContainer {
   background: #dfdfdf;
   width: 100%;
-  max-width: 1280px;
   overflow: hidden;
 }
 
@@ -254,8 +251,6 @@
 }
 
 .moreContainer {
-  max-width: 1280px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;

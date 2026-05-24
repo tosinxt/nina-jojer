@@ -93,7 +93,7 @@ export default function EventsClient({
                     </div>
                   </div>
                   <div className={styles.eventActions}>
-                    <Link href="#" className={styles.registerBtn}>Register here</Link>
+                    <Link href="/contact" className={styles.registerBtn}>Register here</Link>
                     <span className={styles.detailsLink}>See more details</span>
                   </div>
                 </div>
@@ -106,7 +106,7 @@ export default function EventsClient({
           </div>
         </div>
 
-        <Link href="#" className={styles.viewMore}>
+        <Link href="/events/past" className={styles.viewMore}>
           <span>view more</span>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/events/arrow-circle.svg" alt="" aria-hidden="true" width={25} height={25} />

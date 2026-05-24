@@ -37,6 +37,7 @@ function StatCard({
 export default function AboutSection() {
   return (
     <section className={styles.section}>
+      <div className={styles.inner}>
       {/* Header */}
       <div className={styles.header}>
         <Reveal as="div" className={styles.titleBlock}>
@@ -135,6 +136,7 @@ export default function AboutSection() {
           />
         </Reveal>
 
+      </div>
       </div>
     </section>
   );

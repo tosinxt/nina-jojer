@@ -21,8 +21,7 @@
   display: flex;
   gap: 80px;
   align-items: flex-start;
-  padding: 0 80px;
-  max-width: 1280px;
+  padding: 0 64px;
   width: 100%;
   align-self: center;
 }
@@ -50,48 +49,29 @@
   min-width: 0;
 }
 
-/* Decorative banner */
+/* Decorative banner — desktop */
 .heroBanner {
   background: #fff;
-  height: 466px;
   width: 100%;
-  position: relative;
   overflow: hidden;
   flex-shrink: 0;
 }
 
-/* Left column group */
-.heroColumns {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 560px;
-  height: 100%;
-}
-
-/* Each dark-red column rectangle */
-.col {
-  position: absolute;
-  background: #70393f;
-  top: 64px; /* default top offset */
-  display: block;
-}
-
-/* Right: binoculars image */
-.heroImageArea {
-  position: absolute;
-  right: 64px;
-  top: 64px;
-  width: 299px;
-  height: 299px;
-}
-
-.heroBinoculars {
+/* Mobile banner */
+.heroBannerMobile {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.heroFullImage {
+  width: 100%;
+  height: auto;
+  display: block;
   pointer-events: none;
 }
+
+.heroMobile { display: none; }
+.heroDesktop { display: block; }
 
 /* ── PORTFOLIO SECTION ── */
 .portfolioSection {
@@ -100,7 +80,6 @@
   display: flex;
   flex-direction: column;
   gap: 38px;
-  align-items: center;
 }
 
 /* Category filter pills */
@@ -138,12 +117,10 @@
 
 /* Inner container */
 .portfolioInner {
-  max-width: 1280px;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 64px;
-  align-items: center;
 }
 
 /* 2-card row */
@@ -164,44 +141,36 @@
 .card {
   background: #fff;
   display: flex;
+  flex-direction: row;
+  gap: 50px;
   flex: 1;
   min-width: 0;
   height: 510px;
   overflow: hidden;
-  gap: 50px;
-  align-items: flex-start;
-}
-
-/* card in a 1-row should still be full width */
-.cardRow1 .card {
-  flex: 1;
 }
 
 /* Left: image */
 .cardImageWrap {
-  flex: 1;
+  flex: 1 0 0;
   min-width: 0;
-  height: 510px;
   overflow: hidden;
-  flex-shrink: 0;
-  max-width: 521px;
+  position: relative;
 }
 
 .cardImage {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 152.31%;
+  height: 100%;
   object-fit: cover;
-  object-position: top center;
   display: block;
   pointer-events: none;
-  margin-top: -21.45%;
 }
 
 /* Right: content */
 .cardContent {
-  flex: 1;
+  flex: 1 0 0;
   min-width: 0;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -211,7 +180,7 @@
 .cardTexts {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 16px;
 }
 
 .cardTitle {
@@ -263,6 +232,7 @@
   text-decoration: none;
   color: #000;
   flex-shrink: 0;
+  align-self: center;
 }
 
 .viewMore span {
@@ -279,18 +249,17 @@
 @media (max-width: 1024px) {
   .heroTextRow { padding: 0 40px; gap: 40px; }
   .portfolioSection { padding: 80px 40px; }
-  .cardImageWrap { max-width: 380px; }
 }
 
 @media (max-width: 768px) {
   .hero { gap: 40px; padding-top: 100px; }
   .heroTextRow { flex-direction: column; padding: 0 24px; gap: 16px; }
   .heroTitle { font-size: 28px; }
-  .heroBanner { height: 280px; }
+  .heroDesktop { display: none; }
+  .heroMobile { display: block; }
   .portfolioSection { padding: 60px 24px; }
   .cardRow2 { flex-direction: column; }
-  .card { flex-direction: column; height: auto; }
-  .cardImageWrap { max-width: 100%; width: 100%; height: 240px; }
-  .cardImage { height: 100%; margin-top: 0; object-position: center; }
-  .cardContent { padding: 24px; height: auto; }
+  .card { flex-direction: column; height: auto; gap: 0; }
+  .cardImageWrap { height: 220px; flex: none; }
+  .cardContent { padding: 24px; }
 }

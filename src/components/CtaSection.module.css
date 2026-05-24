@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 120px 64px;
+  padding: 183px 64px;
   width: 100%;
 }
 
@@ -11,8 +11,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 768px;
   width: 100%;
+  max-width: 768px;
   gap: 13px;
   text-align: center;
 }
@@ -62,7 +62,7 @@
 /* ── Mobile — matches Figma node 927:13995 exactly ── */
 @media (max-width: 640px) {
   .section {
-    padding: 183px 30px; /* Figma: py-[183px] px-[30px] */
+    padding: 183px 24px; /* Figma: py-[183px] px-[30px] */
   }
 
   /* Heading: 30px / tracking -0.9px (Figma H Body style) */

@@ -125,12 +125,12 @@ export default function Services() {
                   </div>
                 </div>
 
-                <Link href={service.href} className={styles.learnMore}>
+                <span className={styles.learnMore}>
                   <span className={styles.learnMoreText}>Learn More</span>
                   <span className={styles.learnMoreArrow}>
                     <ArrowIcon />
                   </span>
-                </Link>
+                </span>
               </div>
             </Link>
           </div>

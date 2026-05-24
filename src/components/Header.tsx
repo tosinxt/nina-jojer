@@ -64,7 +64,7 @@ const Header = () => {
               <Link href="/events" className={styles.navLink}>Events</Link>
             </li>
             <li className={styles.navItem}>
-              <Link href="/career" className={styles.navLink}>Career</Link>
+              <Link href="/careers" className={styles.navLink}>Career</Link>
             </li>
             <li className={styles.navItem}>
               <Link href="/contact" className={styles.navLink}>Contact</Link>
@@ -115,7 +115,7 @@ const Header = () => {
             </Link>
           </li>
           <li className={styles.mobileNavItem}>
-            <Link href="/career" className={styles.mobileNavLink} onClick={() => setIsMenuOpen(false)}>
+            <Link href="/careers" className={styles.mobileNavLink} onClick={() => setIsMenuOpen(false)}>
               Career
             </Link>
           </li>

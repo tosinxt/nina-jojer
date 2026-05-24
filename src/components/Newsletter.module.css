@@ -2,7 +2,6 @@
   background: white;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
   padding: 46px 64px;
   width: 100%;
@@ -14,7 +13,6 @@
   gap: 80px;
   align-items: flex-start;
   width: 100%;
-  max-width: 1280px;
 }
 
 .leftCol {
@@ -134,7 +132,7 @@
 /* ── Mobile — Figma node 927:13465 ── */
 @media (max-width: 768px) {
   .section {
-    padding: 100px 30px;
+    padding: 100px 24px;
   }
 
   .container {

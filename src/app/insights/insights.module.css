@@ -9,12 +9,10 @@
 /* ── BLOG SECTION ── */
 .blogSection {
   background: #eee;
-  padding: 150px 80px 112px;
+  padding: 150px 64px 112px;
 }
 
 .blogContainer {
-  max-width: 1280px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 80px;

@@ -24,47 +24,37 @@ import styles from './careers.module.css';
 import { client } from '@/sanity/client';
 import { jobOpeningsQuery } from '@/sanity/queries';
 
-const heroBars = [
-  { left: 532.59, top: -221.54, width: 39.613 },
-  { left: 395.27, top: -221.54, width: 73.944 },
-  { left: 165.52, top: -221.54, width: 113.557 },
-  { left: -11.42, top: -221.54, width: 113.557 },
-  { left: -14.06, top: -44.6, width: 113.557 },
-  { left: -11.42, top: 132.34, width: 221.833 },
-  { left: -14.07, top: 309.28, width: 338.031 },
-  { left: -58.96, top: 309.28, width: 338.031 },
-  { left: -14.07, top: 486.22, width: 446.306 },
-  { left: 45.24, top: -44.6, width: 113.557 },
-  { left: 131.83, top: 132.34, width: 113.557 },
-  { left: 218.44, top: 309.28, width: 113.557 },
-  { left: 305.04, top: 486.22, width: 113.557 },
-  { left: 391.65, top: 663.15, width: 113.557 },
-  { left: 185.44, top: -44.6, width: 113.557 },
-  { left: 274.11, top: 132.34, width: 113.557 },
-  { left: 362.77, top: 309.28, width: 113.557 },
-  { left: 325.65, top: -44.6, width: 57.734 },
-  { left: 375.14, top: 132.34, width: 57.734 },
-  { left: 424.63, top: 309.28, width: 57.734 },
-  { left: 432.88, top: -44.6, width: 39.613 },
-  { left: 494.74, top: 132.34, width: 39.613 },
-  { left: 556.59, top: 309.28, width: 39.613 },
-];
 
-const whyCards = [
+const values = [
   {
-    icon: '/images/icons/policy.svg',
-    title: 'Impact that compounds over time',
-    body: "Your work influences policy decisions affecting millions. You'll see the results of your analysis in real governance changes. This isn't abstract consulting work.",
+    icon: '/images/icons/about-us/transparency.png',
+    title: 'Transparency',
+    body: 'We are honest and open with our employees, customers and stakeholders about our goals, performance and challenges, and we foster trust in our relationships.',
   },
   {
-    icon: '/images/icons/work.svg',
-    title: 'A network of serious people',
-    body: "You'll work alongside former government officials, economists, and strategists. The people here have done real things. You'll learn from them and build relationships that last.",
+    icon: '/images/icons/about-us/innovation.png',
+    title: 'Innovation',
+    body: 'We encourage creativity and innovation in our work environment, and we offer cutting-edge services that anticipate and respond to the changing needs of the market.',
   },
   {
-    icon: '/images/icons/automation.svg',
-    title: 'Autonomy and responsibility',
-    body: "We don't micromanage. You'll own your projects and make decisions. We hire adults and treat you like one. Mistakes happen and we learn from them.",
+    icon: '/images/icons/about-us/data-driven.png',
+    title: 'Data-Driven',
+    body: 'We use data and insights to inform our decisions and actions, and to help our clients achieve their objectives.',
+  },
+  {
+    icon: '/images/icons/about-us/quality.png',
+    title: 'Quality',
+    body: "We pay close attention to detail and listen to our customers' needs and expectations, and we deliver high-quality products and services that exceed their satisfaction.",
+  },
+  {
+    icon: '/images/icons/about-us/inclusivity.png',
+    title: 'Inclusivity',
+    body: 'We embrace and respect the diversity of backgrounds, perspectives, and identities of our employees, customers, and stakeholders, and we create a culture of belonging and collaboration.',
+  },
+  {
+    icon: '/images/icons/about-us/social-responsibility.png',
+    title: 'Social Responsibility',
+    body: 'We are aware of our impact on the environment and society, and we align our services with the UN SDG goals.',
   },
 ];
 
@@ -90,20 +80,16 @@ export default async function CareersPage() {
           </p>
         </div>
 
-        <div className={styles.heroArea}>
-          {heroBars.map((bar, i) => (
-            <div
-              key={i}
-              className={styles.heroBar}
-              style={{ left: bar.left, top: bar.top, width: bar.width }}
-            />
-          ))}
+        {/* Desktop banner */}
+        <div className={styles.heroDesktop}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/careers/hero-portrait.png"
-            alt="Team member"
-            className={styles.heroPortrait}
-          />
+          <img src="/career.png" alt="" className={styles.heroFullImage} />
+        </div>
+
+        {/* Mobile banner */}
+        <div className={styles.heroMobile}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/careermobile.png" alt="" className={styles.heroFullImage} />
         </div>
       </section>
 
@@ -138,49 +124,45 @@ export default async function CareersPage() {
               ))}
             </div>
           ) : (
-            <div className={styles.rolesPlaceholder} />
+            <div className={styles.rolesEmpty}><p className={styles.rolesEmptyText}>No open roles at this time. Check back soon — or send us a speculative application at <a href="mailto:careers@ninajojer.com" className={styles.rolesEmptyLink}>careers@ninajojer.com</a>.</p></div>
           )}
         </div>
       </section>
 
-      {/* ── WHY JOIN ── */}
-      <section className={styles.whySection}>
-        <div className={styles.whyContainer}>
-          <div className={styles.whySectionTitle}>
-            <div className={styles.eyebrow}>
-              <span className={styles.eyebrowLine} />
-              <span className={styles.eyebrowText}>WHY</span>
+      {/* ── WHAT WE DELIVER ── */}
+      <section className={styles.valuesSection}>
+        <div className={styles.valuesContainer}>
+
+          {/* Section title row */}
+          <div className={styles.valuesTitleRow}>
+            <div className={styles.valuesTitleLeft}>
+              <div className={styles.eyebrow}>
+                <span className={styles.eyebrowLine} />
+                <span className={styles.eyebrowText}>VALUES</span>
+              </div>
+              <h2 className={styles.valuesHeading}>What we deliver</h2>
             </div>
-            <div className={styles.whyContent}>
-              <h2 className={styles.whyHeading}>Why join Nina Jojer Africa</h2>
-              <p className={styles.whySubtitle}>
-                Work that matters on problems that shape the continent.
-              </p>
-            </div>
+            <p className={styles.valuesBody}>
+              Real change across African institutions and governments
+            </p>
           </div>
 
-          <div className={styles.whyCards}>
-            {whyCards.map((card) => (
-              <div key={card.title} className={styles.whyCard}>
-                <div className={styles.whyCardTop}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={card.icon} alt="" className={styles.whyCardIcon} />
-                  <div className={styles.whyCardText}>
-                    <h3 className={styles.whyCardTitle}>{card.title}</h3>
-                    <p className={styles.whyCardBody}>{card.body}</p>
+          {/* 2 rows × 3 columns */}
+          <div className={styles.valuesContent}>
+            {[values.slice(0, 3), values.slice(3)].map((row, ri) => (
+              <div key={ri} className={styles.valuesRow}>
+                {row.map((v) => (
+                  <div key={v.title} className={styles.valueCol}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={v.icon} alt="" className={styles.valueIcon} />
+                    <h3 className={styles.valueTitle}>{v.title}</h3>
+                    <p className={styles.valueBody}>{v.body}</p>
                   </div>
-                </div>
-                <div className={styles.whyCardActions}>
-                  <Link href="/about" className={styles.learnBtn}>
-                    Learn
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </Link>
-                </div>
+                ))}
               </div>
             ))}
           </div>
+
         </div>
       </section>
 

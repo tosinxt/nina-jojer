@@ -13,8 +13,6 @@
 }
 
 .heroContainer {
-  max-width: 1280px;
-  margin: 0 auto;
   width: 100%;
 }
 
@@ -57,8 +55,6 @@
 }
 
 .formContainer {
-  max-width: 1280px;
-  margin: 0 auto;
   width: 100%;
   display: flex;
   gap: 80px;
@@ -231,17 +227,31 @@
   align-items: center;
   padding: 0;
   height: 57px;
+  position: relative;
 }
 
 .phonePrefix {
+  position: relative;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+.phonePrefixBtn {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: #e3e3e3;
+  border: none;
   height: 100%;
   padding: 0 13px;
-  flex-shrink: 0;
   cursor: pointer;
+  outline: none;
+}
+
+.flagEmoji {
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
 .phonePrefixCode {
@@ -254,15 +264,105 @@
   white-space: nowrap;
 }
 
-.flagImg {
-  width: 27px;
-  height: 13.5px;
-  object-fit: cover;
+.chevron {
+  flex-shrink: 0;
+  transition: transform 0.15s;
 }
 
-.chevronImg {
-  width: 10px;
-  height: 5px;
+.chevronUp {
+  transform: rotate(180deg);
+}
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 100;
+  background: #fff;
+  border: 1px solid #d1d1d1;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  max-height: 320px;
+}
+
+.dropdownSearch {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0;
+}
+
+.dropdownSearchInput {
+  width: 100%;
+  border: 1px solid #d1d1d1;
+  padding: 6px 10px;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #000;
+  outline: none;
+  background: #f5f5f5;
+  box-sizing: border-box;
+}
+
+.dropdownList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s;
+}
+
+.dropdownItem:hover {
+  background: #f5f5f5;
+}
+
+.dropdownItemActive {
+  background: #eee;
+}
+
+.dropdownItemName {
+  flex: 1;
+  min-width: 0;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdownItemCode {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  color: #888;
+  flex-shrink: 0;
+}
+
+.dropdownEmpty {
+  padding: 16px;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #888;
+  text-align: center;
 }
 
 .phoneInner {
@@ -289,22 +389,28 @@
 .textarea {
   background: #eee;
   border: none;
+  border-bottom: 1px solid #d1d1d1;
   outline: none;
-  padding: 12px;
+  padding: 16px 20px;
   font-family: 'Google Sans Flex', sans-serif;
   font-weight: 300;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.5;
-  letter-spacing: 0.18px;
+  letter-spacing: -0.16px;
   color: #000;
   width: 100%;
   resize: vertical;
   min-height: 180px;
   box-sizing: border-box;
+  transition: border-color 0.15s;
 }
 
 .textarea::placeholder {
-  color: rgba(0, 0, 0, 0.6);
+  color: #c7c7c7;
+}
+
+.textareaActive {
+  border-bottom: 1px solid #000;
 }
 
 /* Submit */
@@ -335,8 +441,6 @@
 }
 
 .officesContainer {
-  max-width: 1280px;
-  margin: 0 auto;
   width: 100%;
   display: flex;
   flex-direction: column;

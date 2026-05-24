@@ -130,7 +130,7 @@ export default function PastEventsPage() {
                   </div>
 
                   {/* CTA */}
-                  <Link href="#" className={styles.viewEvent}>
+                  <Link href="/events" className={styles.viewEvent}>
                     <span>VIEW EVENT</span>
                     <ArrowCircleIcon />
                   </Link>
@@ -141,7 +141,7 @@ export default function PastEventsPage() {
         </div>
 
         {/* View more */}
-        <Link href="#" className={styles.viewMore}>
+        <Link href="/events" className={styles.viewMore}>
           <span>view more</span>
           <ArrowCircleIcon />
         </Link>

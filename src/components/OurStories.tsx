@@ -38,6 +38,7 @@ export default async function OurStories() {
 
   return (
     <section className={styles.section}>
+      <div className={styles.inner}>
       <div className={styles.header}>
         <Reveal as="div" className={styles.titleBlock}>
           <div className={styles.eyebrow}>
@@ -83,6 +84,7 @@ export default async function OurStories() {
             </Reveal>
           );
         })}
+      </div>
       </div>
     </section>
   );

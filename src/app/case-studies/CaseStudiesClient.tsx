@@ -81,7 +81,7 @@ export default function CaseStudiesClient({ caseStudies }: { caseStudies: CaseSt
             <CaseStudyCard study={displayed[4]} />
           </div>
         )}
-        <Link href="#" className={styles.viewMore}>
+        <Link href="/contact" className={styles.viewMore}>
           <span>view more</span>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/events/arrow-circle.svg" alt="" aria-hidden="true" width={25} height={25} />

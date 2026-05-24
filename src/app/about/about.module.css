@@ -19,7 +19,7 @@
 .headerContent {
   display: flex;
   justify-content: flex-end;
-  padding: 0 80px;
+  padding: 0 64px;
 }
 
 .headerText {
@@ -89,8 +89,6 @@
 }
 
 .statsContainer {
-  max-width: 1280px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 80px;
@@ -149,8 +147,6 @@
 }
 
 .whoContainer {
-  max-width: 1280px;
-  margin: 0 auto;
 }
 
 .whoContent {
@@ -192,8 +188,6 @@
 }
 
 .directionContainer {
-  max-width: 1280px;
-  margin: 0 auto;
   display: flex;
   gap: 80px;
   align-items: flex-start;
@@ -299,8 +293,6 @@
 }
 
 .valuesContainer {
-  max-width: 1280px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 80px;
@@ -355,7 +347,7 @@
 
 .valueIcon {
   width: 59px;
-  height: 59px;
+  height: auto;
   object-fit: contain;
 }
 
@@ -385,8 +377,6 @@
 }
 
 .teamContainer {
-  max-width: 1280px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 80px;

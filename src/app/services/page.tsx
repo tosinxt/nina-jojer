@@ -7,7 +7,7 @@ import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import styles from "./services.module.css";
 
-const heroImage = "https://www.figma.com/api/mcp/asset/0885460e-d6b2-4c70-b8bc-099d34e346fb";
+const heroImage = "/images/services/hero.png";
 
 export default function ServicesPage() {
   return (
@@ -29,7 +29,7 @@ export default function ServicesPage() {
         </div>
         <div className={styles.heroImageWrap}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={heroImage} alt="Hero" className={styles.heroImage} />
+          <img src={heroImage} alt="" aria-hidden="true" className={styles.heroImage} />
         </div>
       </section>
 
