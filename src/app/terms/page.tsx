@@ -6,7 +6,7 @@ import styles from '../privacy/legal.module.css';
 
 export const metadata: Metadata = {
   title: 'Terms of Service | Nina Jojer',
-  description: 'The terms and conditions governing use of Nina Jojer Africa's website and services.',
+  description: "The terms and conditions governing use of Nina Jojer Africa's website and services.",
   alternates: { canonical: canonicalUrl('/terms') },
 };
 

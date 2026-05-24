@@ -7,7 +7,7 @@
 
 /* ── HEADER ── */
 .header {
-  padding-top: 112px;
+  padding-top: 150px;
   display: flex;
   flex-direction: column;
   gap: 55px;
@@ -322,7 +322,7 @@
 }
 
 @media (max-width: 768px) {
-  .header { padding-top: 80px; gap: 32px; }
+  .header { padding-top: 100px; gap: 32px; }
   .headerContent { padding: 0 24px; }
   .headerTitle { font-size: 28px; }
   .heroDesktop { display: none; }

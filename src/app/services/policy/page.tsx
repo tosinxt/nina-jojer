@@ -104,7 +104,7 @@ function FaqAccordion() {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <div className={styles.faqList}>
-      {faqs.map((faq) => (
+      {faqs.map((faq, i) => (
         <div key={faq.q} className={styles.faqItem}>
           <button className={styles.faqQuestion} onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i}>
             <span>{faq.q}</span>
