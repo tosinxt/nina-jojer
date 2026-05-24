@@ -228,6 +228,8 @@
   padding: 0;
   height: 57px;
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .phonePrefix {
@@ -517,12 +519,28 @@
 
   .formSection,
   .officesSection {
-    padding: 64px 24px;
+    padding: 64px 30px;
+  }
+
+  .formContainer {
+    width: 100%;
+  }
+
+  .form {
+    width: 100%;
+  }
+
+  .inputGroup,
+  .input,
+  .textarea {
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .row {
     flex-direction: column;
     gap: 16px;
+    width: 100%;
   }
 
   .officesGrid {

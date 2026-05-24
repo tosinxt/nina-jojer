@@ -260,36 +260,89 @@
 }
 
 @media (max-width: 768px) {
-  .section    { flex-direction: column; overflow: hidden; }
-  .leftPanel  { position: static; width: 100%; min-height: unset; }
-  .leftInner  { padding: 48px 24px 32px; }
-  .cardWrapper {
-    padding: 16px 16px 32px;
+  /* Section: single column, grey bg, gap between header and cards */
+  .section {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    overflow: visible;
+  }
+
+  /* Header panel: unstick, full width, top padding 80px, side 30px */
+  .leftPanel {
     position: static;
-    background: #ededed;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    width: 100%;
+    min-height: unset;
+    align-self: auto;
+  }
+  .leftInner {
+    padding: 80px 30px 0;
+    gap: 16px;
+  }
+  .heading {
+    font-size: 30px;
+    letter-spacing: -0.9px;
+  }
+  .subheading {
+    font-size: 16px;
+    letter-spacing: -0.16px;
+  }
+
+  /* Cards container: 5px padding + 5px gap (white cards on grey bg) */
+  .rightPanel {
+    padding: 5px;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  /* Each card wrapper: no sticky, no border, no extra padding */
+  .cardWrapper {
+    position: static;
+    background: transparent;
+    padding-bottom: 0;
+    border-bottom: none;
     z-index: auto !important;
   }
+  .cardWrapper:last-child {
+    padding-bottom: 0;
+  }
+
+  /* White card: full width, no fixed height, column layout */
   .card {
+    height: auto;
     box-shadow: none;
     overflow: hidden;
     width: 100%;
+    gap: 33px;
   }
+
+  /* Image: fixed height, full width, cover */
   .cardImageWrap {
-    aspect-ratio: 16 / 7;
+    width: 100%;
+    height: 260px;
+    aspect-ratio: unset;
   }
   .cardImageWrap img {
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
+    object-fit: cover;
   }
+
+  /* Content: 30px sides, 50px bottom, 50px gap */
   .cardContent {
-    padding: 24px;
-    gap: 24px;
+    padding: 0 30px 50px;
+    gap: 50px;
   }
-  .cardTitle { font-size: 20px; }
-  .cardDesc  { font-size: 16px; }
-  .tags      { gap: 6px; }
-  .tag       { flex-shrink: 1; }
+  .cardTextGroup { gap: 20px; }
+  .cardTitleGroup { gap: 6px; }
+  .cardTitle { font-size: 22px; letter-spacing: -0.22px; }
+  .cardDesc  { font-size: 16px; letter-spacing: -0.16px; margin-top: 0; }
+
+  /* Tags: vertical list */
+  .tags { flex-direction: column; gap: 6px; flex-wrap: nowrap; }
+  .tag  { flex-shrink: 0; width: fit-content; }
 }
