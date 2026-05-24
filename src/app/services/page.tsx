@@ -7,8 +7,6 @@ import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import styles from "./services.module.css";
 
-const heroImage = "/images/services/hero.png";
-
 export default function ServicesPage() {
   return (
     <main className={styles.page}>
@@ -27,9 +25,17 @@ export default function ServicesPage() {
             </p>
           </div>
         </div>
-        <div className={styles.heroImageWrap}>
+
+        {/* Desktop banner */}
+        <div className={styles.heroDesktop}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={heroImage} alt="" aria-hidden="true" className={styles.heroImage} />
+          <img src="/services.png" alt="" aria-hidden="true" className={styles.heroFullImage} />
+        </div>
+
+        {/* Mobile banner */}
+        <div className={styles.heroMobile}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/servicesmobile.png" alt="" aria-hidden="true" className={styles.heroFullImage} />
         </div>
       </section>
 
