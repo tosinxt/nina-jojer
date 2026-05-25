@@ -81,12 +81,31 @@
   gap: 48px;
 }
 
-/* ── DATE FILTER PILLS ── */
+/* ── FILTER BAR ── */
+.filterBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
 .dateFilters {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
   align-items: center;
+}
+
+.filterIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 37px;
+  height: 37px;
+  background: #fff;
+  border-radius: 37px;
+  flex-shrink: 0;
+  color: #000;
 }
 
 .dateFilter {
@@ -111,6 +130,14 @@
 .dateFilterActive {
   background: #000;
   color: #fff;
+}
+
+/* ── NO EVENTS ── */
+.noEvents {
+  padding: 48px 0;
+  font-size: 16px;
+  color: #666;
+  text-align: center;
 }
 
 /* ── EVENTS LIST ── */
@@ -260,6 +287,7 @@
   height: 33px;
   border-radius: 79px;
   object-fit: cover;
+  object-position: center top;
   flex-shrink: 0;
 }
 

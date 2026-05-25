@@ -27,7 +27,7 @@ export type PastEvent = {
   image: string;
 };
 
-const DATE_FILTERS = ['Fri 09 Feb', 'Sat 10 Feb', 'Sun 11 Feb'];
+const ALL = 'All';
 
 const LocationIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -42,27 +42,40 @@ export default function EventsClient({
   upcomingEvents: UpcomingEvent[];
   pastEvents: PastEvent[];
 }) {
-  const [activeFilter, setActiveFilter] = useState('Fri 09 Feb');
+  const categoryFilters = [ALL, ...Array.from(new Set(upcomingEvents.map((e) => e.category).filter(Boolean)))];
+  const [activeFilter, setActiveFilter] = useState(ALL);
+
+  const visibleEvents =
+    activeFilter === ALL
+      ? upcomingEvents
+      : upcomingEvents.filter((e) => e.category === activeFilter);
 
   return (
     <>
       {/* ── UPCOMING EVENTS ── */}
       <section className={styles.eventsSection}>
         <div className={styles.eventsInner}>
-          <div className={styles.dateFilters}>
-            {DATE_FILTERS.map((filter) => (
-              <button
-                key={filter}
-                className={`${styles.dateFilter} ${activeFilter === filter ? styles.dateFilterActive : ''}`}
-                onClick={() => setActiveFilter(filter)}
-              >
-                {filter}
-              </button>
-            ))}
+          <div className={styles.filterBar}>
+            <div className={styles.dateFilters}>
+              {categoryFilters.map((filter) => (
+                <button
+                  key={filter}
+                  className={`${styles.dateFilter} ${activeFilter === filter ? styles.dateFilterActive : ''}`}
+                  onClick={() => setActiveFilter(filter)}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+            <div className={styles.filterIconWrap} aria-label="Filter">
+              <svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true">
+                <path d="M2 4h13M5 8.5h7M7.5 13h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+            </div>
           </div>
 
           <div className={styles.eventsList}>
-            {upcomingEvents.map((event) => (
+            {visibleEvents.length > 0 ? visibleEvents.map((event) => (
               <article key={event._id} className={styles.eventCard}>
                 <div className={styles.eventInfo}>
                   <div className={styles.eventMeta}>
@@ -102,7 +115,9 @@ export default function EventsClient({
                   <img src={event.image} alt={event.title} className={styles.eventImage} />
                 </div>
               </article>
-            ))}
+            )) : (
+              <p className={styles.noEvents}>No events scheduled for this date.</p>
+            )}
           </div>
         </div>
 
