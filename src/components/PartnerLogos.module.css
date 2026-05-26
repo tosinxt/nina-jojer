@@ -1,4 +1,5 @@
-.partnerLogos {
+/* ── Section ── */
+.section {
   width: 100%;
   background-color: #ededed;
   overflow: hidden;
@@ -6,7 +7,8 @@
   box-sizing: border-box;
 }
 
-.container {
+/* ── Inner row: tagline + scrolling logos ── */
+.inner {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -15,6 +17,7 @@
   gap: 40px;
 }
 
+/* ── Tagline ── */
 .tagline {
   flex-shrink: 0;
   width: 215px;
@@ -27,142 +30,110 @@
   margin: 0;
 }
 
-/* ── Scrolling Viewport ── */
-.logosViewport {
+/* ── Scrolling viewport ── */
+.viewport {
   position: relative;
   overflow: hidden;
-  max-width: calc(100% - 255px);
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   display: flex;
   align-items: center;
   padding: 0 20px;
 }
 
-/* Elegant edge gradient fades to blend logo boundaries */
-.leftFade {
+/* Left-only fade — matches Figma gradient overlay */
+.fade {
   position: absolute;
   left: -2px;
   top: 0;
   bottom: 0;
-  width: 80px;
+  width: 95px;
   z-index: 2;
   pointer-events: none;
-  background: linear-gradient(90deg, #ededed 0%, rgba(237, 237, 237, 0) 100%);
+  background: linear-gradient(90deg, #ededed 10%, rgba(237, 237, 237, 0) 100%);
 }
 
-.rightFade {
-  position: absolute;
-  right: -2px;
-  top: 0;
-  bottom: 0;
-  width: 80px;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(270deg, #ededed 0%, rgba(237, 237, 237, 0) 100%);
-}
-
-/* ── Continuous Scroll Track ── */
-.logosMarqueeTrack {
+/* ── Marquee track ── */
+.track {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 35px;
   width: max-content;
-  animation: marquee 30s linear infinite;
+  animation: scroll 28s linear infinite;
   will-change: transform;
 }
 
-/* Pause the scrolling loop on hover for enhanced user control */
-.logosViewport:hover .logosMarqueeTrack {
+.viewport:hover .track {
   animation-play-state: paused;
 }
 
-.logoItem {
+/* ── Logo item ── */
+.item {
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-.logoItem:hover {
-  transform: scale(1.05);
-}
-
+/* LBS dark background treatment */
 .darkBg {
   background-color: #262626;
   padding: 6px 12px;
-  border-radius: 4px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* ── Animation Keyframes ── */
-@keyframes marquee {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
+/* ── Keyframes ── */
+@keyframes scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
 }
 
-/* ── Responsive Styling ── */
+@media (prefers-reduced-motion: reduce) {
+  .track { animation: none; }
+}
+
+/* ── Responsive ── */
 @media (max-width: 1024px) {
-  .partnerLogos {
-    padding: 64px 40px;
-  }
-  .tagline {
-    font-size: 16px;
-    width: 180px;
-  }
-  .logosViewport {
-    max-width: calc(100% - 210px);
-  }
+  .section  { padding: 64px 40px; }
+  .tagline  { font-size: 16px; width: 180px; }
 }
 
 @media (max-width: 768px) {
-  .partnerLogos {
-    padding: 80px 24px;
-  }
-  .container {
+  .section { padding: 60px 24px; }
+
+  .inner {
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 22px;
+    gap: 32px;
   }
 
   .tagline {
-    width: 215px;
+    width: auto;
     text-align: center;
     font-size: 18px;
   }
 
-  /* Switch from marquee to static wrapping grid */
-  .logosViewport {
+  /* Static grid on mobile */
+  .viewport {
     overflow: visible;
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    padding: 0;
   }
 
-  .leftFade,
-  .rightFade {
-    display: none;
-  }
+  .fade { display: none; }
 
-  /* Show only first set of logos (hide duplicates used for marquee loop) */
-  .logosMarqueeTrack {
+  .track {
     animation: none;
     width: auto;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 35px;
+    gap: 28px;
   }
 
-  /* Hide the duplicate logos (second half of doubleLogos array) */
-  .logosMarqueeTrack > *:nth-child(n+9) {
-    display: none;
-  }
+  /* Hide duplicates used for the loop */
+  .track > *:nth-child(n+9) { display: none; }
 }

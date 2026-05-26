@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import BlurText from "@/components/BlurText";
 import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
 import Newsletter from "@/components/Newsletter";
@@ -32,7 +33,7 @@ const faqs = [
 const subServices = [
   {
     title: "Market Entry Strategy",
-    desc: "Structured market assessment and sequenced entry strategies that account for regulatory environments, competitive landscapes, and on-the-ground realities across Sub-Saharan Africa.",
+    desc: "Structured market assessment and sequenced entry strategies that account for regulatory environments, competitive landscapes, and on-the-ground realities across Africa.",
   },
   {
     title: "Market Intelligence & Investment Analysis",
@@ -143,10 +144,8 @@ export default function CorporateSolutionsPage() {
       <section className={styles.header}>
         <div className={styles.headerContent}>
           <div className={styles.headerText}>
-            <h1 className={styles.headerTitle}>Corporate Solutions</h1>
-            <p className={styles.headerBody}>
-              Africa-specialist advisory services offering granular intelligence, local networks, and on-the-ground insight to navigate Sub-Saharan markets.
-            </p>
+            <BlurText as="h1" text="Corporate Solutions" direction="bottom" delay={130} className={styles.headerTitle} />
+            <BlurText text="Africa-specialist advisory services offering granular intelligence, local networks, and on-the-ground insight to navigate Sub-Saharan markets." direction="bottom" delay={80} stepDuration={0.4} className={styles.headerBody} />
           </div>
         </div>
         <div className={styles.heroWrap}>
@@ -161,7 +160,7 @@ export default function CorporateSolutionsPage() {
           <div className={styles.overviewCol}>
             <h2 className={styles.colHeading}>Overview</h2>
             <p className={styles.colBody}>
-              Succeeding in Sub-Saharan Africa demands more than ambition — it demands intelligence. The gap between market opportunity and market reality is wide, and navigating it requires the kind of granular, relationship-grounded insight that only comes from genuine on-the-ground presence. NINA JOJER exists to close that gap. We provide Africa-specialist advisory services that translate complex market environments into clear strategy, and clear strategy into results.
+              Succeeding in Africa demands more than ambition — it demands intelligence. The gap between market opportunity and market reality is wide, and navigating it requires the kind of granular, relationship-grounded insight that only comes from genuine on-the-ground presence. NINA JOJER exists to close that gap. We provide Africa-specialist advisory services that translate complex market environments into clear strategy, and clear strategy into results.
             </p>
           </div>
           <div className={styles.practiceCol}>
@@ -171,7 +170,7 @@ export default function CorporateSolutionsPage() {
                 Africa's fastest-growing markets are defined by institutional complexity, infrastructure variability, and political dynamics that conventional advisory frameworks are not built to handle. Our corporate advisory practice is designed specifically for these environments — combining deep local knowledge with strategic rigour to help clients make better decisions, faster.
               </p>
               <p>
-                Whether we are guiding a first-time market entrant through a structured entry process, helping an established business navigate a transformation, or providing the intelligence needed to make a high-stakes investment decision, we bring the same commitment: to understand the environment as it actually is, not as it appears from a distance. Our networks span government, the private sector, and civil society across Nigeria, South Africa, Kenya, Ghana, Sierra Leone, and beyond.
+              Whether we are guiding a first-time market entrant through a structured entry process, helping an established business navigate a transformation, or providing the intelligence needed to make a high-stakes investment decision, we bring the same commitment: to understand the environment as it actually is, not as it appears from a distance. Our networks span government, the private sector, and civil society across Africa.
               </p>
             </div>
           </div>
@@ -235,7 +234,7 @@ export default function CorporateSolutionsPage() {
             <div className={styles.caseCardContent}>
               <div className={styles.caseCardText}>
                 <h3 className={styles.caseCardTitle}>Enterprise Transformation and Supply Chain Optimisation for a Regional Manufacturing Group</h3>
-                <p className={styles.caseCardDesc}>A regional manufacturing conglomerate restructured its operations across three markets, achieving significant efficiency gains and building a supply chain resilient to the infrastructure variability common across Sub-Saharan Africa.</p>
+                <p className={styles.caseCardDesc}>A regional manufacturing conglomerate restructured its operations across three markets, achieving significant efficiency gains and building a supply chain resilient to the infrastructure variability common across Africa.</p>
               </div>
               <Link href="/case-studies" className={styles.learnMore}>
                 <span>LEARN MORE</span>

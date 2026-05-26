@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from './case-studies.module.css';
 
@@ -13,12 +13,8 @@ export type CaseStudy = {
   image: string;
 };
 
-const FILTERS = [
-  'Policy & Advocacy Solutions',
-  'Corporate Solutions',
-  'Technology solutions',
-  'Strategic Communications',
-];
+const ALL = 'All';
+const PAGE_SIZE = 4;
 
 function CaseStudyCard({ study }: { study: CaseStudy }) {
   const slug = typeof study.slug === 'string' ? study.slug : study.slug?.current;
@@ -27,6 +23,9 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
       <div className={styles.cardImageWrap}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={study.image} alt={study.title} className={styles.cardImage} />
+        {study.category && (
+          <span className={styles.cardCategory}>{study.category}</span>
+        )}
       </div>
       <div className={styles.cardContent}>
         <div className={styles.cardTexts}>
@@ -44,19 +43,54 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
 }
 
 export default function CaseStudiesClient({ caseStudies }: { caseStudies: CaseStudy[] }) {
-  const [activeFilter, setActiveFilter] = useState(FILTERS[0]);
+  const filters = [ALL, ...Array.from(new Set(caseStudies.map(s => s.category).filter(Boolean)))];
+  const [activeFilter, setActiveFilter] = useState(ALL);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const [showNoMore, setShowNoMore] = useState(false);
 
-  const filtered = caseStudies.filter(s => !s.category || activeFilter === FILTERS[0] || s.category === activeFilter);
-  const displayed = filtered.length > 0 ? filtered : caseStudies;
+  const filtered = activeFilter === ALL
+    ? caseStudies
+    : caseStudies.filter(s => s.category === activeFilter);
+
+  const displayed = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
+
+  const handleFilterChange = (f: string) => {
+    setActiveFilter(f);
+    setVisibleCount(PAGE_SIZE);
+    setShowNoMore(false);
+  };
+
+  const handleViewMore = () => {
+    if (hasMore) {
+      setVisibleCount(v => v + PAGE_SIZE);
+    } else {
+      setShowNoMore(true);
+      setTimeout(() => setShowNoMore(false), 2500);
+    }
+  };
+
+  // Layout pattern: 2, 1, 2, 1, 2, ... per page
+  const chunks: { studies: CaseStudy[]; wide: boolean }[] = [];
+  let i = 0;
+  while (i < displayed.length) {
+    if (chunks.length % 2 === 0) {
+      chunks.push({ studies: displayed.slice(i, i + 2), wide: true });
+      i += 2;
+    } else {
+      chunks.push({ studies: displayed.slice(i, i + 1), wide: false });
+      i += 1;
+    }
+  }
 
   return (
     <section className={styles.portfolioSection}>
       <div className={styles.filters}>
-        {FILTERS.map((f) => (
+        {filters.map((f) => (
           <button
             key={f}
             className={`${styles.filterBtn} ${activeFilter === f ? styles.filterBtnActive : ''}`}
-            onClick={() => setActiveFilter(f)}
+            onClick={() => handleFilterChange(f)}
           >
             {f}
           </button>
@@ -64,28 +98,23 @@ export default function CaseStudiesClient({ caseStudies }: { caseStudies: CaseSt
       </div>
 
       <div className={styles.portfolioInner}>
-        {displayed[0] && displayed[1] && (
-          <div className={styles.cardRow2}>
-            <CaseStudyCard study={displayed[0]} />
-            <CaseStudyCard study={displayed[1]} />
+        {chunks.map((chunk, idx) => (
+          <div key={idx} className={chunk.wide ? styles.cardRow2 : styles.cardRow1}>
+            {chunk.studies.map(study => <CaseStudyCard key={study._id} study={study} />)}
           </div>
-        )}
-        {displayed[2] && (
-          <div className={styles.cardRow1}>
-            <CaseStudyCard study={displayed[2]} />
-          </div>
-        )}
-        {displayed[3] && displayed[4] && (
-          <div className={styles.cardRow2}>
-            <CaseStudyCard study={displayed[3]} />
-            <CaseStudyCard study={displayed[4]} />
-          </div>
-        )}
-        <Link href="/contact" className={styles.viewMore}>
-          <span>view more</span>
+        ))}
+
+        <button className={styles.viewMore} onClick={handleViewMore}>
+          <span>VIEW MORE</span>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/events/arrow-circle.svg" alt="" aria-hidden="true" width={25} height={25} />
-        </Link>
+        </button>
+
+        {showNoMore && (
+          <div className={styles.noMoreToast}>
+            You&apos;ve reached the end of all case studies.
+          </div>
+        )}
       </div>
     </section>
   );

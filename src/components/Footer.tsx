@@ -61,7 +61,7 @@ export default function Footer() {
                 alt="Nina Jojer"
               />
               <p className={styles.tagline}>
-                Making a positive impact on the world of business in Sub-Saharan Africa.
+                Making a positive impact on the world of business in Africa.
               </p>
               <div className={styles.contact}>
                 <div className={styles.contactRow}>
@@ -78,11 +78,11 @@ export default function Footer() {
                 </div>
               </div>
               <div className={styles.socialLinks}>
-                <a href="#" aria-label="LinkedIn" className={styles.socialIcon}>
+                <a href="https://www.linkedin.com/company/nina-jojer-limited/" aria-label="LinkedIn" className={styles.socialIcon} target="_blank" rel="noopener noreferrer">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/logo/Footer/3/LinkedIn.svg" alt="LinkedIn" width={24} height={24} />
                 </a>
-                <a href="#" aria-label="YouTube" className={styles.socialIcon}>
+                <a href="https://www.youtube.com/@NinaJojer" aria-label="YouTube" className={styles.socialIcon} target="_blank" rel="noopener noreferrer">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/logo/Footer/3/Youtube.svg" alt="YouTube" width={24} height={24} />
                 </a>

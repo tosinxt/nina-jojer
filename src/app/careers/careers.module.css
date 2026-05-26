@@ -188,7 +188,7 @@
   background: #440102;
 }
 
-/* ── WHAT WE DELIVER (VALUES) ── */
+/* ── WHY JOIN US ── */
 .valuesSection {
   padding: 112px 64px;
   background: #fff;
@@ -196,25 +196,26 @@
 
 .valuesContainer {
   width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 80px;
 }
 
-/* Title row: left (eyebrow + heading) + right (body) aligned to bottom */
-.valuesTitleRow {
-  display: flex;
-  gap: 80px;
-  align-items: flex-end;
-  width: 100%;
-}
-
-.valuesTitleLeft {
-  flex: 1;
-  min-width: 0;
+/* Title block: vertical stack */
+.valuesTitleBlock {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  max-width: 768px;
+  width: 100%;
+}
+
+.valuesTitleContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .eyebrow {
@@ -252,46 +253,47 @@
   margin: 0;
 }
 
-.valuesBody {
-  flex: 1;
-  min-width: 0;
+.valuesSubtitle {
   font-family: var(--font-google-sans-flex), sans-serif;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
-  letter-spacing: -0.16px;
+  letter-spacing: 0.18px;
   color: #000;
   margin: 0;
 }
 
-/* Content: 2 rows */
-.valuesContent {
-  display: flex;
-  flex-direction: column;
-  gap: 64px;
-}
-
+/* 3-column card row */
 .valuesRow {
   display: flex;
-  gap: 80px;
-  align-items: flex-start;
+  gap: 32px;
+  align-items: stretch;
   width: 100%;
 }
 
-/* Each value column */
-.valueCol {
+/* Each card */
+.valueCard {
   flex: 1;
   min-width: 0;
+  background: #eeeeee;
+  padding: 48px;
   display: flex;
   flex-direction: column;
   gap: 24px;
+  justify-content: center;
 }
 
 .valueIcon {
-  width: 59px;
-  height: auto;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
   object-fit: contain;
+}
+
+.valueCardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .valueTitle {
@@ -328,7 +330,7 @@
   .heroDesktop { display: none; }
   .heroMobile  { display: block; }
   .openRoles, .valuesSection { padding: 60px 24px; }
-  .valuesTitleRow { flex-direction: column; align-items: flex-start; gap: 24px; }
-  .valuesRow { flex-direction: column; gap: 40px; }
+  .valuesRow { flex-direction: column; gap: 24px; }
+  .valueCard { padding: 32px 24px; }
   .valuesHeading { font-size: 28px; }
 }

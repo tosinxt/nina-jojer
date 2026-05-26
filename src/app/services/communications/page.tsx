@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import BlurText from "@/components/BlurText";
 import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
 import Newsletter from "@/components/Newsletter";
@@ -131,10 +132,8 @@ export default function StrategicCommunicationsPage() {
       <section className={styles.header}>
         <div className={styles.headerContent}>
           <div className={styles.headerText}>
-            <h1 className={styles.headerTitle}>Strategic Communications</h1>
-            <p className={styles.headerBody}>
-              We help businesses navigate and shape Africa's regulatory and political landscape by turning policy into strategy and engaging key institutions.
-            </p>
+            <BlurText as="h1" text="Strategic Communications" direction="bottom" delay={130} className={styles.headerTitle} />
+            <BlurText text="We help businesses navigate and shape Africa's regulatory and political landscape by turning policy into strategy and engaging key institutions." direction="bottom" delay={80} stepDuration={0.4} className={styles.headerBody} />
           </div>
         </div>
         <div className={styles.heroWrap}>

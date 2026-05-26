@@ -7,6 +7,7 @@ export const insightsQuery = `*[_type == "insight"] | order(publishedAt desc) {
   excerpt,
   author,
   publishedAt,
+  "updatedAt": _updatedAt,
   readTime,
   "image": image.asset->url,
 }`;
@@ -19,6 +20,7 @@ export const featuredInsightsQuery = `*[_type == "insight"] | order(publishedAt 
   excerpt,
   author,
   publishedAt,
+  "updatedAt": _updatedAt,
   readTime,
   "image": image.asset->url,
 }`;
@@ -45,12 +47,13 @@ export const featuredCaseStudiesQuery = `*[_type == "caseStudy"] | order(_create
 export const upcomingEventsQuery = `*[_type == "event" && isPast != true] | order(date asc) {
   _id,
   title,
-  slug,
+  "slug": slug.current,
   description,
   category,
   date,
   time,
   location,
+  registerLink,
   "image": image.asset->url,
   speakers[] {
     name,
@@ -73,6 +76,37 @@ export const pastEventsQuery = `*[_type == "event" && isPast == true] | order(da
 export const teamMembersQuery = `*[_type == "teamMember"] | order(order asc) {
   _id,
   name,
+  "slug": slug.current,
+  credentials,
+  role,
+  bio,
+  linkedIn,
+  "photo": photo.asset->url,
+}`;
+
+export const eventBySlugQuery = (slug: string) =>
+  `*[_type == "event" && slug.current == "${slug}"][0] {
+  _id,
+  title,
+  "slug": slug.current,
+  description,
+  category,
+  date,
+  time,
+  location,
+  registerLink,
+  "image": image.asset->url,
+  speakers[] {
+    name,
+    "avatar": avatar.asset->url,
+  },
+}`;
+
+export const teamMemberBySlugQuery = (slug: string) =>
+  `*[_type == "teamMember" && slug.current == "${slug}"][0] {
+  _id,
+  name,
+  "slug": slug.current,
   credentials,
   role,
   bio,

@@ -70,7 +70,7 @@ const BASE_ARTICLES = [
     image: "/images/insights/article-1.jpg",
     category: "Tech & Innovation",
     title: "Digital Infrastructure and the Future of African Governance",
-    excerpt: "Examining how digital infrastructure investment is reshaping the relationship between governments and citizens across Sub-Saharan Africa.",
+    excerpt: "Examining how digital infrastructure investment is reshaping the relationship between governments and citizens across Africa.",
     author: "EBERE OJADUA",
     publishedAt: "12th April 2026",
     readTime: "6 mins read",

@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 };
 
 import Link from 'next/link';
+import BlurText from '@/components/BlurText';
 import Navbar from '@/components/Navbar';
 import CtaSection from '@/components/CtaSection';
 import Newsletter from '@/components/Newsletter';
@@ -25,36 +26,21 @@ import { client } from '@/sanity/client';
 import { jobOpeningsQuery } from '@/sanity/queries';
 
 
-const values = [
+const whyJoinReasons = [
   {
-    icon: '/images/icons/about-us/transparency.png',
-    title: 'Transparency',
-    body: 'We are honest and open with our employees, customers and stakeholders about our goals, performance and challenges, and we foster trust in our relationships.',
+    icon: '/images/icons/about-us/impact.svg',
+    title: 'Impact that Compounds Over Time',
+    body: "Your work influences policy decisions affecting millions. You'll see the results of your analysis in real governance changes. This isn't abstract consulting work.",
   },
   {
-    icon: '/images/icons/about-us/innovation.png',
-    title: 'Innovation',
-    body: 'We encourage creativity and innovation in our work environment, and we offer cutting-edge services that anticipate and respond to the changing needs of the market.',
+    icon: '/images/icons/about-us/network.svg',
+    title: 'A Network of Serious People',
+    body: "You'll work alongside former government officials, economists, and strategists. The people here have done real things. You'll learn from them and build relationships that last.",
   },
   {
-    icon: '/images/icons/about-us/data-driven.png',
-    title: 'Data-Driven',
-    body: 'We use data and insights to inform our decisions and actions, and to help our clients achieve their objectives.',
-  },
-  {
-    icon: '/images/icons/about-us/quality.png',
-    title: 'Quality',
-    body: "We pay close attention to detail and listen to our customers' needs and expectations, and we deliver high-quality products and services that exceed their satisfaction.",
-  },
-  {
-    icon: '/images/icons/about-us/inclusivity.png',
-    title: 'Inclusivity',
-    body: 'We embrace and respect the diversity of backgrounds, perspectives, and identities of our employees, customers, and stakeholders, and we create a culture of belonging and collaboration.',
-  },
-  {
-    icon: '/images/icons/about-us/social-responsibility.png',
-    title: 'Social Responsibility',
-    body: 'We are aware of our impact on the environment and society, and we align our services with the UN SDG goals.',
+    icon: '/images/icons/about-us/autonomy.svg',
+    title: 'Autonomy and Responsibility',
+    body: "We don't micromanage. You'll own your projects and make decisions. We hire adults and treat you like one. Mistakes happen and we learn from them.",
   },
 ];
 
@@ -74,10 +60,8 @@ export default async function CareersPage() {
       {/* ── HEADER ── */}
       <section className={styles.header}>
         <div className={styles.headerContent}>
-          <h1 className={styles.headerTitle}>Build something meaningful</h1>
-          <p className={styles.headerBody}>
-            Join a team that shapes policy and drives change across Africa
-          </p>
+          <BlurText as="h1" text="Build something meaningful" direction="bottom" delay={130} className={styles.headerTitle} />
+          <BlurText text="Join a team that shapes policy and drives change across Africa" direction="bottom" delay={80} stepDuration={0.4} className={styles.headerBody} />
         </div>
 
         {/* Desktop banner */}
@@ -97,10 +81,8 @@ export default async function CareersPage() {
       <section className={styles.openRoles}>
         <div className={styles.container}>
           <div className={styles.openRolesHeader}>
-            <h2 className={styles.sectionHeading}>Open roles</h2>
-            <p className={styles.sectionBody}>
-              {`We're looking for talented people to join our teams across Africa.`}
-            </p>
+            <BlurText as="h2" text="Open roles" direction="bottom" delay={110} className={styles.sectionHeading} />
+            <BlurText text="We're looking for talented people to join our teams across Africa." direction="bottom" delay={80} stepDuration={0.4} className={styles.sectionBody} />
           </div>
           {jobs.length > 0 ? (
             <div className={styles.rolesList}>
@@ -129,36 +111,32 @@ export default async function CareersPage() {
         </div>
       </section>
 
-      {/* ── WHAT WE DELIVER ── */}
+      {/* ── WHY JOIN US ── */}
       <section className={styles.valuesSection}>
         <div className={styles.valuesContainer}>
 
-          {/* Section title row */}
-          <div className={styles.valuesTitleRow}>
-            <div className={styles.valuesTitleLeft}>
-              <div className={styles.eyebrow}>
-                <span className={styles.eyebrowLine} />
-                <span className={styles.eyebrowText}>VALUES</span>
-              </div>
-              <h2 className={styles.valuesHeading}>What we deliver</h2>
+          {/* Section title */}
+          <div className={styles.valuesTitleBlock}>
+            <div className={styles.eyebrow}>
+              <span className={styles.eyebrowLine} />
+              <span className={styles.eyebrowText}>WHY</span>
             </div>
-            <p className={styles.valuesBody}>
-              Real change across African institutions and governments
-            </p>
+            <div className={styles.valuesTitleContent}>
+              <BlurText as="h2" text="Why Join NINA JOJER Africa" direction="bottom" delay={110} className={styles.valuesHeading} />
+              <BlurText text="Work that matters on problems that shape the continent." direction="bottom" delay={80} stepDuration={0.4} className={styles.valuesSubtitle} />
+            </div>
           </div>
 
-          {/* 2 rows × 3 columns */}
-          <div className={styles.valuesContent}>
-            {[values.slice(0, 3), values.slice(3)].map((row, ri) => (
-              <div key={ri} className={styles.valuesRow}>
-                {row.map((v) => (
-                  <div key={v.title} className={styles.valueCol}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={v.icon} alt="" className={styles.valueIcon} />
-                    <h3 className={styles.valueTitle}>{v.title}</h3>
-                    <p className={styles.valueBody}>{v.body}</p>
-                  </div>
-                ))}
+          {/* 3 cards */}
+          <div className={styles.valuesRow}>
+            {whyJoinReasons.map((v) => (
+              <div key={v.title} className={styles.valueCard}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={v.icon} alt="" className={styles.valueIcon} />
+                <div className={styles.valueCardContent}>
+                  <h3 className={styles.valueTitle}>{v.title}</h3>
+                  <p className={styles.valueBody}>{v.body}</p>
+                </div>
               </div>
             ))}
           </div>

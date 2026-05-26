@@ -110,6 +110,22 @@
 
 .saveBtn:hover { opacity: 0.85; }
 
+.saveBtnDisabled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: #b0b0b0;
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+  white-space: nowrap;
+  align-self: flex-start;
+  cursor: default;
+}
+
 /* Event details list */
 .detailsList {
   display: flex;
@@ -235,6 +251,21 @@
 }
 
 .saveSpotBtn:hover { opacity: 0.85; }
+
+.saveSpotBtnDisabled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: #b0b0b0;
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+  white-space: nowrap;
+  cursor: default;
+}
 
 /* Speaker sidebar */
 .speakerSidebar {
@@ -557,12 +588,29 @@
 
 .registerBtn:hover { opacity: 0.85; }
 
+.registerBtnDisabled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  background: #b0b0b0;
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: default;
+}
+
 .detailsLink {
   font-family: var(--font-google-sans-flex), sans-serif;
   font-weight: 300;
   font-size: 16px;
   line-height: 1.5;
   color: #000;
+  text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
 }

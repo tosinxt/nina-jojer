@@ -130,6 +130,24 @@
   pointer-events: none;
 }
 
+/* Mobile-only centred overlay: 421px × 861px, mirrors Figma node 883:10911 */
+.mobileBadgeOverlay {
+  display: none;
+  position: absolute;
+  width: 421px;
+  height: 861px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.mobileBadge1 { top: 118px; left: 37px; }
+.mobileBadge2 { top: 464px; left: 29px; }
+.mobileBadge3 { top: 282px; left: 174px; }
+.mobileBadge4 { top: 633px; left: 149px; }
+
 @keyframes badgeReveal {
   from {
     opacity: 0;
@@ -221,15 +239,14 @@
     margin-top: 42px;
   }
 
-  /* Show badges on mobile with Figma-accurate positions */
-  .badge { display: flex; }
+  /* Image height matches Figma mobile */
+  .imageSection { height: 861px; }
 
-  /* Transformative Impact — left side, top ~118px */
-  .badge:nth-child(1) { top: 118px; left: 37px; }
-  /* Strategic Advisory — left side, top ~464px */
-  .badge:nth-child(2) { top: 464px; left: 29px; }
-  /* Innovative Consulting — right side, top ~282px */
-  .badge:nth-child(3) { top: 282px; right: 0; left: auto; }
-  /* Growth Catalysts — right side, top ~633px */
-  .badge:nth-child(4) { top: 633px; right: 0; left: auto; }
+  /* Hide desktop overlay, show mobile overlay */
+  .badgeOverlay { display: none; }
+  .mobileBadgeOverlay { display: block; }
+
+  /* Slightly smaller pills on mobile */
+  .pill { padding: 12px 20px; }
+  .pillText { font-size: 12px; letter-spacing: -0.72px; }
 }

@@ -1,0 +1,152 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #fff;
+}
+
+.hero {
+  padding: 160px 64px 100px;
+  background: #fff;
+}
+
+.heroInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumbLink {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.breadcrumbLink:hover { color: #000; }
+
+.breadcrumbSep {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.breadcrumbCurrent {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+}
+
+/* Profile layout */
+.profile {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.photoWrap {
+  width: 380px;
+  flex-shrink: 0;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #eee;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.photoPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: #d9d9d9;
+}
+
+/* Info column */
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-top: 8px;
+}
+
+.nameBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.name {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.role {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.bio {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 620px;
+}
+
+.bioPara {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.65;
+  color: #000;
+}
+
+.linkedIn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #000;
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity 0.15s;
+}
+
+.linkedIn:hover { opacity: 0.65; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero { padding: 120px 32px 80px; }
+  .profile { flex-direction: column; gap: 40px; }
+  .photoWrap { width: 100%; aspect-ratio: 4 / 3; }
+}
+
+@media (max-width: 600px) {
+  .hero { padding: 100px 24px 60px; }
+  .name { font-size: 26px; }
+}

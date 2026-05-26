@@ -7,7 +7,7 @@ const Hero = () => {
       <div className={styles.overlay}></div>
       <div className={`${styles.content} container`}>
         <div className={styles.textContainer}>
-          <h4 className={styles.subtitle}>Strategic Consulting for Sub-Saharan Africa</h4>
+          <h4 className={styles.subtitle}>Strategic Consulting for Africa</h4>
           <h1 className={styles.title}>
             Navigating Policy, <br />
             <span>Powering Business.</span>

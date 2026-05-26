@@ -1,72 +1,82 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
+import { client } from "@/sanity/client";
+import { eventBySlugQuery, upcomingEventsQuery } from "@/sanity/queries";
 import styles from "./event-detail.module.css";
 
-const DATE_FILTERS = ["Fri 09 Feb", "Sat 10 Feb", "Sun 11 Feb"];
+type Speaker = { name: string; avatar: string | null };
 
-const otherEvents = [
+type Event = {
+  _id: string;
+  title: string;
+  slug: string;
+  description: string | null;
+  category: string;
+  date: string;
+  time: string;
+  location: string;
+  image: string | null;
+  registerLink?: string | null;
+  speakers: Speaker[];
+};
+
+const fallbackEvents: Event[] = [
   {
-    id: 1,
+    _id: "1",
+    slug: "shaping-stisa-2034",
     time: "8:00 am",
     date: "Fri, 9th Feb",
     location: "Addis Ababa, Ethiopia",
     category: "Corporate",
     title: "SHAPING STISA 2034 FROM STRATEGY TO EXECUTION",
-    description:
-      "This dialogue brings together policymakers, development partners, and industry leaders to confront a critical question:\nHow do we move from ambitious STI frameworks to coordinated, bankable, and scalable implementation across African economies?",
-    speakers: [{ name: "Hon Chukwuemeka Ujam, PHD, MNI", avatar: "/images/events/speaker-ujam.png" }],
+    description: "This dialogue brings together policymakers, development partners, and industry leaders to confront a critical question:\nHow do we move from ambitious STI frameworks to coordinated, bankable, and scalable implementation across African economies?",
+    speakers: [{ name: "Hon Chukwuemeka Ujam, PHD, MNI", avatar: "/images/events/speaker-ujam-cropped.png" }],
     image: "/images/events/event-1.png",
+    registerLink: null,
   },
   {
-    id: 2,
+    _id: "2",
+    slug: "galvanizing-transformation",
     time: "8:00 am",
     date: "Fri, 9th Feb",
     location: "Addis Ababa, Ethiopia",
     category: "Corporate",
-    title: "SHAPING STISA 2034 FROM STRATEGY TO EXECUTION",
-    description:
-      "This dialogue brings together policymakers, development partners, and industry leaders to confront a critical question:\nHow do we move from ambitious STI frameworks to coordinated, bankable, and scalable implementation across African economies?",
-    speakers: [{ name: "Hon Chukwuemeka Ujam, PHD, MNI", avatar: "/images/events/speaker-ujam.png" }],
+    title: "GALVANIZING TRANSFORMATION-INTEGRATING AGRICULTURE, INDUSTRY AND MARKETS FOR SUSTAINABLE GROWTH",
+    description: "This event will be the first to focus on Agriculture, and its importance is timely and relevant.",
+    speakers: [{ name: "Hon Chukwuemeka Ujam, PHD, MNI", avatar: "/images/events/speaker-ujam-cropped.png" }],
     image: "/images/events/event-2.png",
-  },
-  {
-    id: 3,
-    time: "8:00 am",
-    date: "Fri, 9th Feb",
-    location: "Addis Ababa, Ethiopia",
-    category: "Corporate",
-    title: "SHAPING STISA 2034 FROM STRATEGY TO EXECUTION",
-    description:
-      "This dialogue brings together policymakers, development partners, and industry leaders to confront a critical question:\nHow do we move from ambitious STI frameworks to coordinated, bankable, and scalable implementation across African economies?",
-    speakers: [{ name: "Hon Chukwuemeka Ujam, PHD, MNI", avatar: "/images/events/speaker-ujam.png" }],
-    image: "/images/events/event-1.png",
+    registerLink: null,
   },
 ];
 
-const LocationIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <path
-      d="M8 1.333A4.674 4.674 0 003.333 6c0 3.5 4.667 8.667 4.667 8.667S12.667 9.5 12.667 6A4.674 4.674 0 008 1.333zm0 6.334a1.667 1.667 0 110-3.334 1.667 1.667 0 010 3.334z"
-      fill="currentColor"
-    />
-  </svg>
-);
+export default async function EventDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  let event: Event | null = null;
+  let otherEvents: Event[] = [];
 
-const CalendarIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-    <rect x="2" y="3" width="14" height="13" rx="1" stroke="currentColor" strokeWidth="1.5" fill="none" />
-    <path d="M6 1v4M12 1v4M2 7h14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-  </svg>
-);
+  try {
+    [event, otherEvents] = await Promise.all([
+      client.fetch<Event>(eventBySlugQuery(slug)),
+      client.fetch<Event[]>(upcomingEventsQuery),
+    ]);
+  } catch { /* Sanity not configured */ }
 
-export default function EventDetailPage() {
-  const [activeFilter, setActiveFilter] = useState("Fri 09 Feb");
+  // Always fall back to static data if Sanity returned nothing
+  if (!event) {
+    event = fallbackEvents.find((e) => e.slug === slug) ?? null;
+  }
+  if (!otherEvents?.length) {
+    otherEvents = fallbackEvents;
+  }
+  otherEvents = otherEvents.filter((e) => e.slug !== slug);
+
+  if (!event) notFound();
+
+  const heroImage = event.image ?? "/images/events/event-detail-hero.png";
 
   return (
     <main className={styles.page}>
@@ -77,51 +87,53 @@ export default function EventDetailPage() {
         <div className={styles.headerBanner}>
           {/* Left: text content */}
           <div className={styles.headerLeft}>
-            {/* Breadcrumbs */}
             <nav className={styles.breadcrumbs} aria-label="Breadcrumb">
               <Link href="/events" className={styles.breadcrumbLink}>Events</Link>
               <span className={styles.breadcrumbSep} aria-hidden="true">&gt;</span>
-              <span className={styles.breadcrumbCurrent}>Policy forum</span>
+              <span className={styles.breadcrumbCurrent}>{event.category}</span>
             </nav>
 
-            {/* Title block */}
             <div className={styles.headerTitleBlock}>
-              <h1 className={styles.headerTitle}>POLICY FORUM</h1>
-              <p className={styles.headerSubtitle}>Three days of strategic dialogue on African policy</p>
+              <h1 className={styles.headerTitle}>{event.title}</h1>
+              {event.description && (
+                <p className={styles.headerSubtitle}>{event.description.split('\n')[0]}</p>
+              )}
             </div>
 
-            {/* CTA button */}
-            <Link href="/contact" className={styles.saveBtn}>Save my spot</Link>
+            {event.registerLink ? (
+              <a href={event.registerLink} target="_blank" rel="noopener noreferrer" className={styles.saveBtn}>Save my spot</a>
+            ) : (
+              <span className={styles.saveBtnDisabled}>Registration coming soon</span>
+            )}
 
-            {/* Event details */}
             <div className={styles.detailsList}>
               <div className={styles.detailsRow}>
                 <div className={styles.detailItem}>
                   <span className={styles.detailLabel}>Date</span>
-                  <span className={styles.detailValue}>10th - 12th February, 2026</span>
+                  <span className={styles.detailValue}>{event.date}</span>
                 </div>
                 <div className={styles.detailItem}>
                   <span className={styles.detailLabel}>Location</span>
-                  <span className={styles.detailValue}>Skylight, Addis Ababa, Ethiopia.</span>
+                  <span className={styles.detailValue}>{event.location}</span>
                 </div>
               </div>
               <div className={styles.detailsRow}>
                 <div className={styles.detailItem}>
-                  <span className={styles.detailLabel}>Type</span>
-                  <span className={styles.detailValue}>In-person</span>
+                  <span className={styles.detailLabel}>Time</span>
+                  <span className={styles.detailValue}>{event.time}</span>
+                </div>
+                <div className={styles.detailItem}>
+                  <span className={styles.detailLabel}>Category</span>
+                  <span className={styles.detailValue}>{event.category}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right: image */}
+          {/* Right: event image */}
           <div className={styles.headerImageWrap}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/events/event-detail-hero.png"
-              alt="Policy Forum"
-              className={styles.headerImage}
-            />
+            <img src={heroImage} alt={event.title} className={styles.headerImage} />
           </div>
         </div>
       </section>
@@ -131,97 +143,79 @@ export default function EventDetailPage() {
         <div className={styles.contentInner}>
           {/* Article body */}
           <div className={styles.articleCol}>
-            <div className={styles.richText}>
-              <p className={styles.bodyText}>
-                Africa's science, technology and innovation landscape is at a pivotal moment. With the African Union's STISA-2034 framework setting bold targets for the continent, the challenge now is execution — moving from strategy to real, measurable outcomes that serve African citizens.
-              </p>
-              <p className={styles.bodyText}>
-                This Policy Forum brings together heads of state advisors, ministers, development finance institution leaders, and private sector innovators to examine the structural, financial, and governance conditions needed to translate Africa's STI commitments into coordinated action.
-              </p>
-              <p className={`${styles.bodyText} ${styles.bodyTextBold}`}>
-                Across three days, delegates will examine case studies from Ethiopia, Nigeria, Kenya, and South Africa — countries where STI policy has produced measurable development dividends — and extract transferable lessons for the wider continent.
-              </p>
-              <p className={styles.bodyText}>
-                Sessions will be structured around three themes: financing innovation ecosystems, building regulatory frameworks that attract technology investment, and aligning national STI plans with the AU's continental agenda. Each session combines keynote addresses with closed-door working groups designed to produce actionable policy recommendations.
-              </p>
-              <p className={styles.bodyText}>
-                Attendance is by invitation and application only. Delegates represent a carefully selected cross-section of public sector decision-makers, multilateral institutions, and leading African technology enterprises. The Forum's outcomes will be compiled into a policy brief circulated to AU Commission leadership and relevant national ministries.
-              </p>
-            </div>
-            <Link href="/contact" className={styles.saveSpotBtn}>Save my spot</Link>
+            {event.description && (
+              <div className={styles.richText}>
+                {event.description.split('\n').map((para, i) => (
+                  <p key={i} className={styles.bodyText}>{para}</p>
+                ))}
+              </div>
+            )}
+            {event.registerLink ? (
+              <a href={event.registerLink} target="_blank" rel="noopener noreferrer" className={styles.saveSpotBtn}>Save my spot</a>
+            ) : (
+              <span className={styles.saveSpotBtnDisabled}>Registration coming soon</span>
+            )}
           </div>
 
           {/* Speaker sidebar */}
-          <aside className={styles.speakerSidebar}>
-            <h2 className={styles.speakerSidebarTitle}>SPEAKER(S)</h2>
-            <div className={styles.speakerCard}>
-              <div className={styles.speakerAvatarWrap}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/events/speaker-ujam.png"
-                  alt="Hon Chukwuemeka Ujam, PHD, MNI"
-                  className={styles.speakerAvatarLg}
-                />
-              </div>
-              <p className={styles.speakerNameLg}>Hon Chukwuemeka Ujam, PHD, MNI</p>
-            </div>
-          </aside>
+          {event.speakers?.length > 0 && (
+            <aside className={styles.speakerSidebar}>
+              <h2 className={styles.speakerSidebarTitle}>SPEAKER(S)</h2>
+              {event.speakers.map((s) => (
+                <div key={s.name} className={styles.speakerCard}>
+                  <div className={styles.speakerAvatarWrap}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={s.avatar || "/images/events/speaker-ujam-cropped.png"}
+                      alt={s.name}
+                      className={styles.speakerAvatarLg}
+                    />
+                  </div>
+                  <p className={styles.speakerNameLg}>{s.name}</p>
+                </div>
+              ))}
+            </aside>
+          )}
         </div>
       </section>
 
       {/* ── OTHER EVENTS ── */}
-      <section className={styles.otherSection}>
-        <div className={styles.otherInner}>
-          {/* Section heading */}
-          <div className={styles.otherHeading}>
-            <h2 className={styles.otherTitle}>Other Events</h2>
-            <p className={styles.otherSubtitle}>The day unfolds in three sessions, each building on the last</p>
-          </div>
-
-          <div className={styles.otherContent}>
-            {/* Date filter pills */}
-            <div className={styles.dateFilters}>
-              {DATE_FILTERS.map((filter) => (
-                <button
-                  key={filter}
-                  className={`${styles.dateFilter} ${activeFilter === filter ? styles.dateFilterActive : ""}`}
-                  onClick={() => setActiveFilter(filter)}
-                >
-                  {filter}
-                </button>
-              ))}
+      {otherEvents.length > 0 && (
+        <section className={styles.otherSection}>
+          <div className={styles.otherInner}>
+            <div className={styles.otherHeading}>
+              <h2 className={styles.otherTitle}>Other Events</h2>
             </div>
 
-            {/* Event cards */}
             <div className={styles.otherList}>
-              {otherEvents.map((event) => (
-                <article key={event.id} className={styles.otherCard}>
-                  {/* Left: info */}
+              {otherEvents.map((e) => (
+                <article key={e._id} className={styles.otherCard}>
                   <div className={styles.otherCardInfo}>
                     <div className={styles.eventMeta}>
-                      <span className={styles.metaText}>{event.time}</span>
+                      <span className={styles.metaText}>{e.time}</span>
                       <span className={styles.metaDot} />
-                      <span className={styles.metaText}>{event.date}</span>
+                      <span className={styles.metaText}>{e.date}</span>
                       <span className={styles.metaDot} />
-                      <span className={styles.metaLocation}>
-                        <LocationIcon />
-                        {event.location}
-                      </span>
+                      <span className={styles.metaLocation}>{e.location}</span>
                     </div>
 
                     <div className={styles.eventBody}>
-                      <div className={styles.categoryPill}>{event.category}</div>
-                      <h3 className={styles.eventTitle}>{event.title}</h3>
-                      <p className={styles.eventDescription}>{event.description}</p>
+                      <div className={styles.categoryPill}>{e.category}</div>
+                      <h3 className={styles.eventTitle}>{e.title}</h3>
+                      {e.description && <p className={styles.eventDescription}>{e.description.split('\n')[0]}</p>}
                     </div>
 
                     <div className={styles.speakersBlock}>
                       <p className={styles.speakersLabel}>Speakers</p>
                       <div className={styles.speakersList}>
-                        {event.speakers.map((s) => (
+                        {e.speakers?.map((s) => (
                           <div key={s.name} className={styles.speakerItem}>
                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={s.avatar} alt={s.name} className={styles.speakerAvatar} />
+                            <img
+                              src={s.avatar || "/images/events/speaker-ujam-cropped.png"}
+                              alt={s.name}
+                              className={styles.speakerAvatar}
+                            />
                             <span className={styles.speakerName}>{s.name}</span>
                           </div>
                         ))}
@@ -229,29 +223,31 @@ export default function EventDetailPage() {
                     </div>
 
                     <div className={styles.eventActions}>
-                      <Link href="/contact" className={styles.registerBtn}>Register here</Link>
-                      <span className={styles.detailsLink}>See more details</span>
+                      {e.registerLink ? (
+                        <a href={e.registerLink} target="_blank" rel="noopener noreferrer" className={styles.registerBtn}>Register here</a>
+                      ) : (
+                        <span className={styles.registerBtnDisabled}>Register here</span>
+                      )}
+                      <Link href={`/events/${e.slug}`} className={styles.detailsLink}>See more details</Link>
                     </div>
                   </div>
 
-                  {/* Right: image */}
                   <div className={styles.otherCardImageWrap}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={event.image} alt={event.title} className={styles.otherCardImage} />
+                    <img src={e.image ?? "/images/events/event-1.png"} alt={e.title} className={styles.otherCardImage} />
                   </div>
                 </article>
               ))}
             </div>
-          </div>
 
-          {/* View more */}
-          <Link href="/events" className={styles.viewMore}>
-            <span>view more</span>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/events/arrow-circle.svg" alt="" aria-hidden="true" width={25} height={25} />
-          </Link>
-        </div>
-      </section>
+            <Link href="/events" className={styles.viewMore}>
+              <span>view more</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/events/arrow-circle.svg" alt="" aria-hidden="true" width={25} height={25} />
+            </Link>
+          </div>
+        </section>
+      )}
 
       <CtaSection />
       <Newsletter />

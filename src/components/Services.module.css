@@ -22,7 +22,8 @@
   align-self: flex-start;
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 80px;
 }
 
 .leftInner {

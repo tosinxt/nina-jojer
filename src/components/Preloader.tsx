@@ -63,10 +63,21 @@ export default function Preloader() {
       onLoad();
     } else {
       window.addEventListener('load', onLoad, { once: true });
+      // Fallback: if load event already fired between the readyState check and addEventListener,
+      // or if it never fires (e.g. blocked resources), exit after a hard cap.
+      const fallback = setTimeout(() => {
+        window.removeEventListener('load', onLoad);
+        onLoad();
+      }, 4000);
+
+      return () => {
+        clearTimeout(fallback);
+        window.removeEventListener('load', onLoad);
+        if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      };
     }
 
     return () => {
-      window.removeEventListener('load', onLoad);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
+import BlurText from "@/components/BlurText";
 import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
 import Newsletter from "@/components/Newsletter";
@@ -27,6 +28,7 @@ import { upcomingEventsQuery, pastEventsQuery } from "@/sanity/queries";
 const fallbackUpcoming: UpcomingEvent[] = [
   {
     _id: "1",
+    slug: "shaping-stisa-2034",
     time: "8:00 am",
     date: "Fri, 9th Feb",
     location: "Addis Ababa, Ethiopia",
@@ -35,9 +37,11 @@ const fallbackUpcoming: UpcomingEvent[] = [
     description: "This dialogue brings together policymakers, development partners, and industry leaders to confront a critical question:\nHow do we move from ambitious STI frameworks to coordinated, bankable, and scalable implementation across African economies?",
     speakers: [{ name: "Hon Chukwuemeka Ujam, PHD, MNI", avatar: "/images/events/speaker-ujam-cropped.png" }],
     image: "/images/events/event-1.png",
+    registerLink: null,
   },
   {
     _id: "2",
+    slug: "galvanizing-transformation",
     time: "8:00 am",
     date: "Fri, 9th Feb",
     location: "Addis Ababa, Ethiopia",
@@ -46,6 +50,7 @@ const fallbackUpcoming: UpcomingEvent[] = [
     description: "This event will be the first to focus on Agriculture, and its importance is timely and relevant.",
     speakers: [{ name: "Hon Chukwuemeka Ujam, PHD, MNI", avatar: "/images/events/speaker-ujam-cropped.png" }],
     image: "/images/events/event-2.png",
+    registerLink: null,
   },
 ];
 
@@ -78,8 +83,8 @@ export default async function EventsPage() {
       <section className={styles.heroSection}>
         <div className={styles.heroContainer}>
           <div className={styles.heroText}>
-            <h1 className={styles.heroTitle}>Events &amp; Forums</h1>
-            <p className={styles.heroSubtitle}>Upcoming events, webinars, and speaking engagements.</p>
+            <BlurText as="h1" text="Events & Forums" direction="bottom" delay={130} className={styles.heroTitle} />
+            <BlurText text="Upcoming events, webinars, and speaking engagements." direction="bottom" delay={80} stepDuration={0.4} className={styles.heroSubtitle} />
           </div>
         </div>
         <div className={styles.heroBanner}>

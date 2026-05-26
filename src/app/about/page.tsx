@@ -20,6 +20,7 @@ import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
+import BlurText from "@/components/BlurText";
 import styles from "./about.module.css";
 import { client } from "@/sanity/client";
 import { teamMembersQuery } from "@/sanity/queries";
@@ -55,12 +56,18 @@ const heroBars = [
 /* ── Stats ── */
 const stats = [
   { value: "2014", label: "Founded" },
-  { value: "25", label: "Governments and corporations advised" },
-  { value: "18", label: "Countries where we operate" },
-  { value: "94%", label: "Client retention rate" },
+  { value: "50+", label: "Governments and corporations advised" },
+  { value: "20+", label: "Countries where we operate" },
+  { value: "98%", label: "Client retention rate" },
 ];
 
 /* ── Values ── */
+const DataDrivenIcon = () => (
+  <svg width="59" height="59" viewBox="0 0 59 59" fill="none" xmlns="http://www.w3.org/2000/svg" style={{display:"block"}}>
+    <path d="M11.195 51.9925C10.0436 51.9925 9.05786 51.5825 8.23759 50.7627C7.41774 49.9424 7.00781 48.9566 7.00781 47.8053V11.1946C7.00781 10.0392 7.41774 9.05009 8.23759 8.22737C9.05786 7.40424 10.0436 6.99268 11.195 6.99268H47.8057C48.9611 6.99268 49.9502 7.40424 50.7729 8.22737C51.596 9.05009 52.0076 10.0392 52.0076 11.1946V47.8053C52.0076 48.9566 51.596 49.9424 50.7729 50.7627C49.9502 51.5825 48.9611 51.9925 47.8057 51.9925H11.195ZM42.7925 47.8053H47.8057V42.7922L42.7925 47.8053ZM13.2993 47.8053H18.7132L26.0882 40.4303H30.4517L23.0767 47.8053H28.5785L35.9535 40.4303H40.317L32.942 47.8053H38.429L45.804 40.4303H47.8057V11.1946H11.195V45.5461L16.3108 40.4303H20.6743L13.2993 47.8053ZM25.9357 26.2986L18.6198 33.5537C18.2313 33.9008 17.7794 34.0845 17.264 34.105C16.7485 34.1255 16.3007 33.9417 15.9205 33.5537C15.5325 33.1604 15.3385 32.7093 15.3385 32.2004C15.3385 31.6915 15.5325 31.238 15.9205 30.8397L24.454 22.3069C24.8789 21.8889 25.3746 21.68 25.9413 21.68C26.5075 21.68 26.9996 21.8889 27.4175 22.3069L31.467 26.3711L40.3809 17.4418C40.7693 17.0636 41.2217 16.8746 41.7379 16.8746C42.2542 16.8746 42.7065 17.0686 43.0949 17.4566C43.4731 17.845 43.6622 18.293 43.6622 18.8007C43.6622 19.3083 43.4731 19.76 43.0949 20.1558L32.9488 30.3481C32.5239 30.7758 32.0281 30.9897 31.4615 30.9897C30.8952 30.9897 30.4032 30.7758 29.9852 30.3481L25.9357 26.2986Z" fill="currentColor"/>
+  </svg>
+);
+
 const values = [
   {
     icon: "/images/icons/about-us/transparency.png",
@@ -73,7 +80,8 @@ const values = [
     desc: "We encourage creativity and innovation in our work environment, and we offer cutting-edge services that anticipate and respond to the changing needs of the market.",
   },
   {
-    icon: "/images/icons/about-us/data-driven.png",
+    icon: null,
+    svgIcon: <DataDrivenIcon />,
     title: "Data-Driven",
     desc: "We use data and insights to inform our decisions and actions, and to help our clients achieve their objectives.",
   },
@@ -95,12 +103,12 @@ const values = [
 ];
 
 const fallbackTeam = [
-  { _id: "1", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png" },
-  { _id: "2", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png" },
-  { _id: "3", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png" },
-  { _id: "4", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png" },
-  { _id: "5", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png" },
-  { _id: "6", name: "Hon. Chukwuemeka Ujam,", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png" },
+  { _id: "1", name: "Hon. Chukwuemeka Ujam,", slug: "hon-chukwuemeka-ujam-1", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png", bio: null },
+  { _id: "2", name: "Hon. Chukwuemeka Ujam,", slug: "hon-chukwuemeka-ujam-2", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png", bio: null },
+  { _id: "3", name: "Hon. Chukwuemeka Ujam,", slug: "hon-chukwuemeka-ujam-3", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png", bio: null },
+  { _id: "4", name: "Hon. Chukwuemeka Ujam,", slug: "hon-chukwuemeka-ujam-4", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png", bio: null },
+  { _id: "5", name: "Hon. Chukwuemeka Ujam,", slug: "hon-chukwuemeka-ujam-5", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png", bio: null },
+  { _id: "6", name: "Hon. Chukwuemeka Ujam,", slug: "hon-chukwuemeka-ujam-6", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png", bio: null },
 ];
 
 /* ── LinkedIn icon SVG ── */
@@ -110,7 +118,7 @@ const LinkedInIcon = () => (
   </svg>
 );
 
-type TeamMember = { _id: string; name: string; credentials: string; role: string; linkedIn: string | null; photo: string | null };
+type TeamMember = { _id: string; name: string; slug: string; credentials: string; role: string; bio: string | null; linkedIn: string | null; photo: string | null };
 
 export default async function AboutPage() {
   let team: TeamMember[] = [];
@@ -129,10 +137,8 @@ export default async function AboutPage() {
         {/* Right-aligned text block */}
         <div className={styles.headerContent}>
           <div className={styles.headerText}>
-            <h1 className={styles.headerTitle}>Empowering Growth and Impact</h1>
-            <p className={styles.headerBody}>
-              At Nina Jojer, we are passionate about empowering businesses and organizations across sub-Saharan Africa to thrive in a rapidly changing world.
-            </p>
+            <BlurText as="h1" text="Empowering Growth and Impact" direction="bottom" delay={130} className={styles.headerTitle} />
+            <BlurText text="At NINA JOJER, we are passionate about empowering businesses and organizations across Africa to thrive in a rapidly changing world." direction="bottom" delay={80} stepDuration={0.4} className={styles.headerBody} />
           </div>
         </div>
 
@@ -161,7 +167,7 @@ export default async function AboutPage() {
       {/* ── STATS ── */}
       <section className={styles.statsSection}>
         <div className={styles.statsContainer}>
-          <h2 className={styles.statsHeading}>What we've achieved over the years</h2>
+          <BlurText as="h2" text="What we've achieved over the years" direction="bottom" delay={110} className={styles.statsHeading} />
           <div className={styles.statsRow}>
             {stats.map((s) => (
               <div key={s.value} className={styles.statItem}>
@@ -177,7 +183,7 @@ export default async function AboutPage() {
       <section className={styles.whoSection}>
         <div className={styles.whoContainer}>
           <div className={styles.whoContent}>
-            <h2 className={styles.whoHeading}>Strategy rooted in African realities</h2>
+            <BlurText as="h2" text="Strategy rooted in African realities" direction="bottom" delay={110} className={styles.whoHeading} />
             <div className={styles.whoBody}>
               <p>
                 We are a dynamic consulting firm recognized for leveraging deep expertise in communications, public policy, corporate strategy, human capital development, technology solutions, and advocacy to deliver transformative results. Our success is built on a strong network spanning the political landscape and the private sector.
@@ -192,29 +198,34 @@ export default async function AboutPage() {
 
       {/* ── DIRECTION (Vision + Mission) ── */}
       <section className={styles.directionSection}>
-        <div className={styles.directionContainer}>
-          {/* Left column */}
-          <div className={styles.directionLeft}>
+        <div className={styles.directionContent}>
+          {/* Top: eyebrow + heading + body */}
+          <div className={styles.directionTop}>
             <div className={styles.eyebrow}>
               <span className={styles.eyebrowLine} />
               <span className={styles.eyebrowText}>DIRECTION</span>
             </div>
-            <h2 className={styles.directionHeading}>Where we're headed and why</h2>
+            <BlurText as="h2" text="Where we're headed and why" direction="bottom" delay={110} className={styles.directionHeading} />
             <p className={styles.directionBody}>
-              We believe Africa's challenges demand African solutions. Our vision is a continent where institutions lead with clarity and purpose.
+              We believe Africa&apos;s challenges demand African solutions. Our vision is a continent where institutions lead with clarity and purpose.
             </p>
           </div>
-          {/* Right column — Vision + Mission */}
-          <div className={styles.directionRight}>
-            <div className={styles.visionMissionRow}>
-              <div className={styles.visionMissionItem}>
-                <h3 className={styles.visionMissionTitle}>Our vision</h3>
-                <p className={styles.visionMissionBody}>African institutions that lead with clarity and strategic purpose.</p>
-              </div>
-              <div className={styles.visionMissionItem}>
-                <h3 className={styles.visionMissionTitle}>Our mission</h3>
-                <p className={styles.visionMissionBody}>We provide strategy and counsel rooted in African realities.</p>
-              </div>
+
+          {/* Bottom: Mission + Vision two-column row */}
+          <div className={styles.missionVisionRow}>
+            <div className={styles.missionVisionItem}>
+              <span className={styles.pill}>OUR MISSION</span>
+              <BlurText as="h3" text="Catalysing Growth, Driving Impact" direction="bottom" delay={100} className={styles.missionVisionHeading} />
+              <p className={styles.missionVisionBody}>
+                We are dedicated to delivering exceptional solutions by leveraging our expertise in corporate strategy, policy innovation, human capital development, advocacy, research, strategic communication, and cutting-edge innovation.
+              </p>
+            </div>
+            <div className={styles.missionVisionItem}>
+              <span className={styles.pill}>OUR VISION</span>
+              <BlurText as="h3" text="Empowering Transformation" direction="bottom" delay={100} className={styles.missionVisionHeading} />
+              <p className={styles.missionVisionBody}>
+                To make a positive impact on the world of business in Africa.
+              </p>
             </div>
           </div>
         </div>
@@ -230,7 +241,7 @@ export default async function AboutPage() {
                 <span className={styles.eyebrowLine} />
                 <span className={styles.eyebrowText}>VALUES</span>
               </div>
-              <h2 className={styles.valuesHeading}>What we deliver</h2>
+              <BlurText as="h2" text="What we deliver" direction="bottom" delay={110} className={styles.valuesHeading} />
             </div>
             <p className={styles.valuesSubtitle}>Real change across African institutions and governments</p>
           </div>
@@ -238,8 +249,11 @@ export default async function AboutPage() {
           <div className={styles.valuesGrid}>
             {values.map((v) => (
               <div key={v.title} className={styles.valueCard}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={v.icon} alt={v.title} className={styles.valueIcon} />
+                {"svgIcon" in v && v.svgIcon
+                  ? <span className={styles.valueIcon} style={{display:"block",width:59,lineHeight:0}}>{v.svgIcon}</span>
+                  : /* eslint-disable-next-line @next/next/no-img-element */
+                    <img src={v.icon!} alt={v.title} className={styles.valueIcon} />
+                }
                 <h3 className={styles.valueTitle}>{v.title}</h3>
                 <p className={styles.valueDesc}>{v.desc}</p>
               </div>
@@ -257,7 +271,7 @@ export default async function AboutPage() {
               <span className={styles.eyebrowLine} />
               <span className={styles.eyebrowText}>PEOPLE</span>
             </div>
-            <h2 className={styles.teamHeading}>The people behind it</h2>
+            <BlurText as="h2" text="The people behind it" direction="bottom" delay={110} className={styles.teamHeading} />
             <p className={styles.teamSubtitle}>
               Strategy is only as good as the minds shaping it. Our team brings decades of experience across policy, governance, and African institutions.
             </p>
@@ -275,10 +289,10 @@ export default async function AboutPage() {
                 </div>
                 <div className={styles.teamCardInfo}>
                   <div className={styles.teamCardTitles}>
-                    <p className={styles.teamCardName}>
+                    <Link href={`/about/team/${member.slug}`} className={styles.teamCardName}>
                       <span className={styles.teamCardNameBold}>{member.name} </span>
                       <span className={styles.teamCardNameBold}>{member.credentials}</span>
-                    </p>
+                    </Link>
                     <p className={styles.teamCardRole}>{member.role}</p>
                   </div>
                   <a href={member.linkedIn ?? '#'} className={styles.teamCardLinkedIn} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">

@@ -50,6 +50,7 @@ export const eventType = defineType({
       initialValue: false,
     }),
     defineField({ name: 'excerpt', title: 'Excerpt (for past events list)', type: 'text', rows: 2 }),
+    defineField({ name: 'registerLink', title: 'Registration Link', type: 'url' }),
   ],
   orderings: [{ title: 'Date, Newest', name: 'dateDesc', by: [{ field: 'date', direction: 'desc' }] }],
 });

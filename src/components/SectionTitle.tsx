@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BlurText from "./BlurText";
 import styles from "./SectionTitle.module.css";
 
 interface SectionTitleProps {
@@ -31,8 +32,8 @@ export default function SectionTitle({
           <span className={styles.label}>{label}</span>
         </div>
         <div className={styles.headingGroup}>
-          <h2 className={styles.title}>{title}</h2>
-          {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+          <BlurText as="h2" text={title} direction="bottom" delay={100} className={styles.title} />
+          {subtitle && <BlurText text={subtitle} direction="bottom" delay={80} stepDuration={0.4} className={styles.subtitle} />}
         </div>
       </div>
 

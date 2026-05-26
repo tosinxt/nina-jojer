@@ -38,7 +38,6 @@ const aboutItems = [
   { href: '/about',          label: 'Who We Are',    desc: 'Our story, mission and values' },
   { href: '/about#team',     label: 'Our Team',      desc: 'The people behind the work' },
   { href: '/about#values',   label: 'Our Values',    desc: 'What we stand for' },
-  { href: '/careers',        label: 'Careers',       desc: 'Join Nina Jojer Africa' },
 ];
 
 const navLinks = [

@@ -104,12 +104,20 @@
   flex-shrink: 0;
 }
 
-/* ── FILTER TABS ── */
+/* ── FILTER ROW ── */
+.filterRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
 .filterTabs {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .filterTab {
@@ -299,6 +307,25 @@
 }
 
 /* ── PAGINATION ── */
+.viewMore {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  color: #000;
+  margin-top: 16px;
+}
+
+.viewMore:hover { opacity: 0.7; }
+
 .pagination {
   display: flex;
   align-items: center;

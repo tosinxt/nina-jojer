@@ -84,7 +84,7 @@
 
 /* ── STATS ── */
 .statsSection {
-  background: #fff;
+  background: #ededed;
   padding: 112px 64px;
 }
 
@@ -187,18 +187,20 @@
   padding: 112px 64px;
 }
 
-.directionContainer {
+/* Vertical stack: heading block → mission/vision row */
+.directionContent {
   display: flex;
-  gap: 80px;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 57px;
+  width: 100%;
 }
 
-.directionLeft {
-  flex: 1;
-  min-width: 0;
+/* Top block constrained to ~506px like Figma */
+.directionTop {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  max-width: 506px;
 }
 
 .directionHeading {
@@ -220,28 +222,42 @@
   color: #000;
 }
 
-.directionRight {
-  flex: 1;
-  min-width: 0;
-  padding-top: 240px;
-}
-
-.visionMissionRow {
+/* Mission + Vision side-by-side row */
+.missionVisionRow {
   display: flex;
-  gap: 24px;
+  gap: 103px;
   align-items: flex-start;
-  padding: 8px 0;
+  width: 100%;
 }
 
-.visionMissionItem {
-  flex: 1;
+.missionVisionItem {
+  flex: 1 0 0;
   min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.visionMissionTitle {
+/* Pill tag — OUR MISSION / OUR VISION */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  background: #e9e9e9;
+  border-radius: 58px;
+  padding: 10px 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.403;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #000;
+  white-space: nowrap;
+  font-variation-settings: 'opsz' 14;
+}
+
+.missionVisionHeading {
   font-family: var(--font-google-sans-flex), sans-serif;
   font-weight: 900;
   font-size: 24px;
@@ -251,7 +267,7 @@
   color: #000;
 }
 
-.visionMissionBody {
+.missionVisionBody {
   font-family: var(--font-google-sans-flex), sans-serif;
   font-weight: 300;
   font-size: 24px;
@@ -446,7 +462,11 @@
   letter-spacing: -0.6px;
   text-transform: uppercase;
   color: #000;
+  text-decoration: none;
+  transition: opacity 0.15s;
 }
+
+.teamCardName:hover { opacity: 0.65; }
 
 .teamCardNameBold {
   font-weight: 800;
@@ -540,9 +560,9 @@
   .statItem { height: auto; }
   .statValue { font-size: 56px; }
   .whoContent { width: 100%; }
-  .directionContainer { flex-direction: column; gap: 40px; }
-  .directionRight { padding-top: 0; }
-  .visionMissionRow { flex-direction: column; }
+  .directionTop { max-width: 100%; }
+  .missionVisionRow { flex-direction: column; gap: 48px; }
+  .missionVisionBody { font-size: 20px; }
   .valuesHeader { flex-direction: column; align-items: flex-start; gap: 24px; }
   .valuesGrid { grid-template-columns: 1fr; gap: 48px; }
   .teamGrid { grid-template-columns: 1fr; }

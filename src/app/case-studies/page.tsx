@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
+import BlurText from "@/components/BlurText";
 import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
 import Newsletter from "@/components/Newsletter";
@@ -50,12 +51,8 @@ export default async function CaseStudiesPage() {
       {/* ── HERO ── */}
       <section className={styles.hero}>
         <div className={styles.heroTextRow}>
-          <h1 className={styles.heroTitle}>REAL PROBLEMS, REAL SOLUTIONS</h1>
-          <p className={styles.heroBody}>
-            We partner with governments, institutions, and leading enterprises to solve complex challenges.
-            The following engagements demonstrate our ability to combine strategic insight with practical
-            delivery, while respecting the confidentiality of our clients.
-          </p>
+          <BlurText as="h1" text="REAL PROBLEMS, REAL SOLUTIONS" animateBy="letters" direction="bottom" delay={90} className={styles.heroTitle} />
+          <BlurText text="We collaborate with governments, institutions, and leading enterprises to address intricate challenges. The subsequent engagements illustrate our capacity to integrate strategic acumen with tangible implementation, while maintaining the requisite confidentiality for our clients and partners." direction="bottom" delay={70} stepDuration={0.4} className={styles.heroBody} />
         </div>
 
         {/* Desktop banner */}

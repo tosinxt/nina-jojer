@@ -64,52 +64,25 @@
   pointer-events: none;
 }
 
-/* ── UPCOMING EVENTS SECTION ── */
-.eventsSection {
-  background: #eee;
-  padding: 100px 64px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 80px;
-}
-
-.eventsInner {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-}
-
-/* ── FILTER BAR ── */
+/* ── FILTER BAR (Figma: 1312×44, pills left + icon right) ── */
 .filterBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 48px 64px 0;
   gap: 16px;
+  background: #eee;
 }
 
-.dateFilters {
+.filterPills {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
   align-items: center;
 }
 
-.filterIconWrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 37px;
-  height: 37px;
-  background: #fff;
-  border-radius: 37px;
-  flex-shrink: 0;
-  color: #000;
-}
-
-.dateFilter {
-  display: flex;
+.filterPill {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 10px 22px;
@@ -127,9 +100,43 @@
   transition: background 0.15s, color 0.15s;
 }
 
-.dateFilterActive {
+.filterPillActive {
   background: #000;
   color: #fff;
+}
+
+.filterActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+
+.searchInput {
+  padding: 8px 16px;
+  border: 1px solid #d0d0d0;
+  border-radius: 40px;
+  background: #fff;
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: #000;
+  outline: none;
+  width: 220px;
+  transition: border-color 0.15s;
+}
+
+.searchInput:focus { border-color: #000; }
+.searchInput::placeholder { color: #999; }
+
+/* ── UPCOMING EVENTS SECTION ── */
+.eventsSection {
+  background: #eee;
+  padding: 48px 64px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
 }
 
 /* ── NO EVENTS ── */
@@ -138,6 +145,7 @@
   font-size: 16px;
   color: #666;
   text-align: center;
+  width: 100%;
 }
 
 /* ── EVENTS LIST ── */
@@ -145,6 +153,7 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  width: 100%;
 }
 
 /* ── EVENT CARD ── */
@@ -291,6 +300,14 @@
   flex-shrink: 0;
 }
 
+.speakerAvatarPlaceholder {
+  width: 33px;
+  height: 33px;
+  border-radius: 79px;
+  background: #d9d9d9;
+  flex-shrink: 0;
+}
+
 .speakerName {
   font-family: var(--font-google-sans-flex), sans-serif;
   font-weight: 600;
@@ -327,6 +344,22 @@
 
 .registerBtn:hover { opacity: 0.85; }
 
+.registerBtnDisabled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  background: #b0b0b0;
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: default;
+}
+
 .detailsLink {
   font-family: var(--font-google-sans-flex), sans-serif;
   font-weight: 300;
@@ -335,6 +368,7 @@
   color: #000;
   cursor: pointer;
   white-space: nowrap;
+  text-decoration: none;
 }
 
 /* Right: image */
@@ -518,18 +552,21 @@
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .heroContainer { padding: 0 40px; }
-  .eventsSection { padding: 80px 40px; }
+  .filterBar { padding: 32px 40px 0; }
+  .eventsSection { padding: 32px 40px 80px; }
   .pastSection { padding: 80px 40px; }
   .eventImageWrap { width: 380px; }
   .pastCard { width: auto; flex: 1; min-width: 0; }
 }
 
 @media (max-width: 768px) {
+  .filterBar { padding: 24px 24px 0; flex-wrap: wrap; }
+  .filterPills { gap: 8px; }
   .heroSection { gap: 40px; padding-top: 100px; }
   .heroContainer { padding: 0 24px; }
   .heroTitle { font-size: 36px; }
   .heroBanner { height: 200px; }
-  .eventsSection { padding: 60px 24px; gap: 48px; }
+  .eventsSection { padding: 24px 24px 60px; gap: 32px; }
   .eventCard { flex-direction: column; height: auto; }
   .eventInfo { padding: 40px 24px; }
   .eventImageWrap { width: 100%; height: 280px; position: relative; }
@@ -538,5 +575,4 @@
   .pastGrid { flex-direction: column; }
   .pastCard { width: 100%; }
   .pastCardContent { height: auto; }
-  .pastHeader { flex-direction: column; align-items: flex-start; gap: 24px; }
 }

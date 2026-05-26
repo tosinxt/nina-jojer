@@ -93,7 +93,8 @@
 /* ── DROPDOWN BASE ── */
 .dropdown {
   position: absolute;
-  top: calc(100% + 8px);
+  top: 100%;
+  padding-top: 8px;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.07);
   box-shadow:
@@ -114,7 +115,7 @@
 .dropdown::before {
   content: '';
   position: absolute;
-  top: -5px;
+  top: 3px;
   left: 24px;
   width: 10px;
   height: 10px;

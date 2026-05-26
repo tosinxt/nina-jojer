@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Reveal from './Reveal';
+import BlurText from './BlurText';
 import styles from './AboutSection.module.css';
 
 const ArrowIcon = () => (
@@ -45,10 +46,13 @@ export default function AboutSection() {
             <span className={styles.eyebrowLine} />
             <span className={styles.eyebrowText}>About Us</span>
           </div>
-          <h2 className={styles.heading}>
-            Our success is built on a strong network{' '}
-            <span className={styles.headingMuted}>spanning the political.</span>
-          </h2>
+          <BlurText
+            as="h2"
+            text="Our success is built on a strong network spanning the political."
+            direction="bottom"
+            delay={110}
+            className={styles.heading}
+          />
         </Reveal>
         <Reveal delay={150}>
           <Link href="/about" className={styles.learnMore}>
@@ -125,7 +129,7 @@ export default function AboutSection() {
           <StatCard
             variant="statEmployees"
             label="Employees"
-            number="600+"
+            number="500+"
             description="achieving sustainable results."
             decoration={
               <div className={styles.starDecor}>

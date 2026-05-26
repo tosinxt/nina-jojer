@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import BlurText from '@/components/BlurText';
 import Navbar from '@/components/Navbar';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
@@ -42,6 +43,53 @@ const countries = [
   { name: 'India',          code: '+91',  flag: '🇮🇳' },
   { name: 'UAE',            code: '+971', flag: '🇦🇪' },
   { name: 'Brazil',         code: '+55',  flag: '🇧🇷' },
+  { name: 'Canada',         code: '+1',   flag: '🇨🇦' },
+  { name: 'Australia',      code: '+61',  flag: '🇦🇺' },
+  { name: 'Netherlands',    code: '+31',  flag: '🇳🇱' },
+  { name: 'Sweden',         code: '+46',  flag: '🇸🇪' },
+  { name: 'Norway',         code: '+47',  flag: '🇳🇴' },
+  { name: 'Switzerland',    code: '+41',  flag: '🇨🇭' },
+  { name: 'Belgium',        code: '+32',  flag: '🇧🇪' },
+  { name: 'Spain',          code: '+34',  flag: '🇪🇸' },
+  { name: 'Italy',          code: '+39',  flag: '🇮🇹' },
+  { name: 'Portugal',       code: '+351', flag: '🇵🇹' },
+  { name: 'Japan',          code: '+81',  flag: '🇯🇵' },
+  { name: 'South Korea',    code: '+82',  flag: '🇰🇷' },
+  { name: 'Singapore',      code: '+65',  flag: '🇸🇬' },
+  { name: 'Malaysia',       code: '+60',  flag: '🇲🇾' },
+  { name: 'Indonesia',      code: '+62',  flag: '🇮🇩' },
+  { name: 'Pakistan',       code: '+92',  flag: '🇵🇰' },
+  { name: 'Bangladesh',     code: '+880', flag: '🇧🇩' },
+  { name: 'Saudi Arabia',   code: '+966', flag: '🇸🇦' },
+  { name: 'Qatar',          code: '+974', flag: '🇶🇦' },
+  { name: 'Turkey',         code: '+90',  flag: '🇹🇷' },
+  { name: 'Mexico',         code: '+52',  flag: '🇲🇽' },
+  { name: 'Argentina',      code: '+54',  flag: '🇦🇷' },
+  { name: 'Colombia',       code: '+57',  flag: '🇨🇴' },
+  { name: 'Botswana',       code: '+267', flag: '🇧🇼' },
+  { name: 'Namibia',        code: '+264', flag: '🇳🇦' },
+  { name: 'Malawi',         code: '+265', flag: '🇲🇼' },
+  { name: 'Madagascar',     code: '+261', flag: '🇲🇬' },
+  { name: 'Sudan',          code: '+249', flag: '🇸🇩' },
+  { name: 'Libya',          code: '+218', flag: '🇱🇾' },
+  { name: 'Mauritius',      code: '+230', flag: '🇲🇺' },
+  { name: 'Gabon',          code: '+241', flag: '🇬🇦' },
+  { name: 'Congo',          code: '+242', flag: '🇨🇬' },
+  { name: 'DR Congo',       code: '+243', flag: '🇨🇩' },
+  { name: 'Liberia',        code: '+231', flag: '🇱🇷' },
+  { name: 'Guinea',         code: '+224', flag: '🇬🇳' },
+  { name: 'Togo',           code: '+228', flag: '🇹🇬' },
+  { name: 'Benin',          code: '+229', flag: '🇧🇯' },
+  { name: 'Niger',          code: '+227', flag: '🇳🇪' },
+  { name: 'Mali',           code: '+223', flag: '🇲🇱' },
+  { name: 'Burkina Faso',   code: '+226', flag: '🇧🇫' },
+  { name: 'Gambia',         code: '+220', flag: '🇬🇲' },
+  { name: 'Mauritania',     code: '+222', flag: '🇲🇷' },
+  { name: 'Somalia',        code: '+252', flag: '🇸🇴' },
+  { name: 'Djibouti',       code: '+253', flag: '🇩🇯' },
+  { name: 'Eritrea',        code: '+291', flag: '🇪🇷' },
+  { name: 'Lesotho',        code: '+266', flag: '🇱🇸' },
+  { name: 'Eswatini',       code: '+268', flag: '🇸🇿' },
 ];
 
 export default function ContactPage() {
@@ -94,11 +142,8 @@ export default function ContactPage() {
       <section className={styles.hero}>
         <div className={styles.heroContainer}>
           <div className={styles.heroContent}>
-            <h1 className={styles.heroTitle}>GET IN TOUCH</h1>
-            <p className={styles.heroBody}>
-              We are ready to discuss your objectives in confidence. Reach out to our team for
-              strategic advisory, technology solutions, or partnership opportunities.
-            </p>
+            <BlurText as="h1" text="GET IN TOUCH" direction="bottom" delay={130} animateBy="letters" className={styles.heroTitle} />
+            <BlurText text="We are ready to discuss your objectives in confidence. Reach out to our team for strategic advisory, technology solutions, or partnership opportunities." direction="bottom" delay={80} stepDuration={0.4} className={styles.heroBody} />
           </div>
         </div>
       </section>
@@ -114,8 +159,8 @@ export default function ContactPage() {
                 <span className={styles.eyebrowText}>GET IN TOUCH</span>
               </div>
               <div className={styles.titleBlock}>
-                <h2 className={styles.heading}>Send us a message</h2>
-                <p className={styles.subheading}>Tell us about your needs.</p>
+                <BlurText as="h2" text="Send us a message" direction="bottom" delay={110} className={styles.heading} />
+                <BlurText text="Tell us about your needs." direction="bottom" delay={100} stepDuration={0.4} className={styles.subheading} />
               </div>
             </div>
 
@@ -271,8 +316,8 @@ export default function ContactPage() {
       <section className={styles.officesSection}>
         <div className={styles.officesContainer}>
           <div className={styles.officesHeader}>
-            <h2 className={styles.heading}>Offices</h2>
-            <p className={styles.subheading}>We work across the continent from our main hub.</p>
+            <BlurText as="h2" text="Offices" direction="bottom" delay={110} className={styles.heading} />
+            <BlurText text="We work across the continent from our main hub." direction="bottom" delay={100} stepDuration={0.4} className={styles.subheading} />
           </div>
           <div className={styles.officesGrid}>
             {offices.map((o) => (

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import BlurText from "@/components/BlurText";
 import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
 import Newsletter from "@/components/Newsletter";
@@ -131,10 +132,8 @@ export default function PolicyAdvocacyPage() {
       <section className={styles.header}>
         <div className={styles.headerContent}>
           <div className={styles.headerText}>
-            <h1 className={styles.headerTitle}>Policy &amp; Advocacy Solutions</h1>
-            <p className={styles.headerBody}>
-              We advise governments and corporations on the decisions that matter. Clear thinking. Real results.
-            </p>
+            <BlurText as="h1" text="Policy & Advocacy Solutions" direction="bottom" delay={130} className={styles.headerTitle} />
+            <BlurText text="We advise governments and corporations on the decisions that matter. Clear thinking. Real results." direction="bottom" delay={80} stepDuration={0.4} className={styles.headerBody} />
           </div>
         </div>
         <div className={styles.heroWrap}>
@@ -159,7 +158,7 @@ export default function PolicyAdvocacyPage() {
                 Policy is rarely static in Africa's fastest-growing markets. Legislation moves quickly, political transitions shift regulatory priorities overnight, and the difference between a favourable outcome and an adverse one often comes down to who is in the room and when. NINA JOJER provides the intelligence, access, and advocacy capability to ensure our clients are not reacting to change — they are participating in its design.
               </p>
               <p>
-                Our work spans the full policy lifecycle: from early-stage monitoring and risk identification, through active engagement with regulators and legislators, to the drafting and review of frameworks that shape how industries are governed. We have advised governments, influenced legislation, and secured outcomes that protect client interests across Nigeria, Kenya, South Africa, Ghana, Sierra Leone, and beyond.
+              Our work spans the full policy lifecycle: from early-stage monitoring and risk identification, through active engagement with regulators and legislators, to the drafting and review of frameworks that shape how industries are governed. We have advised governments, supported progressive legislations, and secured outcomes that protect client interests across Africa.
               </p>
             </div>
           </div>

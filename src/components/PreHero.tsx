@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Reveal from './Reveal';
+import BlurText from './BlurText';
 import styles from './PreHero.module.css';
 
 // Positions derived from Figma's 1363px overlay centred over the full-width image.
@@ -18,10 +19,8 @@ export default function PreHero() {
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.textGroup}>
-            <Reveal as="h1" className={styles.title}>GLOBAL VISION, LOCAL IMPACT</Reveal>
-            <Reveal delay={150}><p className={styles.description}>
-              A Strategic Advisory firm with strong technology implementation and delivery capabilities.
-            </p></Reveal>
+            <BlurText as="h1" text="GLOBAL VISION, LOCAL IMPACT" direction="bottom" delay={120} className={styles.title} />
+            <BlurText text="A Strategic Advisory firm with strong technology implementation and delivery capabilities." direction="bottom" delay={80} stepDuration={0.4} className={styles.description} />
           </div>
           <Reveal delay={280}>
             <Link href="/services" className={styles.cta}>
@@ -44,6 +43,7 @@ export default function PreHero() {
           alt="Strategic advisory — city skyline"
           className={styles.heroImage}
         />
+        {/* Desktop overlay: full-width, badges positioned from image edges */}
         <div className={styles.badgeOverlay}>
           {badges.map((b) => (
             <div
@@ -61,6 +61,21 @@ export default function PreHero() {
               </span>
             </div>
           ))}
+        </div>
+        {/* Mobile overlay: centered 421px container matching Figma node 883:10911 */}
+        <div className={styles.mobileBadgeOverlay}>
+          <div className={styles.badge + ' ' + styles.badgeLeft + ' ' + styles.mobileBadge1}>
+            <span className={styles.dot} /><span className={styles.pill}><span className={styles.pillText}>Transformative Impact</span></span>
+          </div>
+          <div className={styles.badge + ' ' + styles.badgeLeft + ' ' + styles.mobileBadge2}>
+            <span className={styles.dot} /><span className={styles.pill}><span className={styles.pillText}>Strategic Advisory</span></span>
+          </div>
+          <div className={styles.badge + ' ' + styles.badgeRight + ' ' + styles.mobileBadge3}>
+            <span className={styles.pill}><span className={styles.pillText}>Innovative Consulting</span></span><span className={styles.dot} />
+          </div>
+          <div className={styles.badge + ' ' + styles.badgeRight + ' ' + styles.mobileBadge4}>
+            <span className={styles.pill}><span className={styles.pillText}>Growth Catalysts</span></span><span className={styles.dot} />
+          </div>
         </div>
       </div>
     </section>

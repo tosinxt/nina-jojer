@@ -6,6 +6,7 @@ export const teamMemberType = defineType({
   type: 'document',
   fields: [
     defineField({ name: 'name', title: 'Name', type: 'string', validation: r => r.required() }),
+    defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'name' }, validation: r => r.required() }),
     defineField({ name: 'credentials', title: 'Credentials', type: 'string', placeholder: 'B.Engr, M.Sc, PhD' }),
     defineField({ name: 'role', title: 'Role / Title', type: 'string', validation: r => r.required() }),
     defineField({ name: 'bio', title: 'Bio', type: 'text', rows: 4 }),

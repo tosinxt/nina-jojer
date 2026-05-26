@@ -1,7 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
+import BlurText from '@/components/BlurText';
+import FilterButton from '@/components/FilterButton';
+import InsightsFilterPanel, { DEFAULT_FILTERS, isFiltered, type InsightsFilters } from '@/components/InsightsFilterPanel';
 import styles from './insights.module.css';
 
 export type Article = {
@@ -12,6 +15,7 @@ export type Article = {
   excerpt: string;
   author: string;
   publishedAt: string;
+  updatedAt?: string;
   readTime: string;
   image: string;
 };
@@ -24,7 +28,7 @@ const CATEGORY_STYLES: Record<string, { bg: string; dot: string; text: string }>
 
 const DEFAULT_STYLE = { bg: 'rgba(97,2,3,0.10)', dot: '#610203', text: '#610203' };
 
-const filterTabs = ['Policy Advisory', 'Tech & Innovation', 'Cybersecurity', 'Artificial Intelligence', 'Manufacturing'];
+const ALL_TAB = 'All';
 
 const LearnMoreChevron = () => (
   <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
@@ -32,19 +36,6 @@ const LearnMoreChevron = () => (
   </svg>
 );
 
-const PrevArrow = () => (
-  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-    <rect width="36" height="36" rx="18" fill="#EBEBEB" />
-    <path d="M21 12L15 18L21 24" stroke="#0F0F0F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-const NextArrow = () => (
-  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-    <rect width="36" height="36" rx="18" fill="#0F0F0F" />
-    <path d="M15 12L21 18L15 24" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
 
 const SearchIcon = () => (
   <svg width="19" height="19" viewBox="0 0 19 19" fill="none" aria-label="Search">
@@ -53,31 +44,65 @@ const SearchIcon = () => (
   </svg>
 );
 
-const ARTICLES_PER_PAGE = 24;
+const PAGE_SIZE = 9;
 
 export default function InsightsClient({ articles }: { articles: Article[] }) {
-  const [activeFilter, setActiveFilter] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
+  const filterTabs = [ALL_TAB, ...Array.from(new Set(articles.map(a => a.category).filter(Boolean)))];
+  const [activeFilter, setActiveFilter] = useState(ALL_TAB);
+  const [visible, setVisible] = useState(PAGE_SIZE);
   const [query, setQuery] = useState('');
+  const [filters, setFilters] = useState<InsightsFilters>(DEFAULT_FILTERS);
+  const [dateOpen, setDateOpen] = useState(false);
+  const filterBtnRef = useRef<HTMLButtonElement | null>(null);
+
+  const authors = Array.from(new Set(articles.map((a) => a.author).filter(Boolean)));
 
   const q = query.trim().toLowerCase();
-  const filtered = q
-    ? articles.filter(
-        (a) =>
-          a.title.toLowerCase().includes(q) ||
-          a.excerpt.toLowerCase().includes(q) ||
-          a.author.toLowerCase().includes(q) ||
-          a.category.toLowerCase().includes(q),
-      )
-    : articles;
 
-  const totalPages = Math.ceil(filtered.length / ARTICLES_PER_PAGE);
-  const start = (currentPage - 1) * ARTICLES_PER_PAGE;
-  const pageArticles = filtered.slice(start, start + ARTICLES_PER_PAGE);
+  const inDateRange = (dateStr: string | undefined, range: InsightsFilters['publishedAt']): boolean => {
+    if (range === 'all' || !dateStr) return true;
+    const parsed = new Date(dateStr);
+    if (isNaN(parsed.getTime())) return true;
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const day = new Date(parsed.getFullYear(), parsed.getMonth(), parsed.getDate());
+    if (range === 'this-week') {
+      const start = new Date(today); start.setDate(today.getDate() - 7);
+      return day >= start;
+    }
+    if (range === 'this-month') return parsed.getFullYear() === now.getFullYear() && parsed.getMonth() === now.getMonth();
+    if (range === 'last-3-months') {
+      const start = new Date(today); start.setMonth(today.getMonth() - 3);
+      return day >= start;
+    }
+    return true;
+  };
+
+  const filtered = articles.filter((a) => {
+    const matchesCategory = activeFilter === ALL_TAB || a.category.toLowerCase() === activeFilter.toLowerCase();
+    const matchesSearch = !q || (
+      a.title.toLowerCase().includes(q) ||
+      a.excerpt.toLowerCase().includes(q) ||
+      a.author.toLowerCase().includes(q) ||
+      a.category.toLowerCase().includes(q)
+    );
+    const matchesAuthor = !filters.author || a.author === filters.author;
+    const matchesPublished = inDateRange(a.publishedAt, filters.publishedAt);
+    const matchesUpdated = inDateRange(a.updatedAt, filters.updatedAt);
+    return matchesCategory && matchesSearch && matchesAuthor && matchesPublished && matchesUpdated;
+  });
+
+  const pageArticles = filtered.slice(0, visible);
+  const hasMore = visible < filtered.length;
 
   const handleSearch = (value: string) => {
     setQuery(value);
-    setCurrentPage(1);
+    setVisible(PAGE_SIZE);
+  };
+
+  const handleFilterChange = (tab: string) => {
+    setActiveFilter(tab);
+    setVisible(PAGE_SIZE);
   };
 
   return (
@@ -85,8 +110,8 @@ export default function InsightsClient({ articles }: { articles: Article[] }) {
       <div className={styles.blogContainer}>
         <div className={styles.blogHeader}>
           <div className={styles.blogTitles}>
-            <h1 className={styles.blogTitle}>THINKING OUT LOUD</h1>
-            <p className={styles.blogSubtitle}>We write about what we know. Real problems, real solutions, real results from the ground.</p>
+            <BlurText as="h1" text="THINKING OUT LOUD" animateBy="letters" direction="bottom" delay={100} className={styles.blogTitle} />
+            <BlurText text="We write about what we know. Real problems, real solutions, real results from the ground." direction="bottom" delay={80} stepDuration={0.4} className={styles.blogSubtitle} />
           </div>
           <div className={styles.searchAndFilters}>
             <div className={styles.searchBar}>
@@ -99,17 +124,32 @@ export default function InsightsClient({ articles }: { articles: Article[] }) {
               />
               <button className={styles.searchBtn} aria-label="Search"><SearchIcon /></button>
             </div>
-            <div className={styles.filterTabs}>
-              {filterTabs.map((tab, i) => (
-                <button
-                  key={tab}
-                  className={`${styles.filterTab} ${activeFilter === i ? styles.filterTabActive : ''}`}
-                  onClick={() => { setActiveFilter(i); setCurrentPage(1); }}
-                >
-                  {tab}
-                </button>
-              ))}
+            <div className={styles.filterRow}>
+              <div className={styles.filterTabs}>
+                {filterTabs.map((tab) => (
+                  <button
+                    key={tab}
+                    className={`${styles.filterTab} ${activeFilter === tab ? styles.filterTabActive : ''}`}
+                    onClick={() => handleFilterChange(tab)}
+                  >
+                    {tab}
+                  </button>
+                ))}
+              </div>
+              <FilterButton
+                ref={filterBtnRef}
+                onClick={() => setDateOpen((v) => !v)}
+                aria-label="Filter insights"
+                active={dateOpen || isFiltered(filters)}
+              />
             </div>
+            <InsightsFilterPanel
+              open={dateOpen}
+              filters={filters}
+              authors={authors}
+              onChange={(f) => { setFilters(f); setVisible(PAGE_SIZE); }}
+              onClear={() => { setFilters(DEFAULT_FILTERS); setVisible(PAGE_SIZE); }}
+            />
           </div>
         </div>
 
@@ -121,24 +161,12 @@ export default function InsightsClient({ articles }: { articles: Article[] }) {
           <p className={styles.noResults}>No articles found for &ldquo;{query}&rdquo;</p>
         )}
 
-        {totalPages > 1 && (
-          <div className={styles.pagination}>
-            <button className={styles.paginationArrow} onClick={() => setCurrentPage(p => Math.max(1, p - 1))} aria-label="Previous page">
-              <PrevArrow />
-            </button>
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <button
-                key={page}
-                className={`${styles.pageNum} ${currentPage === page ? styles.pageNumActive : styles.pageNumInactive}`}
-                onClick={() => setCurrentPage(page)}
-              >
-                {page}
-              </button>
-            ))}
-            <button className={styles.paginationArrow} onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} aria-label="Next page">
-              <NextArrow />
-            </button>
-          </div>
+        {hasMore && (
+          <button className={styles.viewMore} onClick={() => setVisible(v => v + PAGE_SIZE)}>
+            <span>view more</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/events/arrow-circle.svg" alt="" aria-hidden="true" width={25} height={25} />
+          </button>
         )}
       </div>
     </section>
