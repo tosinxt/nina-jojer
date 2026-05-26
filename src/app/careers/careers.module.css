@@ -317,6 +317,53 @@
   margin: 0;
 }
 
+/* ── Job Filter Pills (matches events style) ── */
+.jobFilters {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.jobFilterGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.jobFilterPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  border-radius: 51px;
+  border: 1px solid #000;
+  background: transparent;
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.14px;
+  color: #000;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.jobFilterPill:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.jobFilterPillActive {
+  background: #000;
+  color: #fff;
+}
+
+.jobFilterPillActive:hover {
+  background: #1e1e1e;
+}
+
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .headerContent { padding: 0 40px; }

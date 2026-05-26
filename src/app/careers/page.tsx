@@ -22,9 +22,7 @@ import CtaSection from '@/components/CtaSection';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
 import styles from './careers.module.css';
-import { client } from '@/sanity/client';
-import { jobOpeningsQuery } from '@/sanity/queries';
-
+import JobEmbed from './JobEmbed';
 
 const whyJoinReasons = [
   {
@@ -44,14 +42,7 @@ const whyJoinReasons = [
   },
 ];
 
-type JobOpening = { _id: string; title: string; department?: string; location?: string; type?: string; description?: string; applyLink?: string };
-
-export default async function CareersPage() {
-  let jobs: JobOpening[] = [];
-  try {
-    jobs = await client.fetch<JobOpening[]>(jobOpeningsQuery);
-  } catch { /* Sanity not configured yet */ }
-
+export default function CareersPage() {
   return (
     <main className={styles.page}>
       <BreadcrumbJsonLd items={[{ name: 'Home', href: '/' }, { name: 'Careers', href: '/careers' }]} />
@@ -84,30 +75,7 @@ export default async function CareersPage() {
             <BlurText as="h2" text="Open roles" direction="bottom" delay={110} className={styles.sectionHeading} />
             <BlurText text="We're looking for talented people to join our teams across Africa." direction="bottom" delay={80} stepDuration={0.4} className={styles.sectionBody} />
           </div>
-          {jobs.length > 0 ? (
-            <div className={styles.rolesList}>
-              {jobs.map((job) => (
-                <div key={job._id} className={styles.roleItem}>
-                  <div className={styles.roleInfo}>
-                    <h3 className={styles.roleTitle}>{job.title}</h3>
-                    <div className={styles.roleMeta}>
-                      {job.department && <span className={styles.roleTag}>{job.department}</span>}
-                      {job.location && <span className={styles.roleTag}>{job.location}</span>}
-                      {job.type && <span className={styles.roleTag}>{job.type}</span>}
-                    </div>
-                    {job.description && <p className={styles.roleDesc}>{job.description}</p>}
-                  </div>
-                  {job.applyLink ? (
-                    <a href={job.applyLink} className={styles.applyBtn} target="_blank" rel="noopener noreferrer">Apply</a>
-                  ) : (
-                    <Link href="/contact" className={styles.applyBtn}>Apply</Link>
-                  )}
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className={styles.rolesEmpty}><p className={styles.rolesEmptyText}>No open roles at this time. Check back soon — or send us a speculative application at <a href="mailto:careers@ninajojer.com" className={styles.rolesEmptyLink}>careers@ninajojer.com</a>.</p></div>
-          )}
+          <JobEmbed />
         </div>
       </section>
 
