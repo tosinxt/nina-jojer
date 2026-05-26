@@ -45,6 +45,21 @@ export const featuredCaseStudiesQuery = `*[_type == "caseStudy"] | order(_create
   "image": image.asset->url,
 }`;
 
+export const caseStudyBySlugQuery = (slug: string) =>
+  `*[_type == "caseStudy" && slug.current == "${slug}"][0] {
+  _id,
+  title,
+  slug,
+  category,
+  excerpt,
+  heroSubtitle,
+  aboutClient,
+  clientMission,
+  servicesRendered,
+  results[] { title, body },
+  "image": image.asset->url,
+}`;
+
 /* ── Events ── */
 export const upcomingEventsQuery = `*[_type == "event" && isPast != true] | order(date asc) {
   _id,
