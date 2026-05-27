@@ -55,9 +55,9 @@ const fallbackUpcoming: UpcomingEvent[] = [
 ];
 
 const fallbackPast: PastEvent[] = [
-  { _id: "1", image: "/images/events/past-card.png", category: "Tech", title: "GALVANISING TRANSFORMATION - INTEGRATING AGRICULTURE, INDUSTRY AND MARKETS FOR SUSTAINABLE GROWTH", excerpt: "A conversation on regional commerce and economic cooperation", date: "Thu 08 Feb 2024", location: "Accra" },
-  { _id: "2", image: "/images/events/past-card.png", category: "Tech", title: "GALVANISING TRANSFORMATION - INTEGRATING AGRICULTURE, INDUSTRY AND MARKETS FOR SUSTAINABLE GROWTH", excerpt: "A conversation on regional commerce and economic cooperation", date: "Thu 08 Feb 2024", location: "Accra" },
-  { _id: "3", image: "/images/events/past-card.png", category: "Tech", title: "GALVANISING TRANSFORMATION - INTEGRATING AGRICULTURE, INDUSTRY AND MARKETS FOR SUSTAINABLE GROWTH", excerpt: "A conversation on regional commerce and economic cooperation", date: "Thu 08 Feb 2024", location: "Accra" },
+  { _id: "1", slug: "galvanizing-transformation", image: "/images/events/past-card.png", category: "Tech", title: "GALVANISING TRANSFORMATION - INTEGRATING AGRICULTURE, INDUSTRY AND MARKETS FOR SUSTAINABLE GROWTH", excerpt: "A conversation on regional commerce and economic cooperation", date: "Thu 08 Feb 2024", location: "Accra" },
+  { _id: "2", slug: "galvanizing-transformation", image: "/images/events/past-card.png", category: "Tech", title: "GALVANISING TRANSFORMATION - INTEGRATING AGRICULTURE, INDUSTRY AND MARKETS FOR SUSTAINABLE GROWTH", excerpt: "A conversation on regional commerce and economic cooperation", date: "Thu 08 Feb 2024", location: "Accra" },
+  { _id: "3", slug: "galvanizing-transformation", image: "/images/events/past-card.png", category: "Tech", title: "GALVANISING TRANSFORMATION - INTEGRATING AGRICULTURE, INDUSTRY AND MARKETS FOR SUSTAINABLE GROWTH", excerpt: "A conversation on regional commerce and economic cooperation", date: "Thu 08 Feb 2024", location: "Accra" },
 ];
 
 export default async function EventsPage() {

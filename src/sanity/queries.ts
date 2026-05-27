@@ -2,7 +2,7 @@
 export const insightsQuery = `*[_type == "insight"] | order(publishedAt desc) {
   _id,
   title,
-  slug,
+  "slug": slug.current,
   category,
   excerpt,
   author,
@@ -10,13 +10,14 @@ export const insightsQuery = `*[_type == "insight"] | order(publishedAt desc) {
   publishedAt,
   "updatedAt": _updatedAt,
   readTime,
+  tags,
   "image": image.asset->url,
 }`;
 
-export const featuredInsightsQuery = `*[_type == "insight"] | order(publishedAt desc) [0...3] {
+export const featuredInsightsQuery = `*[_type == "insight"] | order(publishedAt desc) [0...4] {
   _id,
   title,
-  slug,
+  "slug": slug.current,
   category,
   excerpt,
   author,
@@ -24,7 +25,24 @@ export const featuredInsightsQuery = `*[_type == "insight"] | order(publishedAt 
   publishedAt,
   "updatedAt": _updatedAt,
   readTime,
+  tags,
   "image": image.asset->url,
+}`;
+
+export const insightBySlugQuery = (slug: string) =>
+  `*[_type == "insight" && slug.current == "${slug}"][0] {
+  _id,
+  title,
+  "slug": slug.current,
+  category,
+  excerpt,
+  author,
+  "authorImage": authorImage.asset->url,
+  publishedAt,
+  readTime,
+  tags,
+  "image": image.asset->url,
+  body,
 }`;
 
 /* ── Case Studies ── */
@@ -81,7 +99,7 @@ export const upcomingEventsQuery = `*[_type == "event" && isPast != true] | orde
 export const pastEventsQuery = `*[_type == "event" && isPast == true] | order(date desc) {
   _id,
   title,
-  slug,
+  "slug": slug.current,
   excerpt,
   category,
   date,
@@ -107,6 +125,7 @@ export const eventBySlugQuery = (slug: string) =>
   title,
   "slug": slug.current,
   description,
+  body,
   category,
   date,
   time,

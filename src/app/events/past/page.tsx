@@ -91,7 +91,7 @@ export default function PastEventsPage() {
         <div className={styles.gridContainer}>
           <div className={styles.grid}>
             {pastEvents.map((event) => (
-              <article key={event.id} className={styles.card}>
+              <Link key={event.id} href="/events" className={styles.card} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
                 {/* Image */}
                 <div className={styles.cardImage}>
                   <div className={styles.cardImageInner}>
@@ -130,12 +130,12 @@ export default function PastEventsPage() {
                   </div>
 
                   {/* CTA */}
-                  <Link href="/events" className={styles.viewEvent}>
+                  <span className={styles.viewEvent}>
                     <span>VIEW EVENT</span>
                     <ArrowCircleIcon />
-                  </Link>
+                  </span>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>

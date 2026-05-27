@@ -19,7 +19,7 @@ const PAGE_SIZE = 4;
 function CaseStudyCard({ study }: { study: CaseStudy }) {
   const slug = typeof study.slug === 'string' ? study.slug : study.slug?.current;
   return (
-    <article className={styles.card}>
+    <Link href={`/case-studies/${slug}`} className={styles.card}>
       <div className={styles.cardImageWrap}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={study.image} alt={study.title} className={styles.cardImage} />
@@ -32,13 +32,13 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
           <h3 className={styles.cardTitle}>{study.title}</h3>
           <p className={styles.cardExcerpt}>{study.excerpt}</p>
         </div>
-        <Link href={`/case-studies/${slug}`} className={styles.learnMore}>
+        <span className={styles.learnMore}>
           <span>LEARN MORE</span>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/events/arrow-circle.svg" alt="" aria-hidden="true" width={25} height={25} />
-        </Link>
+        </span>
       </div>
-    </article>
+    </Link>
   );
 }
 

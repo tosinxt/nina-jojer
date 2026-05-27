@@ -146,6 +146,9 @@
   flex: 1;
   min-width: 0;
   height: 510px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
   overflow: hidden;
 }
 

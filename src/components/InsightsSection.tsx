@@ -3,6 +3,7 @@ import Reveal from './Reveal';
 import styles from './InsightsSection.module.css';
 import { client } from '@/sanity/client';
 import { featuredInsightsQuery } from '@/sanity/queries';
+import { formatInsightDate } from '@/lib/formatDate';
 
 const ChevronRight = () => (
   <svg className={styles.chevron} width="6" height="10" viewBox="0 0 6 10" fill="none">
@@ -31,53 +32,6 @@ const CATEGORY_VARIANT: Record<string, TagVariant> = {
   'Policy Analysis': 'policy',
 };
 
-const fallbackInsights = [
-  {
-    _id: '1',
-    image: '/images/Blog/insight-1.png',
-    category: 'Tech & Innovations',
-    title: 'A Review of Nigeria’s National Blockchain Policy',
-    excerpt: 'Nigeria has displayed a growing interest in blockchain technology and cryptocurrencies, recognising their potential benefits in areas such as financial inclusion, transparency, and corruption reduction.',
-    author: 'EBERE OJADUA',
-    publishedAt: '5th May 2026',
-    readTime: '5 mins read',
-    slug: 'nigeria-blockchain-policy',
-  },
-  {
-    _id: '2',
-    image: '/images/Blog/insight-2.png',
-    category: 'Policy Analysis',
-    title: 'Boosting Trade Development Across West Africa',
-    excerpt: 'Trade blocs play a pivotal role in promoting economic integration and cooperation among countries, fostering regional growth and prosperity.',
-    author: 'DEJI MACAULAY',
-    publishedAt: '5th May 2026',
-    readTime: '5 mins read',
-    slug: 'west-africa-trade',
-  },
-  {
-    _id: '3',
-    image: '/images/Blog/insight-3.png',
-    category: 'Tech & Innovation',
-    title: 'A Review of the Data Protection Act 2020: Strengths and Weaknesses',
-    excerpt: 'Executive Summary This Policy Brief reviews the Data Protection Act 2020 (the Act), which protects the rights of data subjects and regulates the processing of personal data.',
-    author: 'CHINWE OHANELE',
-    publishedAt: '5th May 2026',
-    readTime: '5 mins read',
-    slug: 'data-protection-act',
-  },
-  {
-    _id: '4',
-    image: '/images/Blog/insight-4.png',
-    category: 'Policy Analysis',
-    title: 'How Big Data Enables and Constrains AI Development in Africa',
-    excerpt: 'The report discusses the opportunities and challenges of using big data and AI for sustainable development in Africa and offers some recommendations for policymakers, businesses, and researchers.',
-    author: 'CHINWE OHANELE',
-    publishedAt: '5th May 2026',
-    readTime: '5 mins read',
-    slug: 'big-data-ai-africa',
-  },
-];
-
 type FeaturedInsight = {
   _id: string;
   image: string;
@@ -87,7 +41,7 @@ type FeaturedInsight = {
   author: string;
   publishedAt: string;
   readTime: string;
-  slug: { current: string } | string;
+  slug: string;
 };
 
 export default async function InsightsSection() {
@@ -95,7 +49,7 @@ export default async function InsightsSection() {
   try {
     insights = await client.fetch<FeaturedInsight[]>(featuredInsightsQuery);
   } catch { /* Sanity not configured yet */ }
-  if (!insights?.length) insights = fallbackInsights as FeaturedInsight[];
+  if (!insights?.length) return null;
 
   return (
     <section className={styles.section}>
@@ -118,7 +72,7 @@ export default async function InsightsSection() {
         {/* Cards */}
         <div className={styles.grid}>
           {insights.map((post, i) => {
-            const slug = typeof post.slug === 'string' ? post.slug : post.slug?.current;
+            const slug = post.slug;
             const variant = CATEGORY_VARIANT[post.category] ?? 'tech';
             return (
               <Reveal key={post._id} delay={i * 100}>
@@ -139,7 +93,7 @@ export default async function InsightsSection() {
                     <div className={styles.cardAuthor}>
                       <p className={styles.authorName}>{post.author}</p>
                       <p className={styles.authorDate}>
-                        {post.publishedAt} . <span className={styles.readTime}>{post.readTime}</span>
+                        {formatInsightDate(post.publishedAt, true)} . <span className={styles.readTime}>{post.readTime}</span>
                       </p>
                     </div>
                   </div>

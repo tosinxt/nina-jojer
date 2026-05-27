@@ -164,6 +164,7 @@
   height: 633px;
   background: #fff;
   overflow: hidden;
+  cursor: pointer;
 }
 
 /* Left: content panel */
@@ -442,6 +443,7 @@
   overflow: hidden;
   width: 405.333px;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 /* Image: aspect-ratio 405/404, h-405px */

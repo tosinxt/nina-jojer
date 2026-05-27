@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import SectionTitle from '@/components/SectionTitle';
 import DateFilterDropdown, { type DateRange } from '@/components/DateFilterDropdown';
@@ -24,6 +25,7 @@ export type UpcomingEvent = {
 export type PastEvent = {
   _id: string;
   title: string;
+  slug?: string;
   excerpt: string;
   category: string;
   date: string;
@@ -55,6 +57,7 @@ export default function EventsClient({
   );
   const categoryFilters = [ALL, ...allCategories];
 
+  const router = useRouter();
   const [activeFilter, setActiveFilter] = useState(ALL);
   const [dateRange, setDateRange] = useState<DateRange>('all');
   const [dateOpen, setDateOpen] = useState(false);
@@ -157,7 +160,15 @@ export default function EventsClient({
       <section className={styles.eventsSection}>
         <div className={styles.eventsList}>
           {visibleUpcoming.length > 0 ? visibleUpcoming.map((event) => (
-            <article key={event._id} className={styles.eventCard}>
+            <article
+              key={event._id}
+              className={styles.eventCard}
+              onClick={(e) => {
+                if (event.slug && !(e.target as HTMLElement).closest('a, button')) {
+                  router.push(`/events/${event.slug}`);
+                }
+              }}
+            >
               {/* Left: content */}
               <div className={styles.eventInfo}>
                 {/* Meta row */}
@@ -247,7 +258,15 @@ export default function EventsClient({
           )}
           <div className={styles.pastGrid}>
             {visiblePast.map((event) => (
-              <article key={event._id} className={styles.pastCard}>
+              <article
+                key={event._id}
+                className={styles.pastCard}
+                onClick={(e) => {
+                  if (event.slug && !(e.target as HTMLElement).closest('a, button')) {
+                    router.push(`/events/${event.slug}`);
+                  }
+                }}
+              >
                 <div className={styles.pastCardImageWrap}>
                   <div className={styles.pastCardImageInner}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -274,11 +293,19 @@ export default function EventsClient({
                       </div>
                     </div>
                   </div>
-                  <a href="https://www.youtube.com/@NinaJojer" target="_blank" rel="noopener noreferrer" className={styles.viewEventLink}>
-                    <span>VIEW EVENT</span>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/images/events/arrow-circle-sm.svg" alt="" aria-hidden="true" width={25} height={25} />
-                  </a>
+                  {event.slug ? (
+                    <Link href={`/events/${event.slug}`} className={styles.viewEventLink}>
+                      <span>VIEW EVENT</span>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/images/events/arrow-circle-sm.svg" alt="" aria-hidden="true" width={25} height={25} />
+                    </Link>
+                  ) : (
+                    <span className={styles.viewEventLink}>
+                      <span>VIEW EVENT</span>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src="/images/events/arrow-circle-sm.svg" alt="" aria-hidden="true" width={25} height={25} />
+                    </span>
+                  )}
                 </div>
               </article>
             ))}

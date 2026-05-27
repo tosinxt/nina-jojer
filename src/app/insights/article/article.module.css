@@ -81,6 +81,29 @@
   color: #000;
 }
 
+.articleExcerpt {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #444;
+  max-width: 768px;
+  margin-top: 16px;
+}
+
+.authorAvatarPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: #610203;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
 /* ── ARTICLE META (author + share) ── */
 .articleMeta {
   max-width: 768px;
@@ -209,7 +232,7 @@
 
 /* ── CONTENT SECTION ── */
 .contentSection {
-  background: #fff;
+  background: #eee;
   padding: 112px 64px;
 }
 
@@ -222,14 +245,98 @@
   width: 768px;
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: 64px;
 }
 
 /* ── RICH TEXT ── */
 .richText {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 0;
+  width: 100%;
+}
+
+/* Portable Text output styles */
+.richText p {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: #000;
+  margin: 0 0 0 0;
+  padding-bottom: 16px;
+}
+
+.richText h1,
+.richText h2 {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: -0.24px;
+  text-transform: uppercase;
+  color: #000;
+  padding: 24px 0;
+  margin: 0;
+}
+
+.richText h3,
+.richText h4 {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.4;
+  color: #000;
+  padding: 16px 0 8px;
+  margin: 0;
+}
+
+.richText ul,
+.richText ol {
+  padding-left: 24px;
+  padding-bottom: 16px;
+  margin: 0;
+}
+
+.richText ul {
+  list-style-type: disc;
+}
+
+.richText ol {
+  list-style-type: decimal;
+}
+
+.richText li {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
+  color: #000;
+  margin-bottom: 0;
+}
+
+.richText strong {
+  font-weight: 700;
+}
+
+.richText em {
+  font-style: italic;
+}
+
+.richText a {
+  color: #000;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+
+.richText blockquote {
+  border-left: 4px solid #610203;
+  padding-left: 20px;
+  margin: 0 0 16px;
+  font-style: italic;
+  color: #444;
 }
 
 .contentBlock {
@@ -269,8 +376,9 @@
 /* ── SHARE + TAGS ── */
 .shareAndTags {
   display: flex;
-  align-items: center;
-  gap: 24px;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .sharePost {
@@ -282,32 +390,62 @@
 
 .sharePostLabel {
   font-family: var(--font-google-sans-flex), sans-serif;
-  font-weight: 300;
-  font-size: 14px;
+  font-weight: 700;
+  font-size: 16px;
   line-height: 1.5;
-  letter-spacing: -0.14px;
+  letter-spacing: -0.32px;
   color: #000;
+}
+
+.shareButtons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.shareBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  background: #fff;
+  border: none;
+  border-radius: 64px;
+  cursor: pointer;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.shareBtn svg {
+  width: 24px;
+  height: 24px;
+  display: block;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex: 1;
+  margin-left: 24px;
 }
 
 .tag {
   display: inline-flex;
   align-items: center;
-  padding: 8px 16px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 8px 13px;
+  background: #fff;
   font-family: var(--font-google-sans-flex), sans-serif;
-  font-weight: 300;
+  font-weight: 700;
   font-size: 14px;
   line-height: 1.5;
-  letter-spacing: -0.14px;
+  letter-spacing: -0.28px;
   color: #000;
-  border-radius: 64px;
+  white-space: nowrap;
 }
 
 /* ── DIVIDER ── */
@@ -328,6 +466,29 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.authorBioName {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 1.32;
+  letter-spacing: -0.56px;
+  color: #000;
+  margin: 0;
+}
+
+.authorBioDate {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.32;
+  color: #000;
+  margin: 0;
+}
+
+.authorBioReadTime {
+  color: #929292;
 }
 
 /* ── MORE FROM OUR TEAM ── */
@@ -369,6 +530,52 @@
   line-height: 1.5;
   letter-spacing: -0.16px;
   color: #000;
+}
+
+/* ── RELATED ARTICLES SECTION ── */
+.relatedArticlesSection {
+  background: #eee;
+  padding: 112px 64px;
+}
+
+.relatedArticlesInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  align-items: center;
+  width: 100%;
+}
+
+.relatedArticlesHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.relatedArticlesHeading {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1.138;
+  letter-spacing: -1.2px;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0;
+}
+
+.relatedArticlesSubtitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.16px;
+  color: #000;
+  margin: 0;
 }
 
 /* ── RELATED ARTICLES GRID ── */
@@ -532,9 +739,10 @@
   gap: 16px;
   text-decoration: none;
   color: #000;
+  flex-shrink: 0;
 }
 
-.viewAll span {
+.viewAllText {
   font-family: 'DM Sans', sans-serif;
   font-weight: 600;
   font-size: 16px;
@@ -542,6 +750,21 @@
   letter-spacing: -0.16px;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+.viewAllArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #610203;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.relatedReadTime {
+  color: #929292;
 }
 
 /* ── RESPONSIVE ── */

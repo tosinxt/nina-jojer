@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import Link from 'next/link';
+import { formatInsightDate } from '@/lib/formatDate';
 import BlurText from '@/components/BlurText';
 import FilterButton from '@/components/FilterButton';
 import InsightsFilterPanel, { DEFAULT_FILTERS, isFiltered, type InsightsFilters } from '@/components/InsightsFilterPanel';
@@ -10,13 +11,14 @@ import styles from './insights.module.css';
 export type Article = {
   _id: string;
   title: string;
-  slug: { current: string } | string;
+  slug: string;
   category: string;
   excerpt: string;
   author: string;
   publishedAt: string;
   updatedAt?: string;
   readTime: string;
+  tags?: string[];
   image: string;
 };
 
@@ -175,10 +177,10 @@ export default function InsightsClient({ articles }: { articles: Article[] }) {
 
 function ArticleCard({ article }: { article: Article }) {
   const catStyle = CATEGORY_STYLES[article.category] ?? DEFAULT_STYLE;
-  const slug = typeof article.slug === 'string' ? article.slug : article.slug?.current;
+  const slug = article.slug;
 
   return (
-    <article className={styles.articleCard}>
+    <Link href={`/insights/${slug}`} className={styles.articleCard}>
       <div className={styles.articleImageWrap}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={article.image} alt={article.title} className={styles.articleImage} />
@@ -198,16 +200,16 @@ function ArticleCard({ article }: { article: Article }) {
           <div className={styles.authorRow}>
             <p className={styles.authorName}>{article.author}</p>
             <p className={styles.articleDate}>
-              <span>{article.publishedAt} . </span>
+              <span>{formatInsightDate(article.publishedAt, true)} . </span>
               <span className={styles.readTime}>{article.readTime}</span>
             </p>
           </div>
         </div>
-        <Link href={`/insights/${slug}`} className={styles.learnMore}>
+        <span className={styles.learnMore}>
           <span>LEARN MORE</span>
           <LearnMoreChevron />
-        </Link>
+        </span>
       </div>
-    </article>
+    </Link>
   );
 }

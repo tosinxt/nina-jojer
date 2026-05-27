@@ -15,6 +15,7 @@ type Event = {
   title: string;
   slug: string;
   description: string | null;
+  body: string | null;
   category: string;
   date: string;
   time: string;
@@ -33,7 +34,8 @@ const fallbackEvents: Event[] = [
     location: "Addis Ababa, Ethiopia",
     category: "Corporate",
     title: "SHAPING STISA 2034 FROM STRATEGY TO EXECUTION",
-    description: "This dialogue brings together policymakers, development partners, and industry leaders to confront a critical question:\nHow do we move from ambitious STI frameworks to coordinated, bankable, and scalable implementation across African economies?",
+    description: "This dialogue brings together policymakers, development partners, and industry leaders to confront a critical question.",
+    body: "This dialogue brings together policymakers, development partners, and industry leaders to confront a critical question:\nHow do we move from ambitious STI frameworks to coordinated, bankable, and scalable implementation across African economies?",
     speakers: [{ name: "Hon Chukwuemeka Ujam, PHD, MNI", avatar: "/images/events/speaker-ujam-cropped.png" }],
     image: "/images/events/event-1.png",
     registerLink: null,
@@ -47,6 +49,7 @@ const fallbackEvents: Event[] = [
     category: "Corporate",
     title: "GALVANIZING TRANSFORMATION-INTEGRATING AGRICULTURE, INDUSTRY AND MARKETS FOR SUSTAINABLE GROWTH",
     description: "This event will be the first to focus on Agriculture, and its importance is timely and relevant.",
+    body: null,
     speakers: [{ name: "Hon Chukwuemeka Ujam, PHD, MNI", avatar: "/images/events/speaker-ujam-cropped.png" }],
     image: "/images/events/event-2.png",
     registerLink: null,
@@ -143,9 +146,9 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
         <div className={styles.contentInner}>
           {/* Article body */}
           <div className={styles.articleCol}>
-            {event.description && (
+            {(event.body || event.description) && (
               <div className={styles.richText}>
-                {event.description.split('\n').map((para, i) => (
+                {(event.body ?? event.description)!.split('\n').map((para, i) => (
                   <p key={i} className={styles.bodyText}>{para}</p>
                 ))}
               </div>
@@ -189,7 +192,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
 
             <div className={styles.otherList}>
               {otherEvents.map((e) => (
-                <article key={e._id} className={styles.otherCard}>
+                <Link key={e._id} href={`/events/${e.slug}`} className={styles.otherCard} style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'stretch' }}>
                   <div className={styles.otherCardInfo}>
                     <div className={styles.eventMeta}>
                       <span className={styles.metaText}>{e.time}</span>
@@ -228,7 +231,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
                       ) : (
                         <span className={styles.registerBtnDisabled}>Register here</span>
                       )}
-                      <Link href={`/events/${e.slug}`} className={styles.detailsLink}>See more details</Link>
+                      <span className={styles.detailsLink}>See more details</span>
                     </div>
                   </div>
 
@@ -236,7 +239,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={e.image ?? "/images/events/event-1.png"} alt={e.title} className={styles.otherCardImage} />
                   </div>
-                </article>
+                </Link>
               ))}
             </div>
 

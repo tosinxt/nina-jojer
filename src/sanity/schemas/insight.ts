@@ -30,7 +30,7 @@ export const insightType = defineType({
       },
       validation: r => r.required(),
     }),
-    defineField({ name: 'excerpt', title: 'Excerpt', type: 'text', rows: 3 }),
+    defineField({ name: 'excerpt', title: 'Excerpt (short teaser)', type: 'text', rows: 3 }),
     defineField({ name: 'author', title: 'Author Name', type: 'string' }),
     defineField({
       name: 'authorImage',
@@ -38,8 +38,21 @@ export const insightType = defineType({
       type: 'image',
       options: { hotspot: true },
     }),
-    defineField({ name: 'publishedAt', title: 'Published At', type: 'date' }),
+    defineField({
+      name: 'publishedAt',
+      title: 'Published At',
+      type: 'datetime',
+      options: { dateFormat: 'MMMM Do YYYY', timeFormat: 'HH:mm', timeStep: 15 },
+    }),
     defineField({ name: 'readTime', title: 'Read Time', type: 'string', placeholder: '5 mins read' }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: { layout: 'tags' },
+      description: 'Keywords/topics for this article (e.g. African policy, Governance reform)',
+    }),
     defineField({
       name: 'image',
       title: 'Cover Image',

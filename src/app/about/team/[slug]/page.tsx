@@ -36,15 +36,16 @@ const LinkedInIcon = () => (
   </svg>
 );
 
-export default async function StaffDetailPage({ params }: { params: { slug: string } }) {
+export default async function StaffDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   let member: TeamMember | null = null;
   try {
-    member = await client.fetch<TeamMember>(teamMemberBySlugQuery(params.slug));
+    member = await client.fetch<TeamMember>(teamMemberBySlugQuery(slug));
   } catch { /* Sanity not configured */ }
 
   if (!member) {
     // Try fallback for demo slugs
-    if (params.slug.startsWith('hon-chukwuemeka-ujam')) {
+    if (slug.startsWith('hon-chukwuemeka-ujam')) {
       member = fallbackMember;
     } else {
       notFound();

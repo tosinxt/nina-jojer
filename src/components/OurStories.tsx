@@ -67,6 +67,7 @@ export default async function OurStories() {
           const slug = typeof c.slug === 'string' ? c.slug : c.slug?.current;
           return (
             <Reveal key={c._id} as="div" delay={i * 100} className={styles.card}>
+              <Link href={`/case-studies/${slug}`} style={{ display: 'contents', color: 'inherit', textDecoration: 'none' }}>
               <div className={styles.cardImage}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={c.image} alt={c.title} />
@@ -76,11 +77,12 @@ export default async function OurStories() {
                   <p className={styles.cardTitle}>{c.title}</p>
                   <p className={styles.cardDesc}>{c.excerpt}</p>
                 </div>
-                <Link href={`/case-studies/${slug}`} className={styles.learnMore}>
+                <span className={styles.learnMore}>
                   <span className={styles.learnMoreText}>Learn More</span>
                   <span className={styles.learnMoreArrow}><ArrowIcon /></span>
-                </Link>
+                </span>
               </div>
+              </Link>
             </Reveal>
           );
         })}

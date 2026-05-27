@@ -159,6 +159,9 @@
   flex-direction: column;
   height: 572px;
   overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
 
 .articleImageWrap {
