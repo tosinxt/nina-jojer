@@ -436,10 +436,16 @@
   gap: 24px;
 }
 
+.teamCardImageLink {
+  display: block;
+  width: 100%;
+}
+
 .teamCardImage {
   width: 100%;
   aspect-ratio: 1 / 1;
   background: #d9d9d9;
+  overflow: hidden;
 }
 
 .teamCardInfo {

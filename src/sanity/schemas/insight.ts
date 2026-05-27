@@ -16,18 +16,8 @@ export const insightType = defineType({
     defineField({
       name: 'category',
       title: 'Category',
-      type: 'string',
-      description: 'Type any category or pick a common one from the suggestions',
-      options: {
-        list: [
-          { title: 'Tech & Innovation', value: 'Tech & Innovation' },
-          { title: 'Policy Analysis', value: 'Policy Analysis' },
-          { title: 'Economics', value: 'Economics' },
-          { title: 'Governance', value: 'Governance' },
-          { title: 'Trade & Investment', value: 'Trade & Investment' },
-        ],
-        layout: 'dropdown',
-      },
+      type: 'reference',
+      to: [{ type: 'insightCategory' }],
       validation: r => r.required(),
     }),
     defineField({ name: 'excerpt', title: 'Excerpt (short teaser)', type: 'text', rows: 3 }),

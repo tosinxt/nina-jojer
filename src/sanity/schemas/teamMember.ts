@@ -12,6 +12,7 @@ export const teamMemberType = defineType({
     defineField({ name: 'bio', title: 'Bio', type: 'text', rows: 4 }),
     defineField({ name: 'linkedIn', title: 'LinkedIn URL', type: 'url' }),
     defineField({ name: 'photo', title: 'Photo', type: 'image', options: { hotspot: true } }),
+    defineField({ name: 'expertise', title: 'Expertise', type: 'array', of: [{ type: 'string' }], options: { layout: 'tags' } }),
     defineField({ name: 'order', title: 'Display Order', type: 'number', initialValue: 99 }),
   ],
   orderings: [{ title: 'Display Order', name: 'orderAsc', by: [{ field: 'order', direction: 'asc' }] }],

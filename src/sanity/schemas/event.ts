@@ -18,8 +18,8 @@ export const eventType = defineType({
     defineField({
       name: 'category',
       title: 'Category',
-      type: 'string',
-      options: { list: ['Corporate', 'Tech', 'Policy', 'Other'] },
+      type: 'reference',
+      to: [{ type: 'eventCategory' }],
     }),
     defineField({ name: 'date', title: 'Date', type: 'date', validation: r => r.required() }),
     defineField({ name: 'time', title: 'Time', type: 'string', placeholder: '8:00 am' }),

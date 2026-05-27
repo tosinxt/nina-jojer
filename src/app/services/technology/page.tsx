@@ -1,33 +1,12 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
 import BlurText from "@/components/BlurText";
 import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
+import ServiceCaseStudies from "@/components/ServiceCaseStudies";
+import FaqAccordion from "./FaqAccordion";
 import styles from "./technology.module.css";
-
-/* ── FAQ data ── */
-const faqs = [
-  {
-    q: "What scale of technology programmes have you delivered?",
-    a: "In the UK and Nigeria combined, we have executed technology programmes valued at over £500 million. Our work has included national identity infrastructure, eBorders systems, foreign mission connectivity for a Ministry of Foreign Affairs, and cybersecurity deployments in top-secret, security-cleared environments.",
-  },
-  {
-    q: "How does the Technology practice connect to NJA's advisory work?",
-    a: "The connection is deliberate. Technology deployments in African contexts succeed or fail based on institutional relationships, regulatory alignment, and political buy-in — all of which are core NJA capabilities. We are one of very few firms that can manage both the technical delivery and the stakeholder environment simultaneously.",
-  },
-  {
-    q: "Do you work with governments directly or through implementing partners?",
-    a: "Both. We have worked as primary contractor, security technical architect, and as advisory partner to other implementers. Our role is defined by what the mandate requires, not by a fixed engagement model.",
-  },
-  {
-    q: "Can you support private sector companies on technology regulatory matters?",
-    a: "Yes. Particularly in telecoms, fintech, and data-intensive sectors, we provide regulatory intelligence, engagement support with the relevant agencies (NCC, NITDA, CBN, and equivalents across African markets), and technical advisory on compliance frameworks.",
-  },
-];
 
 /* ── Sub-services data ── */
 const subServices = [
@@ -81,7 +60,6 @@ const otherSolutions = [
   },
 ];
 
-/* ── Arrow icon ── */
 const ArrowIcon = () => (
   <svg width="25" height="25" viewBox="0 0 25 25" fill="none" aria-hidden="true">
     <rect width="25" height="25" fill="black" />
@@ -89,37 +67,7 @@ const ArrowIcon = () => (
   </svg>
 );
 
-/* ── Chevron for FAQ ── */
-const ChevronIcon = ({ open }: { open: boolean }) => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" style={{ transform: open ? "rotate(180deg)" : "none", transition: "transform 0.25s" }}>
-    <path d="M8 12L16 20L24 12" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-/* ── FAQ Accordion ── */
-function FaqAccordion() {
-  const [open, setOpen] = useState<number | null>(0);
-  return (
-    <div className={styles.faqList}>
-      {faqs.map((faq, i) => (
-        <div key={faq.q} className={styles.faqItem}>
-          <button className={styles.faqQuestion} onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i}>
-            <span>{faq.q}</span>
-            <ChevronIcon open={open === i} />
-          </button>
-          {open === i && (
-            <div className={styles.faqAnswer}>
-              <p>{faq.a}</p>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-/* ── Page ── */
-export default function TechnologySolutionsPage() {
+export default async function TechnologySolutionsPage() {
   return (
     <main className={styles.page}>
       <Navbar />
@@ -174,60 +122,12 @@ export default function TechnologySolutionsPage() {
         </div>
       </section>
 
-      {/* ── CASE STUDIES ── */}
-      <section className={styles.caseStudies}>
-        <div className={styles.caseStudiesHeader}>
-          <h2 className={styles.caseStudiesTitle}>Case Studies on Technology Solutions</h2>
-          <Link href="/case-studies" className={styles.viewAll}>
-            <span>VIEW ALL</span>
-            <ArrowIcon />
-          </Link>
-        </div>
-        <div className={styles.caseStudiesGrid}>
-          {/* Card 1 */}
-          <div className={styles.caseCard}>
-            <div className={styles.caseCardImageWrap}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/Layout/484/Gemini_Generated_Image_mrnhjfmrnhjfmrnh 1.png"
-                alt="E-Borders infrastructure"
-                className={styles.caseCardImg1}
-              />
-            </div>
-            <div className={styles.caseCardContent}>
-              <div className={styles.caseCardText}>
-                <h3 className={styles.caseCardTitle}>Enhancing National Security through E-Borders Infrastructure Modernization</h3>
-                <p className={styles.caseCardDesc}>A government border agency successfully modernized its E-Borders infrastructure through strategic leadership, secure networks, and virtualization, enhancing national security and operational efficiency.</p>
-              </div>
-              <Link href="/case-studies" className={styles.learnMore}>
-                <span>LEARN MORE</span>
-                <ArrowIcon />
-              </Link>
-            </div>
-          </div>
-          {/* Card 2 */}
-          <div className={styles.caseCard}>
-            <div className={styles.caseCardImageWrap}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/Layout/484/NqA6w 1.png"
-                alt="Financial network transformation"
-                className={styles.caseCardImg2}
-              />
-            </div>
-            <div className={styles.caseCardContent}>
-              <div className={styles.caseCardText}>
-                <h3 className={styles.caseCardTitle}>Strategic Network Transformation and Security Enhancement for Global Financial Institutions</h3>
-                <p className={styles.caseCardDesc}>A global financial provider successfully deployed a secure IP-VPN across 5000 sites, achieving enhanced network security, major cost savings, and smooth merger integration.</p>
-              </div>
-              <Link href="/case-studies" className={styles.learnMore}>
-                <span>LEARN MORE</span>
-                <ArrowIcon />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ── CASE STUDIES (from Sanity) ── */}
+      <ServiceCaseStudies
+        category="Technology Solutions"
+        heading="Case Studies on Technology Solutions"
+        styles={styles}
+      />
 
       {/* ── FAQ ── */}
       <section className={styles.faqSection}>

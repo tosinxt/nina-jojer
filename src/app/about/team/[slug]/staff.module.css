@@ -5,148 +5,179 @@
   background: #fff;
 }
 
-.hero {
-  padding: 160px 64px 100px;
-  background: #fff;
-}
-
-.heroInner {
-  max-width: 1200px;
-  margin: 0 auto;
+/* ── HEADER ── */
+.header {
+  background: #ededed;
   display: flex;
-  flex-direction: column;
-  gap: 48px;
+  flex-direction: row;
+  align-items: stretch;
+  min-height: 500px;
 }
 
-/* Breadcrumbs */
-.breadcrumbs {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.breadcrumbLink {
-  font-family: var(--font-google-sans-flex), sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: rgba(0, 0, 0, 0.5);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.breadcrumbLink:hover { color: #000; }
-
-.breadcrumbSep {
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.3);
-}
-
-.breadcrumbCurrent {
-  font-family: var(--font-google-sans-flex), sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #000;
-}
-
-/* Profile layout */
-.profile {
-  display: flex;
-  gap: 80px;
-  align-items: flex-start;
-}
-
-.photoWrap {
-  width: 380px;
+.headerPhoto {
+  width: 500px;
   flex-shrink: 0;
-  aspect-ratio: 3 / 4;
+  position: relative;
   overflow: hidden;
-  background: #eee;
 }
 
-.photo {
+.headerPhoto img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
   display: block;
 }
 
 .photoPlaceholder {
-  width: 100%;
-  height: 100%;
-  background: #d9d9d9;
+  position: absolute;
+  inset: 0;
+  background: #ccc;
 }
 
-/* Info column */
-.info {
+.headerInfo {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  padding-top: 8px;
+  justify-content: center;
+  gap: 24px;
+  padding: 64px 64px 64px 56px;
 }
 
-.nameBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+.badge {
+  display: inline-flex;
+  align-items: center;
+  background: #610203;
+  color: #fff;
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 40px;
+  align-self: flex-start;
 }
 
-.name {
+.headerName {
   font-family: var(--font-google-sans-flex), sans-serif;
   font-weight: 900;
-  font-size: 36px;
-  line-height: 1.1;
-  letter-spacing: -1px;
+  font-size: 40px;
+  line-height: 1.138;
+  letter-spacing: -1.2px;
   text-transform: uppercase;
   color: #000;
 }
 
-.role {
-  font-family: 'DM Sans', sans-serif;
+.headerRole {
+  font-family: var(--font-google-sans-flex), sans-serif;
   font-weight: 300;
-  font-size: 16px;
-  letter-spacing: 0.04em;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.18px;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000;
 }
 
-.bio {
+/* ── BIO SECTION ── */
+.bioSection {
+  background: #fff;
+  padding: 112px 64px;
+}
+
+.bioInner {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+  max-width: 1280px;
+}
+
+.bioText {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  max-width: 620px;
+  gap: 20px;
 }
 
 .bioPara {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-google-sans-flex), sans-serif;
   font-weight: 300;
-  font-size: 17px;
-  line-height: 1.65;
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: 0.2px;
   color: #000;
 }
 
-.linkedIn {
+.linkedInLink {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  text-decoration: none;
+  gap: 8px;
   color: #000;
+  text-decoration: none;
   font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 600;
   font-size: 14px;
-  font-weight: 500;
-  transition: opacity 0.15s;
+  letter-spacing: -0.14px;
+  text-transform: uppercase;
+  margin-top: 8px;
 }
 
-.linkedIn:hover { opacity: 0.65; }
+.linkedInLink:hover { opacity: 0.7; }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .hero { padding: 120px 32px 80px; }
-  .profile { flex-direction: column; gap: 40px; }
-  .photoWrap { width: 100%; aspect-ratio: 4 / 3; }
+.expertiseSidebar {
+  width: 225px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-@media (max-width: 600px) {
-  .hero { padding: 100px 24px 60px; }
-  .name { font-size: 26px; }
+.expertiseHeading {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 900;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.44px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.expertiseList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.expertiseItem {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .headerPhoto { width: 380px; }
+  .headerInfo { padding: 48px 40px; }
+  .bioSection { padding: 80px 40px; }
+  .bioInner { gap: 48px; }
+  .expertiseSidebar { width: 200px; }
+}
+
+@media (max-width: 768px) {
+  .header { flex-direction: column; }
+  .headerPhoto { width: 100%; height: 320px; position: relative; }
+  .headerInfo { padding: 40px 24px; }
+  .headerName { font-size: 28px; }
+  .bioSection { padding: 60px 24px; }
+  .bioInner { flex-direction: column; gap: 40px; }
+  .expertiseSidebar { width: 100%; }
+  .bioPara { font-size: 17px; }
 }

@@ -22,17 +22,8 @@ export const caseStudyType = defineType({
     defineField({
       name: 'category',
       title: 'Category',
-      type: 'string',
-      description: 'Type any category or pick a suggestion',
-      options: {
-        list: [
-          { title: 'Policy & Advocacy Solutions', value: 'Policy & Advocacy Solutions' },
-          { title: 'Corporate Solutions', value: 'Corporate Solutions' },
-          { title: 'Technology Solutions', value: 'Technology Solutions' },
-          { title: 'Strategic Communications', value: 'Strategic Communications' },
-        ],
-        layout: 'dropdown',
-      },
+      type: 'reference',
+      to: [{ type: 'caseStudyCategory' }],
       group: 'overview',
     }),
     defineField({ name: 'excerpt', title: 'Excerpt', type: 'text', rows: 3, group: 'overview' }),

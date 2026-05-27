@@ -102,14 +102,6 @@ const values = [
   },
 ];
 
-const fallbackTeam = [
-  { _id: "1", name: "Hon. Chukwuemeka Ujam,", slug: "hon-chukwuemeka-ujam-1", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png", bio: null },
-  { _id: "2", name: "Hon. Chukwuemeka Ujam,", slug: "hon-chukwuemeka-ujam-2", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png", bio: null },
-  { _id: "3", name: "Hon. Chukwuemeka Ujam,", slug: "hon-chukwuemeka-ujam-3", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png", bio: null },
-  { _id: "4", name: "Hon. Chukwuemeka Ujam,", slug: "hon-chukwuemeka-ujam-4", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png", bio: null },
-  { _id: "5", name: "Hon. Chukwuemeka Ujam,", slug: "hon-chukwuemeka-ujam-5", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png", bio: null },
-  { _id: "6", name: "Hon. Chukwuemeka Ujam,", slug: "hon-chukwuemeka-ujam-6", credentials: "B.Engr, M.Sc, PhD, FNSE, mni", role: "Managing Partner", linkedIn: null, photo: "/images/events/speaker-ujam.png", bio: null },
-];
 
 /* ── LinkedIn icon SVG ── */
 const LinkedInIcon = () => (
@@ -123,9 +115,10 @@ type TeamMember = { _id: string; name: string; slug: string; credentials: string
 export default async function AboutPage() {
   let team: TeamMember[] = [];
   try {
-    team = await client.fetch<TeamMember[]>(teamMembersQuery);
+    const raw = await client.fetch<TeamMember[]>(teamMembersQuery);
+    team = (raw ?? []).filter((m) => m.slug);
   } catch { /* Sanity not configured yet */ }
-  if (!team?.length) team = fallbackTeam;
+
 
   return (
     <main className={styles.page}>
@@ -281,18 +274,38 @@ export default async function AboutPage() {
           <div className={styles.teamGrid}>
             {team.map((member) => (
               <div key={member._id} className={styles.teamCard}>
-                <div className={styles.teamCardImage}>
-                  {member.photo && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={member.photo} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  )}
-                </div>
+                {member.slug ? (
+                  <Link href={`/about/team/${member.slug}`} className={styles.teamCardImageLink}>
+                    <div className={styles.teamCardImage}>
+                      {member.photo && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={member.photo} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      )}
+                    </div>
+                  </Link>
+                ) : (
+                  <div className={styles.teamCardImageLink}>
+                    <div className={styles.teamCardImage}>
+                      {member.photo && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={member.photo} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      )}
+                    </div>
+                  </div>
+                )}
                 <div className={styles.teamCardInfo}>
                   <div className={styles.teamCardTitles}>
-                    <Link href={`/about/team/${member.slug}`} className={styles.teamCardName}>
-                      <span className={styles.teamCardNameBold}>{member.name} </span>
-                      <span className={styles.teamCardNameBold}>{member.credentials}</span>
-                    </Link>
+                    {member.slug ? (
+                      <Link href={`/about/team/${member.slug}`} className={styles.teamCardName}>
+                        <span className={styles.teamCardNameBold}>{member.name} </span>
+                        <span className={styles.teamCardNameBold}>{member.credentials}</span>
+                      </Link>
+                    ) : (
+                      <span className={styles.teamCardName}>
+                        <span className={styles.teamCardNameBold}>{member.name} </span>
+                        <span className={styles.teamCardNameBold}>{member.credentials}</span>
+                      </span>
+                    )}
                     <p className={styles.teamCardRole}>{member.role}</p>
                   </div>
                   <a href={member.linkedIn ?? '#'} className={styles.teamCardLinkedIn} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
