@@ -49,7 +49,7 @@ export const insightBySlugQuery = (slug: string) =>
 export const caseStudiesQuery = `*[_type == "caseStudy"] | order(_createdAt desc) {
   _id,
   title,
-  slug,
+  "slug": slug.current,
   category,
   excerpt,
   "image": image.asset->url,
@@ -58,7 +58,7 @@ export const caseStudiesQuery = `*[_type == "caseStudy"] | order(_createdAt desc
 export const featuredCaseStudiesQuery = `*[_type == "caseStudy"] | order(_createdAt desc) [0...2] {
   _id,
   title,
-  slug,
+  "slug": slug.current,
   excerpt,
   "image": image.asset->url,
 }`;
@@ -67,7 +67,7 @@ export const caseStudyBySlugQuery = (slug: string) =>
   `*[_type == "caseStudy" && slug.current == "${slug}"][0] {
   _id,
   title,
-  slug,
+  "slug": slug.current,
   category,
   excerpt,
   heroSubtitle,
