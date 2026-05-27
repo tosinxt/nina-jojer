@@ -23,7 +23,7 @@ const services = [
     image: '/images/Layout/419/NqA6w 2-1.png',
     title: 'Corporate Solutions',
     description:
-      'Africa-specialist advisory services offering granular intelligence, local networks, and on-the-ground insight to navigate Sub-Saharan markets.',
+      'Africa-specialist advisory services offering granular intelligence, local networks, and on-the-ground insight to navigate African markets.',
     tags: [
       'Market Entry Strategy',
       'Market Intelligence & Investment Analysis',

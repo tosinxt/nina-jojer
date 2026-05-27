@@ -189,7 +189,7 @@ export default async function AboutPage() {
                 We are a dynamic consulting firm recognized for leveraging deep expertise in communications, public policy, corporate strategy, human capital development, technology solutions, and advocacy to deliver transformative results. Our success is built on a strong network spanning the political landscape and the private sector.
               </p>
               <p>
-                Since our inception, Nina Jojer has cultivated in-house capabilities to provide tailored solutions that meet the unique needs of our clients. We specialize in facilitating seamless operations across markets in Sub-Saharan Africa by fostering strategic relationships with Ministries, Departments, Agencies, National Assemblies, and influential political stakeholders.
+                Since our inception, Nina Jojer has cultivated in-house capabilities to provide tailored solutions that meet the unique needs of our clients. We specialize in facilitating seamless operations across markets in Africa by fostering strategic relationships with Ministries, Departments, Agencies, National Assemblies, and influential political stakeholders.
               </p>
             </div>
           </div>
@@ -232,7 +232,7 @@ export default async function AboutPage() {
       </section>
 
       {/* ── VALUES ── */}
-      <section className={styles.valuesSection}>
+      <section id="values" className={styles.valuesSection}>
         <div className={styles.valuesContainer}>
           {/* Header row */}
           <div className={styles.valuesHeader}>
@@ -263,7 +263,7 @@ export default async function AboutPage() {
       </section>
 
       {/* ── TEAM ── */}
-      <section className={styles.teamSection}>
+      <section id="team" className={styles.teamSection}>
         <div className={styles.teamContainer}>
           {/* Section header */}
           <div className={styles.teamHeader}>

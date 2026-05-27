@@ -145,7 +145,7 @@ export default function CorporateSolutionsPage() {
         <div className={styles.headerContent}>
           <div className={styles.headerText}>
             <BlurText as="h1" text="Corporate Solutions" direction="bottom" delay={130} className={styles.headerTitle} />
-            <BlurText text="Africa-specialist advisory services offering granular intelligence, local networks, and on-the-ground insight to navigate Sub-Saharan markets." direction="bottom" delay={80} stepDuration={0.4} className={styles.headerBody} />
+            <BlurText text="Africa-specialist advisory services offering granular intelligence, local networks, and on-the-ground insight to navigate African markets." direction="bottom" delay={80} stepDuration={0.4} className={styles.headerBody} />
           </div>
         </div>
         <div className={styles.heroWrap}>
