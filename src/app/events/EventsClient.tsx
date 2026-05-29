@@ -169,7 +169,7 @@ export default function EventsClient({
                 }
               }}
             >
-              {/* Left: content */}
+              {/* Left: meta + body */}
               <div className={styles.eventInfo}>
                 {/* Meta row */}
                 <div className={styles.eventMeta}>
@@ -191,50 +191,50 @@ export default function EventsClient({
                   <h2 className={styles.eventTitle}>{event.title}</h2>
                   <p className={styles.eventDescription}>{event.description}</p>
                 </div>
-
-                {/* Speakers */}
-                {event.speakers?.length > 0 && (
-                  <div className={styles.speakersBlock}>
-                    <p className={styles.speakersLabel}>Speakers</p>
-                    <div className={styles.speakersList}>
-                      {event.speakers.map((s) => (
-                        <div key={s.name} className={styles.speakerItem}>
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={s.avatar || '/images/events/speaker-ujam-cropped.png'}
-                            alt={s.name}
-                            className={styles.speakerAvatar}
-                          />
-                          <span className={styles.speakerName}>{s.name}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Actions */}
-                <div className={styles.eventActions}>
-                  {event.registerLink ? (
-                    <a href={event.registerLink} target="_blank" rel="noopener noreferrer" className={styles.registerBtn}>
-                      Register here
-                    </a>
-                  ) : (
-                    <span className={styles.registerBtnDisabled}>Register here</span>
-                  )}
-                  {event.slug ? (
-                    <Link href={`/events/${event.slug}`} className={styles.detailsLink}>
-                      See more details
-                    </Link>
-                  ) : (
-                    <span className={styles.detailsLink}>See more details</span>
-                  )}
-                </div>
               </div>
 
               {/* Right: image */}
               <div className={styles.eventImageWrap}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={event.image} alt={event.title} className={styles.eventImage} />
+              </div>
+
+              {/* Bottom-left: speakers */}
+              {event.speakers?.length > 0 && (
+                <div className={styles.speakersBlock}>
+                  <p className={styles.speakersLabel}>Speakers</p>
+                  <div className={styles.speakersList}>
+                    {event.speakers.map((s) => (
+                      <div key={s.name} className={styles.speakerItem}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={s.avatar || '/images/events/speaker-ujam-cropped.png'}
+                          alt={s.name}
+                          className={styles.speakerAvatar}
+                        />
+                        <span className={styles.speakerName}>{s.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Bottom-right: actions */}
+              <div className={styles.eventActions}>
+                {event.registerLink ? (
+                  <a href={event.registerLink} target="_blank" rel="noopener noreferrer" className={styles.registerBtn}>
+                    Register here
+                  </a>
+                ) : (
+                  <span className={styles.registerBtnDisabled}>Register here</span>
+                )}
+                {event.slug ? (
+                  <Link href={`/events/${event.slug}`} className={styles.detailsLink}>
+                    See more details
+                  </Link>
+                ) : (
+                  <span className={styles.detailsLink}>See more details</span>
+                )}
               </div>
             </article>
           )) : (

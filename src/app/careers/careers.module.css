@@ -170,6 +170,50 @@
   margin-top: 4px;
 }
 
+.jobsEmpty {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(0,0,0,0.5);
+  padding: 40px 0;
+}
+
+.jobList {
+  border-top: 1px solid rgba(0,0,0,0.12);
+}
+
+.jobRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+
+.jobInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.jobTitle {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.3px;
+  color: #000;
+  margin: 0;
+}
+
+.jobMeta {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(0,0,0,0.55);
+}
+
 .applyBtn {
   background: #610203;
   color: #fff;

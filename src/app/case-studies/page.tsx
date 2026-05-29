@@ -25,23 +25,13 @@ import CaseStudiesClient, { type CaseStudy } from "./CaseStudiesClient";
 import { client } from "@/sanity/client";
 import { caseStudiesQuery } from "@/sanity/queries";
 
-const fallbackCaseStudies: CaseStudy[] = [
-  { _id: "1", title: "A Review of Nigeria's National Blockchain Policy", excerpt: "We help businesses navigate and shape Africa's regulatory and political landscape.", image: "/images/case-studies/card-image.jpg", slug: "nigeria-blockchain-policy", category: "" },
-  { _id: "2", title: "A Review of Nigeria's National Blockchain Policy", excerpt: "We help businesses navigate and shape Africa's regulatory and political landscape.", image: "/images/case-studies/card-image.jpg", slug: "nigeria-blockchain-policy-2", category: "" },
-  { _id: "3", title: "A Review of Nigeria's National Blockchain Policy", excerpt: "We help businesses navigate and shape Africa's regulatory and political landscape.", image: "/images/case-studies/card-image.jpg", slug: "nigeria-blockchain-policy-3", category: "" },
-  { _id: "4", title: "A Review of Nigeria's National Blockchain Policy", excerpt: "We help businesses navigate and shape Africa's regulatory and political landscape.", image: "/images/case-studies/card-image.jpg", slug: "nigeria-blockchain-policy-4", category: "" },
-  { _id: "5", title: "A Review of Nigeria's National Blockchain Policy", excerpt: "We help businesses navigate and shape Africa's regulatory and political landscape.", image: "/images/case-studies/card-image.jpg", slug: "nigeria-blockchain-policy-5", category: "" },
-];
-
-
 export default async function CaseStudiesPage() {
   let caseStudies: CaseStudy[] = [];
   try {
     caseStudies = await client.fetch<CaseStudy[]>(caseStudiesQuery);
   } catch {
-    /* Sanity not configured yet — use fallback */
+    /* Sanity unavailable */
   }
-  if (!caseStudies || caseStudies.length === 0) caseStudies = fallbackCaseStudies;
 
   return (
     <main className={styles.page}>
