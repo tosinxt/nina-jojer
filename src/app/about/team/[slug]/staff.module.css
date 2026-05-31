@@ -3,112 +3,176 @@
   flex-direction: column;
   min-height: 100vh;
   background: #fff;
+  padding-top: 85px;
 }
 
-/* ── HEADER ── */
-.header {
-  background: #ededed;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  min-height: 500px;
-}
-
-.headerPhoto {
-  width: 500px;
-  flex-shrink: 0;
+/* ── HEADER (container) ── */
+.container {
+  width: 100%;
   position: relative;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0px 80px 0px 0px;
+  box-sizing: border-box;
+  gap: 80px;
+  text-align: left;
+  font-size: 14px;
+  color: #000;
+  font-family: var(--font-google-sans-flex), sans-serif;
+  background-color: #f6f6f6; /* Make space beside the staff image grey */
 }
-
-.headerPhoto img {
-  position: absolute;
-  inset: 0;
+.containerChild {
+  height: 500px;
+  width: 500px;
+  position: relative;
+  background-color: #d6d6d6;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.containerChild img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-
-.photoPlaceholder {
-  position: absolute;
-  inset: 0;
-  background: #ccc;
-}
-
-.headerInfo {
-  flex: 1;
-  min-width: 0;
+.content {
+  width: 733px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 24px;
-  padding: 64px 64px 64px 56px;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  background: #610203;
-  color: #fff;
-  font-family: var(--font-google-sans-flex), sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: 40px;
-  align-self: flex-start;
-}
-
-.headerName {
-  font-family: var(--font-google-sans-flex), sans-serif;
-  font-weight: 900;
-  font-size: 40px;
-  line-height: 1.138;
-  letter-spacing: -1.2px;
-  text-transform: uppercase;
-  color: #000;
-}
-
-.headerRole {
-  font-family: var(--font-google-sans-flex), sans-serif;
-  font-weight: 300;
-  font-size: 18px;
-  line-height: 1.5;
-  letter-spacing: 0.18px;
-  text-transform: uppercase;
-  color: #000;
-}
-
-/* ── BIO SECTION ── */
-.bioSection {
-  background: #fff;
-  padding: 112px 64px;
-}
-
-.bioInner {
-  display: flex;
-  gap: 80px;
   align-items: flex-start;
-  max-width: 1280px;
 }
-
-.bioText {
-  flex: 1;
-  min-width: 0;
+.frameParent {
+  align-self: stretch;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: flex-start;
+  gap: 16px;
+}
+.textWrapper {
+  background-color: #610203;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 8px;
+  color: #fff;
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
+}
+.container .text {
+  position: relative;
+  letter-spacing: -0.01em;
+  line-height: 132%;
+  font-weight: 600;
+}
+.container .heading {
+  align-self: stretch;
+  position: relative;
+  font-size: 40px;
+  letter-spacing: -0.03em;
+  line-height: 120%;
+  font-weight: 900;
+}
+.honChukwuemekaUjam {
+  text-transform: uppercase;
+  line-height: 120%;
+}
+.bengrMscPhd {
+  line-height: 120%;
+}
+.container .text2 {
+  position: relative;
+  font-size: 18px;
+  letter-spacing: 0.01em;
+  line-height: 150%;
+  font-weight: 300;
 }
 
-.bioPara {
-  font-family: var(--font-google-sans-flex), sans-serif;
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 1.5;
-  letter-spacing: 0.2px;
+/* ── CONTENT SECTION (stats7) ── */
+.stats7 {
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 112px 64px;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: 14px;
   color: #000;
+  font-family: var(--font-google-sans-flex), sans-serif;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 100%;
+}
+
+.loremIpsumDolor {
+  width: 674px;
+  position: relative;
+  font-size: 20px;
+  letter-spacing: 0.01em;
+  line-height: 150%;
+  font-weight: 300;
+  white-space: pre-wrap;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.column {
+  width: 212px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.stats7 .heading {
+  align-self: stretch;
+  position: relative;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  line-height: 130%;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.textParent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.stats7 .text {
+  align-self: stretch;
+  position: relative;
+  letter-spacing: -0.04em;
+  line-height: 130%;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.stats7 .text2 {
+  align-self: stretch;
+  position: relative;
+  letter-spacing: -0.01em;
+  line-height: 150%;
+  font-weight: 300;
+}
+
+.text19 {
+  align-self: stretch;
+  position: relative;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  line-height: 150%;
 }
 
 .linkedInLink {
@@ -122,62 +186,33 @@
   font-size: 14px;
   letter-spacing: -0.14px;
   text-transform: uppercase;
-  margin-top: 8px;
+  margin-top: 16px;
 }
 
-.linkedInLink:hover { opacity: 0.7; }
-
-.expertiseSidebar {
-  width: 225px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.expertiseHeading {
-  font-family: var(--font-google-sans-flex), sans-serif;
-  font-weight: 900;
-  font-size: 22px;
-  line-height: 1.2;
-  letter-spacing: -0.44px;
-  text-transform: uppercase;
-  color: #000;
-}
-
-.expertiseList {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.expertiseItem {
-  font-family: var(--font-google-sans-flex), sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #000;
+.linkedInLink:hover {
+  opacity: 0.7;
 }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
-  .headerPhoto { width: 380px; }
-  .headerInfo { padding: 48px 40px; }
-  .bioSection { padding: 80px 40px; }
-  .bioInner { gap: 48px; }
-  .expertiseSidebar { width: 200px; }
+  .page { padding-top: 85px; }
+  .container { padding: 0 40px 0 0; gap: 40px; }
+  .containerChild { width: 380px; height: 380px; }
+  .container .heading { font-size: 32px; }
+  .stats7 { padding: 80px 40px; }
+  .row { flex-wrap: wrap; gap: 40px; }
+  .loremIpsumDolor { width: 100%; flex-shrink: 1; }
+  .column { width: calc(50% - 20px); }
 }
 
 @media (max-width: 768px) {
-  .header { flex-direction: column; }
-  .headerPhoto { width: 100%; height: 320px; position: relative; }
-  .headerInfo { padding: 40px 24px; }
-  .headerName { font-size: 28px; }
-  .bioSection { padding: 60px 24px; }
-  .bioInner { flex-direction: column; gap: 40px; }
-  .expertiseSidebar { width: 100%; }
-  .bioPara { font-size: 17px; }
+  .page { padding-top: 85px; }
+  .container { padding: 40px 24px; flex-direction: column; gap: 40px; }
+  .containerChild { width: 100%; height: 380px; }
+  .content { max-width: 100%; }
+  .container .heading { font-size: 28px; }
+  .stats7 { padding: 60px 24px; }
+  .row { flex-direction: column; gap: 60px; }
+  .loremIpsumDolor { width: 100%; font-size: 18px; }
+  .column { width: 100%; }
 }

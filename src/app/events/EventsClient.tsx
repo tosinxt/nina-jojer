@@ -26,6 +26,7 @@ export type PastEvent = {
   _id: string;
   title: string;
   slug?: string;
+  youtubeLink?: string | null;
   excerpt: string;
   category: string;
   date: string;
@@ -262,8 +263,8 @@ export default function EventsClient({
                 key={event._id}
                 className={styles.pastCard}
                 onClick={(e) => {
-                  if (event.slug && !(e.target as HTMLElement).closest('a, button')) {
-                    router.push(`/events/${event.slug}`);
+                  if (event.youtubeLink && !(e.target as HTMLElement).closest('a, button')) {
+                    window.open(event.youtubeLink, '_blank', 'noopener,noreferrer');
                   }
                 }}
               >
@@ -293,15 +294,15 @@ export default function EventsClient({
                       </div>
                     </div>
                   </div>
-                  {event.slug ? (
-                    <Link href={`/events/${event.slug}`} className={styles.viewEventLink}>
-                      <span>VIEW EVENT</span>
+                  {event.youtubeLink ? (
+                    <a href={event.youtubeLink} target="_blank" rel="noopener noreferrer" className={styles.viewEventLink}>
+                      <span>WATCH ON YOUTUBE</span>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src="/images/events/arrow-circle-sm.svg" alt="" aria-hidden="true" width={25} height={25} />
-                    </Link>
+                    </a>
                   ) : (
                     <span className={styles.viewEventLink}>
-                      <span>VIEW EVENT</span>
+                      <span>WATCH ON YOUTUBE</span>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src="/images/events/arrow-circle-sm.svg" alt="" aria-hidden="true" width={25} height={25} />
                     </span>

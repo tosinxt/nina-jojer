@@ -117,7 +117,7 @@ export default function AboutSection() {
           <StatCard
             variant="statClientTrust"
             label="Client Trust"
-            number="97%"
+            number="98%"
             description="Client satisfaction across our engagements."
             decoration={
               <div className={styles.starDecor}>

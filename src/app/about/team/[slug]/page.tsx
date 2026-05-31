@@ -12,6 +12,7 @@ type TeamMember = {
   name: string;
   slug: string;
   credentials: string | null;
+  detailedCredentials?: { title: string; institution: string }[] | null;
   role: string;
   bio: string | null;
   expertise: string[] | null;
@@ -40,60 +41,73 @@ export default async function StaffDetailPage({ params }: { params: Promise<{ sl
     <main className={styles.page}>
       <Navbar />
 
-      <section className={styles.header}>
-        <div className={styles.headerPhoto}>
+      <section className={styles.container}>
+        <div className={styles.containerChild}>
           {member.photo ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={member.photo} alt={member.name} />
-          ) : (
-            <div className={styles.photoPlaceholder} />
-          )}
+            <img src={member.photo} alt={member.name} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+          ) : null}
         </div>
-
-        <div className={styles.headerInfo}>
-          <span className={styles.badge}>NJ EXPERT</span>
-          <h1 className={styles.headerName}>
-            {member.name}{member.credentials ? `, ${member.credentials}` : ''}
-          </h1>
-          <p className={styles.headerRole}>{member.role}</p>
+        <div className={styles.content}>
+          <div className={styles.frameParent}>
+            <div className={styles.textWrapper}>
+              <div className={styles.text}>NJ EXPERT</div>
+            </div>
+            <div className={styles.heading}>
+              <span className={styles.honChukwuemekaUjam}>{member.name}</span>
+              {member.credentials && <span className={styles.bengrMscPhd}>{`, ${member.credentials}`}</span>}
+            </div>
+            <div className={styles.text2}>{member.role}</div>
+          </div>
         </div>
       </section>
 
-      {(bioParagraphs.length > 0 || member.expertise?.length) && (
-        <section className={styles.bioSection}>
-          <div className={styles.bioInner}>
-            {bioParagraphs.length > 0 && (
-              <div className={styles.bioText}>
-                {bioParagraphs.map((para, i) => (
-                  <p key={i} className={styles.bioPara}>{para}</p>
-                ))}
-                {member.linkedIn && (
-                  <a
-                    href={member.linkedIn}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.linkedInLink}
-                  >
-                    <LinkedInIcon />
-                    <span>LinkedIn</span>
-                  </a>
-                )}
-              </div>
+      <section className={styles.stats7}>
+        <div className={styles.row}>
+          {/* Left Column: Bio */}
+          <div className={styles.loremIpsumDolor}>
+            {bioParagraphs.map((para, i) => (
+              <span key={i}>
+                {para}
+                <br /><br />
+              </span>
+            ))}
+            {member.linkedIn && (
+              <a href={member.linkedIn} target="_blank" rel="noopener noreferrer" className={styles.linkedInLink}>
+                <LinkedInIcon />
+                <span>LinkedIn</span>
+              </a>
             )}
-
-            {member.expertise?.length ? (
-              <div className={styles.expertiseSidebar}>
-                <h2 className={styles.expertiseHeading}>Expertise</h2>
-                <ul className={styles.expertiseList}>
-                  {member.expertise.map((item) => (
-                    <li key={item} className={styles.expertiseItem}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
           </div>
-        </section>
-      )}
+
+          {/* Middle Column: Credentials */}
+          {member.detailedCredentials && member.detailedCredentials.length > 0 && (
+            <div className={styles.column}>
+              <div className={styles.heading}>Credentials</div>
+              {member.detailedCredentials.map((cred, idx) => (
+                <div key={idx} className={styles.textParent}>
+                  <div className={styles.text}>{cred.title}</div>
+                  {cred.institution && (
+                    <div className={styles.text2}>{cred.institution}</div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Right Column: Expertise */}
+          {member.expertise && member.expertise.length > 0 && (
+            <div className={styles.column}>
+              <div className={styles.heading}>EXPERTISE</div>
+              {member.expertise.map((item, idx) => (
+                <div key={idx} className={styles.text19}>
+                  {item}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
 
       <CtaSection />
       <Newsletter />
