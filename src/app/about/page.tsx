@@ -22,6 +22,9 @@ import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import BlurText from "@/components/BlurText";
 import styles from "./about.module.css";
+import { client } from "@/sanity/client";
+import { teamMembersQuery } from "@/sanity/queries";
+
 /* ── Decorative bar data for hero ── */
 const heroBars = [
   { left: 412.87, top: -52, width: 30.929 },
@@ -100,7 +103,23 @@ const values = [
 ];
 
 
+/* ── LinkedIn icon SVG ── */
+const LinkedInIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-label="LinkedIn">
+    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor" />
+  </svg>
+);
+
+type TeamMember = { _id: string; name: string; slug: string; credentials: string; role: string; bio: string | null; linkedIn: string | null; photo: string | null };
+
 export default async function AboutPage() {
+  let team: TeamMember[] = [];
+  try {
+    const raw = await client.fetch<TeamMember[]>(teamMembersQuery);
+    team = (raw ?? []).filter((m) => m.slug);
+  } catch { /* Sanity not configured yet */ }
+
+
   return (
     <main className={styles.page}>
       <BreadcrumbJsonLd items={[{ name: 'Home', href: '/' }, { name: 'About', href: '/about' }]} />
@@ -232,6 +251,60 @@ export default async function AboutPage() {
                 <p className={styles.valueDesc}>{v.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TEAM ── */}
+      <section id="team" className={styles.teamSection}>
+        <div className={styles.teamContainer}>
+          {/* Section header */}
+          <div className={styles.teamHeader}>
+            <div className={styles.eyebrow}>
+              <span className={styles.eyebrowLine} />
+              <span className={styles.eyebrowText}>PEOPLE</span>
+            </div>
+            <BlurText as="h2" text="The people behind it" direction="bottom" delay={110} className={styles.teamHeading} />
+            <p className={styles.teamSubtitle}>
+              Strategy is only as good as the minds shaping it. Our team brings decades of experience across policy, governance, and African institutions.
+            </p>
+          </div>
+
+          {/* Team grid: 2 rows × 3 cards */}
+          <div className={styles.teamGrid}>
+            {team.map((member) => (
+              <div key={member._id} className={styles.teamCard}>
+                <Link href={`/about/team/${member.slug}`} className={styles.teamCardImageLink}>
+                  <div className={styles.teamCardImage}>
+                    {member.photo && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={member.photo} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    )}
+                  </div>
+                </Link>
+                <div className={styles.teamCardInfo}>
+                  <div className={styles.teamCardTitles}>
+                    <Link href={`/about/team/${member.slug}`} className={styles.teamCardName}>
+                      <span className={styles.teamCardNameBold}>{member.name} </span>
+                      {member.credentials && <span className={styles.teamCardNameBold}>{member.credentials}</span>}
+                    </Link>
+                    <p className={styles.teamCardRole}>{member.role}</p>
+                  </div>
+                  <a href={member.linkedIn ?? '#'} className={styles.teamCardLinkedIn} aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    <LinkedInIcon />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Join our team CTA */}
+          <div className={styles.joinTeam}>
+            <div className={styles.joinTeamText}>
+              <h3 className={styles.joinTeamTitle}>Join our team</h3>
+              <p className={styles.joinTeamBody}>We're building something that matters. If you think like we do, we want to hear from you.</p>
+            </div>
+            <Link href="/careers" className={styles.joinTeamBtn}>View Careers</Link>
           </div>
         </div>
       </section>
