@@ -158,6 +158,7 @@ export const teamMemberBySlugQuery = (slug: string) =>
   role,
   bio,
   expertise,
+  detailedExpertise[] { area, description },
   linkedIn,
   "photo": photo.asset->url,
 }`;

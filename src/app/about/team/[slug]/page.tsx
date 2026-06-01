@@ -16,6 +16,7 @@ type TeamMember = {
   role: string;
   bio: string | null;
   expertise: string[] | null;
+  detailedExpertise?: { area: string; description: string }[] | null;
   linkedIn: string | null;
   photo: string | null;
 };
@@ -96,16 +97,27 @@ export default async function StaffDetailPage({ params }: { params: Promise<{ sl
           )}
 
           {/* Right Column: Expertise */}
-          {member.expertise && member.expertise.length > 0 && (
+          {(member.detailedExpertise?.length || member.expertise?.length) ? (
             <div className={styles.column}>
               <div className={styles.heading}>EXPERTISE</div>
-              {member.expertise.map((item, idx) => (
-                <div key={idx} className={styles.text19}>
-                  {item}
+              {member.detailedExpertise && member.detailedExpertise.length > 0 ? (
+                <div className={styles.expertiseList}>
+                  {member.detailedExpertise.map((item, idx) => (
+                    <div key={idx} className={styles.expertiseItem}>
+                      <div className={styles.expertiseArea}>{item.area}</div>
+                      {item.description && (
+                        <div className={styles.expertiseDesc}>{item.description}</div>
+                      )}
+                    </div>
+                  ))}
                 </div>
-              ))}
+              ) : (
+                member.expertise?.map((item, idx) => (
+                  <div key={idx} className={styles.text19}>{item}</div>
+                ))
+              )}
             </div>
-          )}
+          ) : null}
         </div>
       </section>
 
