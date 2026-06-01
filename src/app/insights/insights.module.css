@@ -143,6 +143,16 @@
   color: #fff;
 }
 
+.filterBtnWrap {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Desktop: toggle pill and hidden class are invisible — all pills show */
+.filterTabToggle { display: none; }
+.filterTabMobileHidden { display: flex; }
+
 /* ── ARTICLES GRID ── */
 .articlesGrid {
   display: grid;
@@ -157,6 +167,7 @@
   background: #fff;
   display: flex;
   flex-direction: column;
+  gap: 35px;
   height: 572px;
   overflow: hidden;
   cursor: pointer;
@@ -187,7 +198,6 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 0 35px 35px;
-  padding-top: 35px;
 }
 
 .articleTop {
@@ -210,7 +220,6 @@
   padding: 4px 12px;
   border-radius: 55px;
   align-self: flex-start;
-  margin-left: -12px;
 }
 
 .categoryDot {
@@ -281,9 +290,13 @@
   font-family: 'DM Sans', sans-serif;
   font-weight: 300;
   font-size: 14px;
-  line-height: 1.32;
+  line-height: 0;
   letter-spacing: -0.14px;
   color: #000;
+}
+
+.articleDate span {
+  line-height: 1.32;
 }
 
 .readTime {
@@ -381,6 +394,97 @@
   .articlesGrid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .articleCard { height: auto; }
   .filterTabs { gap: 8px; }
+}
+
+@media (max-width: 480px) {
+  /* Section */
+  .blogSection { padding: 100px 20px 50px; }
+  .blogContainer { gap: 32px; }
+  .blogHeader { gap: 20px; }
+  .blogTitles { gap: 8px; }
+  .blogTitle { font-size: 30px; letter-spacing: -1px; white-space: normal; }
+  .blogSubtitle { font-size: 14px; }
+  .searchAndFilters { gap: 14px; }
+  .searchInput { height: 48px; font-size: 14px; }
+  .searchBtn { width: 48px; height: 48px; }
+
+  /* Filter row: wrapping pills + filter button aligned top-right */
+  .filterRow {
+    align-items: flex-start;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+
+  /* Tabs: wrap naturally, pills collapse via JS */
+  .filterTabs {
+    flex-wrap: wrap;
+    overflow: visible;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+    padding-right: 0;
+  }
+
+  .filterTab { font-size: 12px; padding: 7px 14px; flex-shrink: 0; }
+
+  /* Hidden on mobile when collapsed */
+  .filterTabMobileHidden { display: none !important; }
+
+  /* +N / Less toggle pill */
+  .filterTabToggle {
+    display: flex;
+    font-size: 12px;
+    padding: 7px 14px;
+  }
+  .filterTabToggleExpanded {
+    background: #000;
+    color: #fff;
+  }
+
+  /* Filter button: aligned to top */
+  .filterBtnWrap {
+    flex-shrink: 0;
+    align-self: flex-start;
+    padding-top: 1px;
+  }
+
+  /* Cards: single column, auto height so no dead space */
+  .articlesGrid { grid-template-columns: 1fr; gap: 16px; }
+
+  .articleCard {
+    height: auto;
+    width: 100%;
+    gap: 20px;
+  }
+
+  .articleImageWrap { height: 200px; }
+
+  /* Content: tighter padding on mobile, natural flow (no space-between) */
+  .articleContent {
+    padding: 0 20px 24px;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+
+  .articleTop { gap: 16px; }
+  .articleMeta { gap: 6px; }
+  .articleTexts { gap: 4px; }
+  .articleTitle { font-size: 15px; }
+  .articleExcerpt { -webkit-line-clamp: 3; font-size: 13px; }
+  .authorRow { gap: 2px; }
+  .authorName { font-size: 13px; }
+  .articleDate { font-size: 12px; }
+
+  /* LEARN MORE — add top separator feel */
+  .learnMore {
+    padding-top: 16px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    gap: 10px;
+  }
+  .learnMore span { font-size: 12px; }
+
+  .viewMore { margin-top: 4px; }
+  .noResults { padding: 48px 0; font-size: 15px; }
 }
 
 .noResults {

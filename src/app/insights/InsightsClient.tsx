@@ -34,7 +34,7 @@ const ALL_TAB = 'All';
 
 const LearnMoreChevron = () => (
   <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
-    <path d="M2 1L5 4L2 7" stroke="black" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M1 2L4 5L7 2" stroke="black" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" transform="rotate(-90 4 4)" />
   </svg>
 );
 
@@ -55,7 +55,9 @@ export default function InsightsClient({ articles }: { articles: Article[] }) {
   const [query, setQuery] = useState('');
   const [filters, setFilters] = useState<InsightsFilters>(DEFAULT_FILTERS);
   const [dateOpen, setDateOpen] = useState(false);
+  const [tagsExpanded, setTagsExpanded] = useState(false);
   const filterBtnRef = useRef<HTMLButtonElement | null>(null);
+  const MOBILE_VISIBLE_TABS = 3;
 
   const authors = Array.from(new Set(articles.map((a) => a.author).filter(Boolean)));
 
@@ -128,22 +130,36 @@ export default function InsightsClient({ articles }: { articles: Article[] }) {
             </div>
             <div className={styles.filterRow}>
               <div className={styles.filterTabs}>
-                {filterTabs.map((tab) => (
+                {filterTabs.map((tab, i) => {
+                  const isHiddenOnMobile = !tagsExpanded && i >= MOBILE_VISIBLE_TABS && tab !== activeFilter;
+                  return (
+                    <button
+                      key={tab}
+                      className={`${styles.filterTab} ${activeFilter === tab ? styles.filterTabActive : ''} ${isHiddenOnMobile ? styles.filterTabMobileHidden : ''}`}
+                      onClick={() => handleFilterChange(tab)}
+                    >
+                      {tab}
+                    </button>
+                  );
+                })}
+                {filterTabs.length > MOBILE_VISIBLE_TABS && (
                   <button
-                    key={tab}
-                    className={`${styles.filterTab} ${activeFilter === tab ? styles.filterTabActive : ''}`}
-                    onClick={() => handleFilterChange(tab)}
+                    className={`${styles.filterTab} ${styles.filterTabToggle} ${tagsExpanded ? styles.filterTabToggleExpanded : ''}`}
+                    onClick={() => setTagsExpanded(v => !v)}
+                    aria-label={tagsExpanded ? 'Show fewer filters' : `Show ${filterTabs.length - MOBILE_VISIBLE_TABS} more filters`}
                   >
-                    {tab}
+                    {tagsExpanded ? 'Less' : `+${filterTabs.length - MOBILE_VISIBLE_TABS}`}
                   </button>
-                ))}
+                )}
               </div>
-              <FilterButton
-                ref={filterBtnRef}
-                onClick={() => setDateOpen((v) => !v)}
-                aria-label="Filter insights"
-                active={dateOpen || isFiltered(filters)}
-              />
+              <div className={styles.filterBtnWrap}>
+                <FilterButton
+                  ref={filterBtnRef}
+                  onClick={() => setDateOpen((v) => !v)}
+                  aria-label="Filter insights"
+                  active={dateOpen || isFiltered(filters)}
+                />
+              </div>
             </div>
             <InsightsFilterPanel
               open={dateOpen}

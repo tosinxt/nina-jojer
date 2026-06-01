@@ -9,8 +9,44 @@
 }
 
 .stripOpen {
-  max-height: 120px;
+  max-height: 200px;
   opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .stripOpen {
+    max-height: 500px;
+  }
+
+  .inner {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .sep {
+    width: 100% !important;
+    height: 1px !important;
+    align-self: auto;
+    flex-shrink: 0;
+  }
+
+  .group {
+    width: 100%;
+  }
+
+  .clear {
+    margin-left: 0;
+    align-self: flex-start;
+  }
+
+  .chip {
+    font-size: 13px;
+    padding: 5px 12px;
+  }
+
+  .groupLabel {
+    font-size: 10px;
+  }
 }
 
 .inner {
