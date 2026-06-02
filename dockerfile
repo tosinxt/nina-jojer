@@ -1,5 +1,5 @@
 # --- STAGE 1: Install dependencies ---
-FROM node:18-alpine AS deps
+FROM node:20-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
@@ -12,12 +12,12 @@ RUN \
   fi
 
 # --- STAGE 2: Rebuild the source code ---
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# CRITICAL FOR SSR: These public vars MUST be supplied during DO App Platform Build phase
+# SSR & Client Build-Time Variables
 ARG NEXT_PUBLIC_SANITY_PROJECT_ID
 ARG NEXT_PUBLIC_SANITY_DATASET
 ENV NEXT_PUBLIC_SANITY_PROJECT_ID=$NEXT_PUBLIC_SANITY_PROJECT_ID
@@ -33,7 +33,7 @@ RUN \
   fi
 
 # --- STAGE 3: Production runner ---
-FROM node:18-alpine AS runner
+FROM node:20-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
@@ -45,7 +45,7 @@ ENV HOSTNAME="0.0.0.0"
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Standalone mode tracks SSR page routes here
+# Assets and routes for SSR / standalone execution
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
@@ -54,5 +54,4 @@ USER nextjs
 
 EXPOSE 3000
 
-# Next.js standalone server dynamically handles SSR requests on boot
 CMD ["node", "server.js"]
