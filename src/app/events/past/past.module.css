@@ -237,3 +237,9 @@
   .card { width: 100%; }
   .cardContent { height: auto; }
 }
+
+@media (max-width: 480px) {
+  .gridSection { padding: 60px 30px; }
+  .cardImage { height: auto; aspect-ratio: 360 / 359.1; }
+  .cardContent { height: 408px; min-height: unset; }
+}

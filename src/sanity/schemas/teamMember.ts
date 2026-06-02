@@ -23,7 +23,7 @@ export const teamMemberType = defineType({
       ],
     }),
     defineField({ name: 'role', title: 'Role / Title', type: 'string', validation: r => r.required() }),
-    defineField({ name: 'bio', title: 'Bio', type: 'text', rows: 4 }),
+    defineField({ name: 'bio', title: 'Bio', type: 'array', of: [{ type: 'block' }] }),
     defineField({ name: 'linkedIn', title: 'LinkedIn URL', type: 'url' }),
     defineField({ name: 'photo', title: 'Photo', type: 'image', options: { hotspot: true } }),
     defineField({ name: 'expertise', title: 'Expertise (simple tags — legacy)', type: 'array', of: [{ type: 'string' }], options: { layout: 'tags' } }),

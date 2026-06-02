@@ -5,6 +5,7 @@ import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
 import { client } from '@/sanity/client';
 import { teamMemberBySlugQuery } from '@/sanity/queries';
+import { PortableText } from '@portabletext/react';
 import styles from './staff.module.css';
 
 type TeamMember = {
@@ -14,7 +15,8 @@ type TeamMember = {
   credentials: string | null;
   detailedCredentials?: { title: string; institution: string }[] | null;
   role: string;
-  bio: string | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  bio: any | null;
   expertise: string[] | null;
   detailedExpertise?: { area: string; description: string }[] | null;
   linkedIn: string | null;
@@ -35,8 +37,6 @@ export default async function StaffDetailPage({ params }: { params: Promise<{ sl
   } catch { /* Sanity not configured */ }
 
   if (!member) notFound();
-
-  const bioParagraphs = member.bio?.split('\n').filter(Boolean) ?? [];
 
   return (
     <main className={styles.page}>
@@ -67,12 +67,16 @@ export default async function StaffDetailPage({ params }: { params: Promise<{ sl
         <div className={styles.row}>
           {/* Left Column: Bio */}
           <div className={styles.loremIpsumDolor}>
-            {bioParagraphs.map((para, i) => (
-              <span key={i}>
-                {para}
-                <br /><br />
-              </span>
-            ))}
+            {typeof member.bio === 'string' ? (
+              member.bio.split('\n').filter(Boolean).map((para: string, i: number) => (
+                <span key={i}>
+                  {para}
+                  <br /><br />
+                </span>
+              ))
+            ) : member.bio ? (
+              <PortableText value={member.bio} />
+            ) : null}
             {member.linkedIn && (
               <a href={member.linkedIn} target="_blank" rel="noopener noreferrer" className={styles.linkedInLink}>
                 <LinkedInIcon />

@@ -42,6 +42,20 @@ const LocationIcon = () => (
   </svg>
 );
 
+const CalendarIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <rect x="2" y="3.5" width="14" height="12.5" rx="1" stroke="currentColor" strokeWidth="1.4" />
+    <path d="M2 7h14" stroke="currentColor" strokeWidth="1.4" />
+    <path d="M6 2v3M12 2v3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+  </svg>
+);
+
+const LocationIconSm = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+    <path d="M9 1.5A5.25 5.25 0 003.75 6.75c0 3.938 5.25 9.75 5.25 9.75s5.25-5.812 5.25-9.75A5.25 5.25 0 009 1.5zm0 7.125a1.875 1.875 0 110-3.75 1.875 1.875 0 010 3.75z" fill="currentColor" />
+  </svg>
+);
+
 
 export default function EventsClient({
   upcomingEvents,
@@ -172,7 +186,7 @@ export default function EventsClient({
             >
               {/* Left: meta + body */}
               <div className={styles.eventInfo}>
-                {/* Meta row */}
+                {/* Meta row — desktop only */}
                 <div className={styles.eventMeta}>
                   <span className={styles.metaText}>{event.time}</span>
                   <span className={styles.metaDot} />
@@ -191,6 +205,18 @@ export default function EventsClient({
                   )}
                   <h2 className={styles.eventTitle}>{event.title}</h2>
                   <p className={styles.eventDescription}>{event.description}</p>
+                </div>
+
+                {/* Date + location — mobile only (Figma icon row) */}
+                <div className={styles.mobileEventDetails}>
+                  <div className={styles.mobileDetailItem}>
+                    <CalendarIcon />
+                    <span>{event.date}</span>
+                  </div>
+                  <div className={styles.mobileDetailItem}>
+                    <LocationIconSm />
+                    <span>{event.location}</span>
+                  </div>
                 </div>
               </div>
 
@@ -220,7 +246,7 @@ export default function EventsClient({
                 </div>
               )}
 
-              {/* Bottom-right: actions */}
+              {/* Bottom-right: actions — desktop */}
               <div className={styles.eventActions}>
                 {event.registerLink ? (
                   <a href={event.registerLink} target="_blank" rel="noopener noreferrer" className={styles.registerBtn}>
@@ -237,6 +263,21 @@ export default function EventsClient({
                   <span className={styles.detailsLink}>See more details</span>
                 )}
               </div>
+
+              {/* VIEW EVENT — mobile only */}
+              {event.slug ? (
+                <Link href={`/events/${event.slug}`} className={styles.viewEventMobile}>
+                  <span>VIEW EVENT</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/images/events/arrow-circle-sm.svg" alt="" aria-hidden="true" width={25} height={25} />
+                </Link>
+              ) : (
+                <span className={styles.viewEventMobile}>
+                  <span>VIEW EVENT</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/images/events/arrow-circle-sm.svg" alt="" aria-hidden="true" width={25} height={25} />
+                </span>
+              )}
             </article>
           )) : (
             <p className={styles.noEvents}>No upcoming events{q || activeFilter !== ALL ? ' matching your search' : ''}.</p>
