@@ -182,7 +182,7 @@ const sections = [
         </p>
         <div className={styles.contactBox}>
           <p><strong style={{ color: '#fff' }}>Nina Jojer Africa Limited</strong></p>
-          <p>160 Awolowo Road, Ikoyi, Lagos, Nigeria</p>
+          <p>11A Chris Efuyemi Onanuga Street, Lekki Phase One, Lagos, Nigeria</p>
           <p>Email: <a href="mailto:privacy@ninajojer.com">privacy@ninajojer.com</a></p>
           <p>Phone: <a href="tel:+2347020013234">+234 (0)70 2001 3234</a></p>
         </div>

@@ -22,7 +22,7 @@ export function OrganizationJsonLd() {
         ],
         address: {
           '@type': 'PostalAddress',
-          streetAddress: '160, Awolowo Road, Ikoyi',
+          streetAddress: '11A Chris Efuyemi Onanuga Street, Lekki Phase One',
           addressLocality: 'Lagos',
           addressCountry: 'NG',
         },

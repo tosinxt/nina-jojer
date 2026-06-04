@@ -8,7 +8,7 @@ import Footer from '@/components/Footer';
 import styles from './contact.module.css';
 
 const offices = [
-  { city: 'Lagos', address: '160, Awolowo Road, Ikoyi, Lagos, Nigeria' },
+  { city: 'Lagos', address: '11A Chris Efuyemi Onanuga Street, Lekki Phase One, Lagos, Nigeria' },
   { city: 'Abuja', address: '21 Lobito Crescent, Wuse 2, Abuja, Nigeria' },
   { city: 'South Africa', address: 'Maine, 1 Amarand Ave, Menlyn, Pretoria, 0181, South Africa' },
   { city: 'Sierra Leone Office', address: '12A Main Motor Road, Congo Cross, Freetown, Sierra Leone' },

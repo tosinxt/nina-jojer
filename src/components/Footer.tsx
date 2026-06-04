@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styles from './Footer.module.css';
 
 const offices = [
-  { city: 'Lagos', address: '160, Awolowo Road\nIkoyi, Lagos, Nigeria' },
+  { city: 'Lagos', address: '11A Chris Efuyemi Onanuga Street,\nLekki Phase One, Lagos, Nigeria' },
   { city: 'Abuja', address: '21 Lobito Crescent,\nWuse 2, Abuja, Nigeria' },
   { city: 'South Africa', address: 'Maine, 1 Amarand Ave,\nMenlyn, Pretoria, 0181,\nSouth Africa' },
   { city: 'Sierra Leone Office', address: '12A Main Motor Road,\nCongo Cross, Freetown,\nSierra Leone' },
