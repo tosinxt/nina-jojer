@@ -783,9 +783,43 @@
   .heroImg { height: 400px; top: -60px; }
   .contentSection { padding: 60px 24px; }
   .moreSection { padding: 60px 24px; }
-  .relatedGrid { flex-direction: column; }
-  .relatedCard { height: auto; }
   .articleMeta { flex-direction: column; align-items: flex-start; gap: 16px; }
   .shareAndTags { flex-direction: column; align-items: flex-start; }
   .breadcrumbCurrent { display: none; }
+
+  /* ── MORE FROM OUR TEAM — Figma 933:18013 ── */
+  .relatedArticlesSection { padding: 50px 30px; }
+
+  .relatedArticlesInner { gap: 20px; }
+
+  /* Heading: 30px, tracking -0.9px per Figma */
+  .relatedArticlesHeading {
+    font-size: 30px;
+    letter-spacing: -0.9px;
+    line-height: 1.138;
+  }
+
+  /* Cards: single column, 24px gap, full width */
+  .relatedGrid { flex-direction: column; gap: 24px; }
+
+  /* Card: auto height, gap-[35px] between image and content */
+  .relatedCard {
+    height: auto;
+    gap: 35px;
+  }
+
+  /* Image: 192px tall */
+  .relatedCardImage { height: 192px; flex-shrink: 0; }
+
+  /* Content: no top padding (gap on card handles it), 35px sides+bottom */
+  .relatedCardContent {
+    padding: 0 35px 35px;
+    justify-content: space-between;
+  }
+
+  .relatedCardTop { gap: 20px; }
+  .relatedCardMeta { gap: 8px; }
+  .relatedCardTexts { gap: 6px; }
+  .relatedCardTitle { font-size: 16px; }
+  .relatedCardExcerpt { font-size: 14px; -webkit-line-clamp: 4; }
 }
