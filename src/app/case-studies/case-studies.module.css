@@ -303,9 +303,34 @@
   .heroTitle { font-size: 28px; }
   .heroDesktop { display: none; }
   .heroMobile { display: block; }
-  .portfolioSection { padding: 60px 24px; }
-  .cardRow2 { flex-direction: column; }
-  .card { flex-direction: column; height: auto; gap: 0; }
-  .cardImageWrap { height: 220px; flex: none; }
-  .cardContent { padding: 24px; }
+  .portfolioSection { padding: 60px 30px; gap: 24px; }
+  .portfolioInner { gap: 24px; }
+
+  /* All rows become single column */
+  .cardRow2 { flex-direction: column; gap: 24px; }
+  .cardRow1 { width: 100%; }
+
+  /* Card: vertical, #eee bg (matches Figma mobile) */
+  .card {
+    flex-direction: column;
+    height: auto;
+    gap: 0;
+    background: #eee;
+  }
+
+  /* Image: 266px tall, full width */
+  .cardImageWrap { height: 266px; flex: none; width: 100%; }
+
+  /* Content: 30px padding, flex column with 50px gap */
+  .cardContent {
+    padding: 30px;
+    justify-content: flex-start;
+    gap: 50px;
+  }
+
+  /* Title + excerpt: 4px gap (Figma gap-[4px]) */
+  .cardTexts { gap: 4px; }
+
+  .cardTitle { font-size: 20px; }
+  .cardExcerpt { font-size: 16px; }
 }
