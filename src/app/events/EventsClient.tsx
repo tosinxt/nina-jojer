@@ -218,6 +218,21 @@ export default function EventsClient({
                     <span>{event.location}</span>
                   </div>
                 </div>
+
+                {/* VIEW EVENT — mobile only, inside eventInfo so it sits at the bottom */}
+                {event.slug ? (
+                  <Link href={`/events/${event.slug}`} className={styles.viewEventMobile}>
+                    <span>VIEW EVENT</span>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/images/events/arrow-circle-sm.svg" alt="" aria-hidden="true" width={25} height={25} />
+                  </Link>
+                ) : (
+                  <span className={styles.viewEventMobile}>
+                    <span>VIEW EVENT</span>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/images/events/arrow-circle-sm.svg" alt="" aria-hidden="true" width={25} height={25} />
+                  </span>
+                )}
               </div>
 
               {/* Right: image */}
@@ -246,7 +261,7 @@ export default function EventsClient({
                 </div>
               )}
 
-              {/* Bottom-right: actions — desktop */}
+              {/* Bottom-right: actions — desktop only */}
               <div className={styles.eventActions}>
                 {event.registerLink ? (
                   <a href={event.registerLink} target="_blank" rel="noopener noreferrer" className={styles.registerBtn}>
@@ -263,21 +278,6 @@ export default function EventsClient({
                   <span className={styles.detailsLink}>See more details</span>
                 )}
               </div>
-
-              {/* VIEW EVENT — mobile only */}
-              {event.slug ? (
-                <Link href={`/events/${event.slug}`} className={styles.viewEventMobile}>
-                  <span>VIEW EVENT</span>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/events/arrow-circle-sm.svg" alt="" aria-hidden="true" width={25} height={25} />
-                </Link>
-              ) : (
-                <span className={styles.viewEventMobile}>
-                  <span>VIEW EVENT</span>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/images/events/arrow-circle-sm.svg" alt="" aria-hidden="true" width={25} height={25} />
-                </span>
-              )}
             </article>
           )) : (
             <p className={styles.noEvents}>No upcoming events{q || activeFilter !== ALL ? ' matching your search' : ''}.</p>

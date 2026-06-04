@@ -583,36 +583,36 @@
 }
 
 @media (max-width: 480px) {
-  /* Section */
-  .filterBar { padding: 24px 30px 0; gap: 0; flex-direction: column; align-items: flex-start; }
-  .filterPills { gap: 4px; }
-  .filterPill { font-size: 14px; padding: 8px 18px; }
-  .filterActions { align-self: flex-end; margin-top: -44px; }
+  /* Filter bar */
+  .filterBar { padding: 24px 30px 0; gap: 12px; flex-wrap: wrap; }
+  .filterPills { gap: 6px; }
+  .filterPill { font-size: 13px; padding: 7px 16px; }
 
+  /* Upcoming events section */
   .eventsSection { padding: 24px 30px 60px; gap: 30px; }
+  .eventsList { gap: 30px; }
 
   /* Card: flex column — image top, content below */
   .eventCard {
     display: flex;
     flex-direction: column;
-    background: #fff;
-    cursor: pointer;
+    background: #eee;
+    overflow: hidden;
   }
 
-  /* Image — top */
+  /* Image on top, near-square ratio */
   .eventImageWrap {
-    grid-column: unset;
-    grid-row: unset;
     order: 0;
     width: 100%;
-    aspect-ratio: 360 / 349.5;
+    aspect-ratio: 405 / 404;
     height: auto;
     min-height: unset;
     position: relative;
     overflow: hidden;
     flex-shrink: 0;
+    grid-column: unset;
+    grid-row: unset;
   }
-
   .eventImage {
     position: absolute;
     inset: 0;
@@ -628,111 +628,67 @@
     grid-row: unset;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    min-height: unset;
-    padding: 30px 30px 0 30px;
-    gap: 24px;
+    justify-content: space-between;
+    min-height: 408px;
+    padding: 30px;
+    gap: 16px;
   }
 
-  /* Desktop meta row — Show on mobile */
-  .eventMeta {
+  /* Hide desktop meta (time · date · location dots) */
+  .eventMeta { display: none; }
+
+  .eventBody { gap: 8px; }
+  .eventTitle { font-size: 16px; line-height: 1.3; }
+  .eventDescription { font-size: 14px; line-height: 1.5; }
+
+  /* Mobile date + location with icons */
+  .mobileEventDetails {
     display: flex;
-    gap: 5px;
+    flex-wrap: wrap;
+    gap: 16px;
     align-items: center;
   }
-
-  .metaText, .metaLocation {
-    font-size: 12px;
+  .mobileDetailItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-google-sans-flex), sans-serif;
     font-weight: 300;
-  }
-
-  .metaDot {
-    width: 5.5px;
-    height: 5.5px;
-    background-color: #d9d9d9;
-  }
-
-  .metaLocation svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  /* eventBody: category + title + desc */
-  .eventBody { gap: 8px; }
-
-  .categoryPill {
-    font-size: 12px;
-    padding: 4px 12px;
-  }
-
-  .eventTitle { font-size: 22px; line-height: 1.3; }
-
-  .eventDescription {
     font-size: 14px;
     line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    letter-spacing: -0.14px;
+    color: #000;
+    white-space: nowrap;
   }
 
-  /* Speakers */
-  .speakersBlock {
+  /* Hide desktop-only blocks */
+  .speakersBlock { display: none; }
+  .eventActions { display: none; }
+
+  /* VIEW EVENT — shown on mobile */
+  .viewEventMobile {
     display: flex;
-    order: 2;
-    grid-column: unset;
-    grid-row: unset;
-    padding: 24px 30px 0 30px;
-    gap: 12px;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: #000;
   }
-
-  .speakersLabel {
+  .viewEventMobile span {
+    font-family: var(--font-google-sans-flex), sans-serif;
+    font-weight: 600;
     font-size: 14px;
-    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.14px;
+    text-transform: uppercase;
+    white-space: nowrap;
   }
-
-  .speakerAvatar, .speakerAvatarPlaceholder {
-    width: 48px;
-    height: 48px;
-  }
-
-  .speakerName {
-    font-size: 14px;
-    font-weight: 300;
-  }
-
-  /* Actions */
-  .eventActions {
-    display: flex;
-    order: 3;
-    grid-column: unset;
-    grid-row: unset;
-    flex-direction: column;
-    padding: 24px 30px 30px 30px;
-    gap: 19px;
-  }
-
-  .registerBtn, .registerBtnDisabled {
-    width: 100%;
-    justify-content: center;
-    padding: 12px 20px;
-  }
-
-  .detailsLink {
-    width: 100%;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 300;
-  }
-
-  /* Hide old mobile event details and view event mobile */
-  .mobileEventDetails { display: none; }
-  .viewEventMobile { display: none; }
 
   /* Past events */
   .pastSection { padding: 60px 30px; }
   .pastGrid { flex-direction: column; gap: 30px; }
   .pastCard { width: 100%; }
-  .pastCardImageWrap { height: auto; aspect-ratio: 360 / 359.1; }
-  .pastCardContent { height: 408px; min-height: unset; }
+  .pastCardImageWrap { height: auto; aspect-ratio: 405 / 404; }
+  .pastCardContent { min-height: 408px; height: auto; }
+  .pastCardTitle { font-size: 16px; }
+  .pastCardExcerpt { font-size: 14px; }
 }
