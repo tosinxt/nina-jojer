@@ -12,6 +12,8 @@ export const insightsQuery = `*[_type == "insight"] | order(publishedAt desc) {
   readTime,
   tags,
   "image": image.asset->url,
+  "attachmentUrl": attachment.asset->url,
+  "attachmentName": attachment.asset->originalFilename,
 }`;
 
 export const featuredInsightsQuery = `*[_type == "insight"] | order(publishedAt desc) [0...4] {
@@ -27,6 +29,8 @@ export const featuredInsightsQuery = `*[_type == "insight"] | order(publishedAt 
   readTime,
   tags,
   "image": image.asset->url,
+  "attachmentUrl": attachment.asset->url,
+  "attachmentName": attachment.asset->originalFilename,
 }`;
 
 export const insightBySlugQuery = (slug: string) =>

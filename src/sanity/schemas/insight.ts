@@ -55,6 +55,13 @@ export const insightType = defineType({
       type: 'array',
       of: [{ type: 'block' }],
     }),
+    defineField({
+      name: 'attachment',
+      title: 'Downloadable Document',
+      type: 'file',
+      description: 'Upload a PDF or document that visitors can download from the insight card.',
+      options: { accept: '.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx' },
+    }),
   ],
   orderings: [{ title: 'Published Date, New', name: 'publishedAtDesc', by: [{ field: 'publishedAt', direction: 'desc' }] }],
 });

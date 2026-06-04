@@ -20,6 +20,8 @@ export type Article = {
   readTime: string;
   tags?: string[];
   image: string;
+  attachmentUrl?: string;
+  attachmentName?: string;
 };
 
 const CATEGORY_STYLES: Record<string, { bg: string; dot: string; text: string }> = {
@@ -191,6 +193,13 @@ export default function InsightsClient({ articles }: { articles: Article[] }) {
   );
 }
 
+const DownloadIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+    <path d="M7 1v8M4 6l3 3 3-3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M2 11h10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+  </svg>
+);
+
 function ArticleCard({ article }: { article: Article }) {
   const catStyle = CATEGORY_STYLES[article.category] ?? DEFAULT_STYLE;
   const slug = article.slug;
@@ -221,10 +230,24 @@ function ArticleCard({ article }: { article: Article }) {
             </p>
           </div>
         </div>
-        <span className={styles.learnMore}>
-          <span>LEARN MORE</span>
-          <LearnMoreChevron />
-        </span>
+        <div className={styles.cardFooter}>
+          <span className={styles.learnMore}>
+            <span>LEARN MORE</span>
+            <LearnMoreChevron />
+          </span>
+          {article.attachmentUrl && (
+            <a
+              href={article.attachmentUrl}
+              download={article.attachmentName ?? true}
+              className={styles.downloadBtn}
+              onClick={(e) => e.stopPropagation()}
+              aria-label="Download document"
+            >
+              <DownloadIcon />
+              <span>Download</span>
+            </a>
+          )}
+        </div>
       </div>
     </Link>
   );

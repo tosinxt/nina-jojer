@@ -303,6 +303,14 @@
   color: #929292;
 }
 
+/* ── CARD FOOTER ── */
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 /* ── LEARN MORE ── */
 .learnMore {
   display: flex;
@@ -310,6 +318,31 @@
   gap: 16px;
   text-decoration: none;
   color: #000;
+}
+
+/* ── DOWNLOAD BUTTON ── */
+.downloadBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid #610203;
+  border-radius: 4px;
+  background: transparent;
+  color: #610203;
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.12px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+
+.downloadBtn:hover {
+  background: #610203;
+  color: #fff;
 }
 
 .learnMore span {
