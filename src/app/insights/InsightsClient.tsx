@@ -205,50 +205,51 @@ function ArticleCard({ article }: { article: Article }) {
   const slug = article.slug;
 
   return (
-    <Link href={`/insights/${slug}`} className={styles.articleCard}>
-      <div className={styles.articleImageWrap}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={article.image} alt={article.title} className={styles.articleImage} />
-      </div>
-      <div className={styles.articleContent}>
-        <div className={styles.articleTop}>
-          <div className={styles.articleMeta}>
-            <div className={styles.categoryBadge} style={{ background: catStyle.bg }}>
-              <span className={styles.categoryDot} style={{ background: catStyle.dot }} />
-              <span className={styles.categoryLabel} style={{ color: catStyle.text }}>{article.category}</span>
+    <div className={styles.articleCard}>
+      <Link href={`/insights/${slug}`} className={styles.articleCardInner}>
+        <div className={styles.articleImageWrap}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={article.image} alt={article.title} className={styles.articleImage} />
+        </div>
+        <div className={styles.articleContent}>
+          <div className={styles.articleTop}>
+            <div className={styles.articleMeta}>
+              <div className={styles.categoryBadge} style={{ background: catStyle.bg }}>
+                <span className={styles.categoryDot} style={{ background: catStyle.dot }} />
+                <span className={styles.categoryLabel} style={{ color: catStyle.text }}>{article.category}</span>
+              </div>
+              <div className={styles.articleTexts}>
+                <h2 className={styles.articleTitle}>{article.title}</h2>
+                <p className={styles.articleExcerpt}>{article.excerpt}</p>
+              </div>
             </div>
-            <div className={styles.articleTexts}>
-              <h2 className={styles.articleTitle}>{article.title}</h2>
-              <p className={styles.articleExcerpt}>{article.excerpt}</p>
+            <div className={styles.authorRow}>
+              <p className={styles.authorName}>{article.author}</p>
+              <p className={styles.articleDate}>
+                <span>{formatInsightDate(article.publishedAt, true)} . </span>
+                <span className={styles.readTime}>{article.readTime}</span>
+              </p>
             </div>
           </div>
-          <div className={styles.authorRow}>
-            <p className={styles.authorName}>{article.author}</p>
-            <p className={styles.articleDate}>
-              <span>{formatInsightDate(article.publishedAt, true)} . </span>
-              <span className={styles.readTime}>{article.readTime}</span>
-            </p>
-          </div>
         </div>
-        <div className={styles.cardFooter}>
-          <span className={styles.learnMore}>
-            <span>LEARN MORE</span>
-            <LearnMoreChevron />
-          </span>
-          {article.attachmentUrl && (
-            <a
-              href={article.attachmentUrl}
-              download={article.attachmentName ?? true}
-              className={styles.downloadBtn}
-              onClick={(e) => e.stopPropagation()}
-              aria-label="Download document"
-            >
-              <DownloadIcon />
-              <span>Download</span>
-            </a>
-          )}
-        </div>
+      </Link>
+      <div className={styles.cardFooter}>
+        <Link href={`/insights/${slug}`} className={styles.learnMore}>
+          <span>LEARN MORE</span>
+          <LearnMoreChevron />
+        </Link>
+        {article.attachmentUrl && (
+          <a
+            href={article.attachmentUrl}
+            download={article.attachmentName ?? true}
+            className={styles.downloadBtn}
+            aria-label="Download document"
+          >
+            <DownloadIcon />
+            <span>Download</span>
+          </a>
+        )}
       </div>
-    </Link>
+    </div>
   );
 }

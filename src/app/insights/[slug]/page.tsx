@@ -263,7 +263,7 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
                         <div className={styles.relatedAuthorRow}>
                           <p className={styles.relatedAuthorName}>{a.author}</p>
                           <p className={styles.relatedDate}>
-                            <span>{a.publishedAt} . </span>
+                            <span>{formatInsightDate(a.publishedAt)} . </span>
                             <span className={styles.relatedReadTime}>{a.readTime}</span>
                           </p>
                         </div>
