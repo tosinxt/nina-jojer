@@ -26,6 +26,8 @@ type Insight = {
   image: string | null;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   body: any[] | null;
+  attachmentUrl?: string;
+  attachmentName?: string;
 };
 
 const ChevronRight = () => (
@@ -203,6 +205,29 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
                 </div>
               )}
             </div>
+
+            {article.attachmentUrl && (
+              <div className={styles.downloadCard}>
+                <p className={styles.downloadCardEyebrow}>Document</p>
+                <p className={styles.downloadCardName}>
+                  {article.attachmentName
+                    ? article.attachmentName.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ')
+                    : article.title}
+                </p>
+                <a
+                  href={article.attachmentUrl}
+                  download={article.attachmentName ?? true}
+                  className={styles.downloadCardLink}
+                >
+                  <span>Download the report</span>
+                  <span className={styles.downloadCardArrow} aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            )}
 
             <hr className={styles.divider} />
 

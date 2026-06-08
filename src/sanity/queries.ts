@@ -47,6 +47,8 @@ export const insightBySlugQuery = (slug: string) =>
   tags,
   "image": image.asset->url,
   body,
+  "attachmentUrl": attachment.asset->url,
+  "attachmentName": attachment.asset->originalFilename,
 }`;
 
 /* ── Case Studies ── */
