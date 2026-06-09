@@ -748,8 +748,21 @@
     white-space: nowrap;
   }
 
-  /* Hide desktop-only blocks */
-  .speakersBlock { display: none; }
+  /* White background under hero */
+  .filterBar { background: #fff; }
+  .eventsSection { background: #fff; }
+  .eventCard { background: #fff; border: 1px solid rgba(0,0,0,0.08); }
+
+  /* Show speakers on mobile */
+  .speakersBlock {
+    display: flex;
+    order: 2;
+    grid-column: unset;
+    grid-row: unset;
+    padding: 0 30px 24px;
+  }
+
+  /* Hide desktop-only actions */
   .eventActions { display: none; }
 
   /* VIEW EVENT — shown on mobile */
