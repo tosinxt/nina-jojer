@@ -167,6 +167,9 @@
   background: #fff;
   display: flex;
   flex-direction: column;
+  gap: 35px;
+  height: 572px;
+  overflow: hidden;
   cursor: pointer;
   text-decoration: none;
   color: inherit;
@@ -177,9 +180,11 @@
   flex-direction: column;
   flex: 1;
   min-width: 0;
-  gap: 0;
+  min-height: 0;
+  gap: 35px;
   text-decoration: none;
   color: inherit;
+  overflow: hidden;
 }
 
 .articleImageWrap {
@@ -188,7 +193,6 @@
   overflow: hidden;
   flex-shrink: 0;
   position: relative;
-  margin-bottom: 24px;
 }
 
 .articleImage {
@@ -201,15 +205,16 @@
 
 .articleContent {
   flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  padding: 0 24px 0;
+  padding: 0 35px 0;
 }
 
 .articleTop {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .articleMeta {
@@ -260,10 +265,6 @@
   letter-spacing: -0.16px;
   text-transform: uppercase;
   color: #000;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
 }
 
 .articleExcerpt {
@@ -293,8 +294,6 @@
   line-height: 1.32;
   letter-spacing: -0.56px;
   color: #000;
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -429,33 +428,18 @@
 }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 1280px) {
-  .articlesGrid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .articleContent { padding: 0 20px 0; }
-}
-
 @media (max-width: 1024px) {
   .blogSection { padding: 120px 40px 80px; }
   .blogTitles { width: 100%; }
-  .articlesGrid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .articleContent { padding: 0 16px 0; }
-  .cardFooter { padding: 14px 16px 20px; }
-  .articleTitle { font-size: 14px; }
-  .articleExcerpt { font-size: 13px; }
+  .articlesGrid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 768px) {
   .blogSection { padding: 100px 24px 60px; }
   .blogTitle { font-size: 36px; }
-  .articlesGrid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .articlesGrid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .articleCard { height: auto; }
   .filterTabs { gap: 8px; }
-  .articleImageWrap { height: 160px; }
-  .articleContent { padding: 0 14px 0; }
-  .cardFooter { padding: 12px 14px 18px; }
-  .articleTitle { font-size: 13px; }
-  .articleExcerpt { font-size: 12px; -webkit-line-clamp: 3; }
-  .authorName { font-size: 12px; }
-  .articleDate { font-size: 11px; }
 }
 
 @media (max-width: 480px) {
@@ -510,22 +494,35 @@
     padding-top: 1px;
   }
 
-  /* Cards: single column */
-  .articlesGrid { grid-template-columns: 1fr; gap: 14px; }
+  /* Cards: single column, auto height so no dead space */
+  .articlesGrid { grid-template-columns: 1fr; gap: 16px; }
 
-  .articleImageWrap { height: 200px; margin-bottom: 16px; }
+  .articleCard {
+    height: auto;
+    width: 100%;
+    gap: 20px;
+  }
 
-  .articleContent { padding: 0 16px 0; }
-  .articleTop { gap: 12px; }
+  .articleImageWrap { height: 200px; }
+
+  /* Content: tighter padding on mobile, natural flow (no space-between) */
+  .articleContent {
+    padding: 0 20px 24px;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+
+  .articleTop { gap: 16px; }
   .articleMeta { gap: 6px; }
   .articleTexts { gap: 4px; }
-  .articleTitle { font-size: 15px; -webkit-line-clamp: unset; }
+  .articleTitle { font-size: 15px; }
   .articleExcerpt { -webkit-line-clamp: 3; font-size: 13px; }
   .authorRow { gap: 2px; }
   .authorName { font-size: 13px; }
   .articleDate { font-size: 12px; }
 
-  .cardFooter { padding: 12px 16px 18px; }
+  .cardFooter { padding: 12px 20px 20px; }
+
   .learnMore { gap: 10px; }
   .learnMore span { font-size: 12px; }
 
