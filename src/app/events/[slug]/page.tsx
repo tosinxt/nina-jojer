@@ -194,20 +194,32 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
           {/* Speaker sidebar */}
           {event.speakers?.length > 0 && (
             <aside className={styles.speakerSidebar}>
-              <h2 className={styles.speakerSidebarTitle}>SPEAKER(S)</h2>
-              {event.speakers.map((s) => (
-                <div key={s.name} className={styles.speakerCard}>
-                  <div className={styles.speakerAvatarWrap}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={s.avatar || "/images/events/speaker-ujam-cropped.png"}
-                      alt={s.name}
-                      className={styles.speakerAvatarLg}
-                    />
-                  </div>
-                  <p className={styles.speakerNameLg}>{s.name}</p>
-                </div>
-              ))}
+              <h2 className={styles.speakerSidebarTitle}>
+                Speakers
+                <span className={styles.speakerCount}>{event.speakers.length}</span>
+              </h2>
+              <ul className={styles.speakerList}>
+                {event.speakers.map((s) => {
+                  const commaIdx = s.name.indexOf(',');
+                  const displayName = commaIdx > -1 ? s.name.slice(0, commaIdx).trim() : s.name;
+                  const role = commaIdx > -1 ? s.name.slice(commaIdx + 1).trim() : null;
+                  return (
+                    <li key={s.name} className={styles.speakerCard}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={s.avatar || "/images/events/speaker-ujam-cropped.png"}
+                        alt=""
+                        aria-hidden="true"
+                        className={styles.speakerAvatarLg}
+                      />
+                      <span className={styles.speakerInfo}>
+                        <span className={styles.speakerNameLg}>{displayName}</span>
+                        {role && <span className={styles.speakerRoleLg}>{role}</span>}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
             </aside>
           )}
         </div>
