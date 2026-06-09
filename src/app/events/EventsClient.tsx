@@ -343,68 +343,63 @@ export default function EventsClient({
   );
 }
 
-const VISIBLE = 3;
+const PREVIEW_COUNT = 2;
 
 function SpeakersBlock({ speakers }: { speakers: { name: string; avatar: string | null }[] }) {
   const [expanded, setExpanded] = useState(false);
-  const hidden = speakers.length - VISIBLE;
-  const visible = expanded ? speakers : speakers.slice(0, VISIBLE);
+  const hidden = speakers.length - PREVIEW_COUNT;
+  const hasMore = hidden > 0;
 
   return (
     <div className={styles.speakersBlock}>
       <p className={styles.speakersLabel}>Speakers</p>
-      <div className={styles.speakersList}>
-        {visible.map((s) => (
-          <div key={s.name} className={styles.speakerItem}>
+
+      {/* Always-visible: first 2 speakers */}
+      <ul className={styles.speakersPreviewList}>
+        {(expanded ? speakers : speakers.slice(0, PREVIEW_COUNT)).map((s) => (
+          <li key={s.name} className={styles.speakerItem}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={s.avatar || '/images/events/speaker-ujam-cropped.png'}
-              alt={s.name}
+              alt=""
+              aria-hidden="true"
               className={styles.speakerAvatar}
             />
             <span className={styles.speakerName}>{s.name}</span>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
 
-      {hidden > 0 && (
+      {/* Toggle pill */}
+      {hasMore && (
         <button
           className={styles.speakersToggle}
           onClick={() => setExpanded((v) => !v)}
           aria-expanded={expanded}
         >
-          {!expanded ? (
-            <>
-              {/* stacked avatars */}
-              <span className={styles.stackedAvatars} aria-hidden="true">
-                {speakers.slice(VISIBLE, VISIBLE + 3).map((s, i) => (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    key={s.name}
-                    src={s.avatar || '/images/events/speaker-ujam-cropped.png'}
-                    alt=""
-                    className={styles.stackedAvatar}
-                    style={{ zIndex: 3 - i, marginLeft: i === 0 ? 0 : -10 }}
-                  />
-                ))}
-              </span>
-              <span className={styles.speakersToggleLabel}>+{hidden} more speaker{hidden !== 1 ? 's' : ''}</span>
-              <span className={styles.speakersToggleChevron}>
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <path d="M2 4.5L6 8L10 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </span>
-            </>
-          ) : (
-            <>
-              <span className={styles.speakersToggleLabel}>Show less</span>
-              <span className={styles.speakersToggleChevron} style={{ transform: 'rotate(180deg)' }}>
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <path d="M2 4.5L6 8L10 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </span>
-            </>
+          {/* stacked avatars of hidden speakers (collapsed only) */}
+          {!expanded && (
+            <span className={styles.stackedAvatars} aria-hidden="true">
+              {speakers.slice(PREVIEW_COUNT, PREVIEW_COUNT + 3).map((s, i) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  key={s.name}
+                  src={s.avatar || '/images/events/speaker-ujam-cropped.png'}
+                  alt=""
+                  className={styles.stackedAvatar}
+                  style={{ zIndex: 3 - i, marginLeft: i === 0 ? 0 : -8 }}
+                />
+              ))}
+            </span>
           )}
+          <span className={styles.speakersToggleLabel}>
+            {expanded ? 'Show less' : `+${hidden} more speaker${hidden !== 1 ? 's' : ''}`}
+          </span>
+          <span className={`${styles.speakersToggleChevron} ${expanded ? styles.chevronUp : ''}`}>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 4.5L6 8L10 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </span>
         </button>
       )}
     </div>
