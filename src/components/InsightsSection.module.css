@@ -98,15 +98,23 @@
 
 /* ── Cards grid ── */
 .grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 572px;
   gap: 24px;
   width: 100%;
 }
 
-.card {
-  flex: 1 0 0;
+/* Reveal wrapper must fill its grid cell */
+.grid > * {
   min-width: 0;
-  height: 572px;
+  height: 100%;
+}
+
+.card {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
   background: white;
   display: flex;
   flex-direction: column;
@@ -335,42 +343,25 @@
     padding: 80px 40px;
   }
   .grid {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 572px;
-    gap: 24px;
-  }
-  .card {
-    flex: unset;
-    height: 100%;
-    min-height: unset;
   }
 }
 
-/* Mobile — matches Figma node 883:11062 exactly */
+/* Mobile */
 @media (max-width: 768px) {
   .section {
     padding: 100px 24px;
   }
 
-  /* Header stacks: title above, VIEW ALL below */
   .header {
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
   }
 
-  /* Cards: single column, 24px gap, each 572px tall */
   .grid {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    gap: 24px;
-  }
-
-  .card {
-    flex: none;
-    width: 100%;
-    height: 572px;
-    min-height: unset;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 572px;
   }
 }
