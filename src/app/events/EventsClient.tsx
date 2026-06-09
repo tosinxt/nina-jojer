@@ -322,13 +322,13 @@ export default function EventsClient({
                   </div>
                   {event.youtubeLink ? (
                     <a href={event.youtubeLink} target="_blank" rel="noopener noreferrer" className={styles.viewEventLink}>
-                      <span>WATCH ON YOUTUBE</span>
+                      <span>See more details</span>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src="/images/events/arrow-circle-sm.svg" alt="" aria-hidden="true" width={25} height={25} />
                     </a>
                   ) : (
                     <span className={styles.viewEventLink}>
-                      <span>WATCH ON YOUTUBE</span>
+                      <span>See more details</span>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src="/images/events/arrow-circle-sm.svg" alt="" aria-hidden="true" width={25} height={25} />
                     </span>
