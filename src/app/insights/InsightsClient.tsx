@@ -14,6 +14,7 @@ export type Article = {
   slug: string;
   category: string;
   excerpt: string;
+  authors?: { name: string; photo?: string | null }[] | null;
   author: string;
   publishedAt: string;
   updatedAt?: string;
@@ -61,7 +62,9 @@ export default function InsightsClient({ articles }: { articles: Article[] }) {
   const filterBtnRef = useRef<HTMLButtonElement | null>(null);
   const MOBILE_VISIBLE_TABS = 3;
 
-  const authors = Array.from(new Set(articles.map((a) => a.author).filter(Boolean)));
+  const authors = Array.from(new Set(articles.flatMap((a) =>
+    a.authors && a.authors.length > 0 ? a.authors.map(au => au.name) : a.author ? [a.author] : []
+  ).filter(Boolean)));
 
   const q = query.trim().toLowerCase();
 
@@ -89,10 +92,11 @@ export default function InsightsClient({ articles }: { articles: Article[] }) {
     const matchesSearch = !q || (
       a.title.toLowerCase().includes(q) ||
       a.excerpt.toLowerCase().includes(q) ||
-      a.author.toLowerCase().includes(q) ||
+      (a.authors?.some(au => au.name.toLowerCase().includes(q)) || a.author?.toLowerCase().includes(q)) ||
       a.category.toLowerCase().includes(q)
     );
-    const matchesAuthor = !filters.author || a.author === filters.author;
+    const articleAuthors = a.authors && a.authors.length > 0 ? a.authors.map(au => au.name) : a.author ? [a.author] : [];
+    const matchesAuthor = !filters.author || articleAuthors.includes(filters.author);
     const matchesPublished = inDateRange(a.publishedAt, filters.publishedAt);
     const matchesUpdated = inDateRange(a.updatedAt, filters.updatedAt);
     return matchesCategory && matchesSearch && matchesAuthor && matchesPublished && matchesUpdated;
@@ -218,7 +222,11 @@ function ArticleCard({ article }: { article: Article }) {
               </div>
             </div>
             <div className={styles.authorRow}>
-              <p className={styles.authorName}>{article.author}</p>
+              <p className={styles.authorName}>
+                {article.authors && article.authors.length > 0
+                  ? article.authors.map(au => au.name).join(', ')
+                  : article.author}
+              </p>
               <p className={styles.articleDate}>
                 <span>{formatInsightDate(article.publishedAt, true)} . </span>
                 <span className={styles.readTime}>{article.readTime}</span>

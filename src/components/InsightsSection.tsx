@@ -39,6 +39,7 @@ type FeaturedInsight = {
   category: string;
   title: string;
   excerpt: string;
+  authors?: { name: string; photo?: string | null }[] | null;
   author: string;
   publishedAt: string;
   readTime: string;
@@ -94,7 +95,9 @@ export default async function InsightsSection() {
                       </div>
                     </div>
                     <div className={styles.cardAuthor}>
-                      <p className={styles.authorName}>{post.author}</p>
+                      <p className={styles.authorName}>
+                        {post.authors && post.authors.length > 0 ? post.authors.map(a => a.name).join(', ') : post.author}
+                      </p>
                       <p className={styles.authorDate}>
                         {formatInsightDate(post.publishedAt, true)} . <span className={styles.readTime}>{post.readTime}</span>
                       </p>

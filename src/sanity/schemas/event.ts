@@ -14,7 +14,12 @@ export const eventType = defineType({
       validation: r => r.required(),
     }),
     defineField({ name: 'description', title: 'Description (short summary / teaser)', type: 'text', rows: 3 }),
-    defineField({ name: 'body', title: 'Body (full event details)', type: 'text', rows: 8 }),
+    defineField({
+      name: 'body',
+      title: 'Body (full event details)',
+      type: 'array',
+      of: [{ type: 'block' }],
+    }),
     defineField({
       name: 'category',
       title: 'Category',

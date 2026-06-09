@@ -21,12 +21,34 @@ export const insightType = defineType({
       validation: r => r.required(),
     }),
     defineField({ name: 'excerpt', title: 'Excerpt (short teaser)', type: 'text', rows: 3 }),
-    defineField({ name: 'author', title: 'Author Name', type: 'string' }),
+    defineField({ name: 'author', title: 'Author Name (legacy)', type: 'string', hidden: true }),
     defineField({
       name: 'authorImage',
-      title: 'Author Photo',
+      title: 'Author Photo (legacy)',
       type: 'image',
       options: { hotspot: true },
+      hidden: true,
+    }),
+    defineField({
+      name: 'authors',
+      title: 'Authors',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({ name: 'name', title: 'Name', type: 'string', validation: r => r.required() }),
+            defineField({
+              name: 'photo',
+              title: 'Photo',
+              type: 'image',
+              options: { hotspot: true },
+            }),
+          ],
+          preview: { select: { title: 'name', media: 'photo' } },
+        },
+      ],
+      description: 'Add one or more authors for this article.',
     }),
     defineField({
       name: 'publishedAt',

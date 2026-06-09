@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { PortableText, type PortableTextComponents } from '@portabletext/react';
 import Navbar from '@/components/Navbar';
@@ -12,12 +13,15 @@ import styles from '../article/article.module.css';
 
 export const revalidate = 60;
 
+type InsightAuthor = { name: string; photo: string | null };
+
 type Insight = {
   _id: string;
   title: string;
   slug: string;
   category: string;
   excerpt: string;
+  authors: InsightAuthor[] | null;
   author: string;
   authorImage: string | null;
   publishedAt: string;
@@ -102,6 +106,40 @@ const portableTextComponents: PortableTextComponents = {
   },
 };
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  let article: Insight | null = null;
+  try {
+    article = await client.fetch<Insight>(insightBySlugQuery(slug));
+  } catch { /* Sanity not configured */ }
+
+  if (!article) return {};
+
+  const authorNames = article.authors?.map(a => a.name) ?? (article.author ? [article.author] : []);
+  const description = article.excerpt ?? undefined;
+  const imageUrl = article.image ?? undefined;
+
+  return {
+    title: article.title,
+    description,
+    authors: authorNames.map(name => ({ name })),
+    openGraph: {
+      title: article.title,
+      description,
+      type: 'article',
+      publishedTime: article.publishedAt,
+      authors: authorNames,
+      images: imageUrl ? [{ url: imageUrl, width: 1200, height: 630, alt: article.title }] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description,
+      images: imageUrl ? [imageUrl] : [],
+    },
+  };
+}
+
 export default async function InsightDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
@@ -139,24 +177,36 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
           </div>
 
           <div className={styles.articleMeta}>
-            <div className={styles.authorInfo}>
-              {article.authorImage && (
-                <div className={styles.authorAvatarWrap}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={article.authorImage} alt={article.author} className={styles.authorAvatar} />
+            {(() => {
+              const resolvedAuthors: InsightAuthor[] =
+                article.authors && article.authors.length > 0
+                  ? article.authors
+                  : article.author
+                  ? [{ name: article.author, photo: article.authorImage }]
+                  : [];
+              return resolvedAuthors.map((au, i) => (
+                <div key={i} className={styles.authorInfo}>
+                  {au.photo && (
+                    <div className={styles.authorAvatarWrap}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={au.photo} alt={au.name} className={styles.authorAvatar} />
+                    </div>
+                  )}
+                  <div className={styles.authorDetails}>
+                    <div className={styles.authorNameRow}>
+                      <span className={styles.authorName}>{au.name}</span>
+                      <span className={styles.expertBadge}>NJ EXPERT</span>
+                    </div>
+                    {i === 0 && (
+                      <p className={styles.articleDate}>
+                        <span>{formatInsightDate(article.publishedAt, true)} . </span>
+                        <span className={styles.readTime}>{article.readTime}</span>
+                      </p>
+                    )}
+                  </div>
                 </div>
-              )}
-              <div className={styles.authorDetails}>
-                <div className={styles.authorNameRow}>
-                  <span className={styles.authorName}>{article.author}</span>
-                  <span className={styles.expertBadge}>NJ EXPERT</span>
-                </div>
-                <p className={styles.articleDate}>
-                  <span>{formatInsightDate(article.publishedAt, true)} . </span>
-                  <span className={styles.readTime}>{article.readTime}</span>
-                </p>
-              </div>
-            </div>
+              ));
+            })()}
             <div className={styles.shareButtons}>
               <button className={styles.shareBtn} aria-label="Copy link"><LinkIcon /></button>
               <button className={styles.shareBtn} aria-label="Share on LinkedIn"><LinkedInIcon /></button>
@@ -231,26 +281,36 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
 
             <hr className={styles.divider} />
 
-            {article.author && (
-              <div className={styles.authorBio}>
-                <div className={styles.authorAvatarWrap}>
-                  {article.authorImage ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={article.authorImage} alt={article.author} className={styles.authorAvatar} />
-                  ) : (
-                    <div className={styles.authorAvatarPlaceholder}>{article.author.charAt(0)}</div>
-                  )}
+            {(() => {
+              const resolvedAuthors: InsightAuthor[] =
+                article.authors && article.authors.length > 0
+                  ? article.authors
+                  : article.author
+                  ? [{ name: article.author, photo: article.authorImage }]
+                  : [];
+              return resolvedAuthors.map((au, i) => (
+                <div key={i} className={styles.authorBio}>
+                  <div className={styles.authorAvatarWrap}>
+                    {au.photo ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={au.photo} alt={au.name} className={styles.authorAvatar} />
+                    ) : (
+                      <div className={styles.authorAvatarPlaceholder}>{au.name.charAt(0)}</div>
+                    )}
+                  </div>
+                  <div className={styles.authorBioDetails}>
+                    <p className={styles.authorBioName}>{au.name}</p>
+                    {i === 0 && (
+                      <p className={styles.authorBioDate}>
+                        {article.publishedAt && <span>{formatInsightDate(article.publishedAt, true)}</span>}
+                        {article.publishedAt && article.readTime && <span> · </span>}
+                        {article.readTime && <span className={styles.authorBioReadTime}>{article.readTime}</span>}
+                      </p>
+                    )}
+                  </div>
                 </div>
-                <div className={styles.authorBioDetails}>
-                  <p className={styles.authorBioName}>{article.author}</p>
-                  <p className={styles.authorBioDate}>
-                    {article.publishedAt && <span>{formatInsightDate(article.publishedAt, true)}</span>}
-                    {article.publishedAt && article.readTime && <span> · </span>}
-                    {article.readTime && <span className={styles.authorBioReadTime}>{article.readTime}</span>}
-                  </p>
-                </div>
-              </div>
-            )}
+              ));
+            })()}
           </div>
 
         </div>
@@ -286,7 +346,9 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
                           </div>
                         </div>
                         <div className={styles.relatedAuthorRow}>
-                          <p className={styles.relatedAuthorName}>{a.author}</p>
+                          <p className={styles.relatedAuthorName}>
+                            {a.authors && a.authors.length > 0 ? a.authors.map(au => au.name).join(', ') : a.author}
+                          </p>
                           <p className={styles.relatedDate}>
                             <span>{formatInsightDate(a.publishedAt)} . </span>
                             <span className={styles.relatedReadTime}>{a.readTime}</span>

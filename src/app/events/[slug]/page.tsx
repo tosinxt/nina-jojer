@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
 import Newsletter from "@/components/Newsletter";
@@ -15,7 +16,8 @@ type Event = {
   title: string;
   slug: string;
   description: string | null;
-  body: string | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  body: any[] | string | null;
   category: string;
   date: string;
   time: string;
@@ -23,6 +25,33 @@ type Event = {
   image: string | null;
   registerLink?: string | null;
   speakers: Speaker[];
+};
+
+const portableTextComponents: PortableTextComponents = {
+  block: {
+    h1: ({ children }) => <h1>{children}</h1>,
+    h2: ({ children }) => <h2>{children}</h2>,
+    h3: ({ children }) => <h3>{children}</h3>,
+    h4: ({ children }) => <h4>{children}</h4>,
+    blockquote: ({ children }) => <blockquote>{children}</blockquote>,
+    normal: ({ children }) => <p>{children}</p>,
+  },
+  list: {
+    bullet: ({ children }) => <ul>{children}</ul>,
+    number: ({ children }) => <ol>{children}</ol>,
+  },
+  listItem: {
+    bullet: ({ children }) => <li>{children}</li>,
+    number: ({ children }) => <li>{children}</li>,
+  },
+  marks: {
+    strong: ({ children }) => <strong>{children}</strong>,
+    em: ({ children }) => <em>{children}</em>,
+    underline: ({ children }) => <span style={{ textDecoration: 'underline' }}>{children}</span>,
+    link: ({ value, children }) => (
+      <a href={value?.href} target="_blank" rel="noopener noreferrer">{children}</a>
+    ),
+  },
 };
 
 const fallbackEvents: Event[] = [
@@ -148,7 +177,9 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
           <div className={styles.articleCol}>
             {(event.body || event.description) && (
               <div className={styles.richText}>
-                {(event.body ?? event.description)!.split('\n').map((para, i) => (
+                {Array.isArray(event.body) ? (
+                  <PortableText value={event.body} components={portableTextComponents} />
+                ) : (event.body ?? event.description)!.split('\n').map((para, i) => (
                   <p key={i} className={styles.bodyText}>{para}</p>
                 ))}
               </div>

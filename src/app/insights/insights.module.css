@@ -521,12 +521,9 @@
   .authorName { font-size: 13px; }
   .articleDate { font-size: 12px; }
 
-  /* LEARN MORE — add top separator feel */
-  .learnMore {
-    padding-top: 16px;
-    border-top: 1px solid rgba(0,0,0,0.08);
-    gap: 10px;
-  }
+  .cardFooter { padding: 12px 20px 20px; }
+
+  .learnMore { gap: 10px; }
   .learnMore span { font-size: 12px; }
 
   .viewMore { margin-top: 4px; }
