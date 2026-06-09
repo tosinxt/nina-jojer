@@ -320,6 +320,56 @@
   white-space: nowrap;
 }
 
+/* ── SPEAKERS TOGGLE ── */
+.speakersToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 100px;
+  padding: 6px 12px 6px 8px;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: border-color 0.18s, background 0.18s;
+}
+
+.speakersToggle:hover {
+  border-color: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.stackedAvatars {
+  display: flex;
+  align-items: center;
+}
+
+.stackedAvatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 2px solid #fff;
+  flex-shrink: 0;
+}
+
+.speakersToggleLabel {
+  font-family: var(--font-google-sans-flex), sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: -0.13px;
+  color: #000;
+  white-space: nowrap;
+}
+
+.speakersToggleChevron {
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease;
+}
+
 /* Actions */
 .eventActions {
   grid-column: 1;

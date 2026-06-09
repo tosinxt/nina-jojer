@@ -243,22 +243,7 @@ export default function EventsClient({
 
               {/* Bottom-left: speakers */}
               {event.speakers?.length > 0 && (
-                <div className={styles.speakersBlock}>
-                  <p className={styles.speakersLabel}>Speakers</p>
-                  <div className={styles.speakersList}>
-                    {event.speakers.map((s) => (
-                      <div key={s.name} className={styles.speakerItem}>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={s.avatar || '/images/events/speaker-ujam-cropped.png'}
-                          alt={s.name}
-                          className={styles.speakerAvatar}
-                        />
-                        <span className={styles.speakerName}>{s.name}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <SpeakersBlock speakers={event.speakers} />
               )}
 
               {/* Bottom-right: actions — desktop only */}
@@ -355,5 +340,73 @@ export default function EventsClient({
         </div>
       </section>
     </>
+  );
+}
+
+const VISIBLE = 3;
+
+function SpeakersBlock({ speakers }: { speakers: { name: string; avatar: string | null }[] }) {
+  const [expanded, setExpanded] = useState(false);
+  const hidden = speakers.length - VISIBLE;
+  const visible = expanded ? speakers : speakers.slice(0, VISIBLE);
+
+  return (
+    <div className={styles.speakersBlock}>
+      <p className={styles.speakersLabel}>Speakers</p>
+      <div className={styles.speakersList}>
+        {visible.map((s) => (
+          <div key={s.name} className={styles.speakerItem}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={s.avatar || '/images/events/speaker-ujam-cropped.png'}
+              alt={s.name}
+              className={styles.speakerAvatar}
+            />
+            <span className={styles.speakerName}>{s.name}</span>
+          </div>
+        ))}
+      </div>
+
+      {hidden > 0 && (
+        <button
+          className={styles.speakersToggle}
+          onClick={() => setExpanded((v) => !v)}
+          aria-expanded={expanded}
+        >
+          {!expanded ? (
+            <>
+              {/* stacked avatars */}
+              <span className={styles.stackedAvatars} aria-hidden="true">
+                {speakers.slice(VISIBLE, VISIBLE + 3).map((s, i) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    key={s.name}
+                    src={s.avatar || '/images/events/speaker-ujam-cropped.png'}
+                    alt=""
+                    className={styles.stackedAvatar}
+                    style={{ zIndex: 3 - i, marginLeft: i === 0 ? 0 : -10 }}
+                  />
+                ))}
+              </span>
+              <span className={styles.speakersToggleLabel}>+{hidden} more speaker{hidden !== 1 ? 's' : ''}</span>
+              <span className={styles.speakersToggleChevron}>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 4.5L6 8L10 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span>
+            </>
+          ) : (
+            <>
+              <span className={styles.speakersToggleLabel}>Show less</span>
+              <span className={styles.speakersToggleChevron} style={{ transform: 'rotate(180deg)' }}>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <path d="M2 4.5L6 8L10 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span>
+            </>
+          )}
+        </button>
+      )}
+    </div>
   );
 }
