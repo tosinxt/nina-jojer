@@ -104,7 +104,7 @@ export default function RootLayout({
       <body className={googleSansFlex.variable}>
         <Preloader />
         {children}
-        <CookieBanner />
+        {/* <CookieBanner /> */}
       </body>
     </html>
   );

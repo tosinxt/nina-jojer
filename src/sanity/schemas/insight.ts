@@ -75,7 +75,7 @@ export const insightType = defineType({
       name: 'body',
       title: 'Body',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [{ type: 'block' }, { type: 'table' }],
     }),
     defineField({
       name: 'attachment',

@@ -490,6 +490,7 @@
   text-decoration: none;
   color: #000;
   flex-shrink: 0;
+  margin-top: 40px;
 }
 
 .viewMore span {
@@ -645,6 +646,8 @@
 /* Mobile-only elements — hidden on desktop */
 .mobileEventDetails { display: none; }
 .viewEventMobile { display: none; }
+.speakersMobile { display: none; }
+.speakersDesktop { display: contents; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
@@ -753,13 +756,14 @@
   .eventsSection { background: #fff; }
   .eventCard { background: #eee; }
 
-  /* Show speakers on mobile */
-  .speakersBlock {
+  /* Show speakers inside eventInfo on mobile, hide the desktop grid cell */
+  .speakersMobile { display: block; }
+  .speakersDesktop { display: none; }
+
+  /* The speakersBlock inside speakersMobile needs no grid positioning */
+  .speakersMobile .speakersBlock {
     display: flex;
-    order: 2;
-    grid-column: unset;
-    grid-row: unset;
-    padding: 0 30px 24px;
+    padding: 0;
   }
 
   /* Hide desktop-only actions */

@@ -621,25 +621,56 @@
 }
 
 @media (max-width: 768px) {
+  /* Header */
   .headerContent { padding: 0 24px 32px; }
   .headerText { width: 100%; }
-  .headerTitle { font-size: 36px; }
-  .heroWrap { height: 300px; }
-  .contentSection { padding: 48px 24px; gap: 60px; }
-  .subServicesGrid { gap: 40px; }
+  .headerTitle { font-size: 32px; letter-spacing: -1px; }
+  .headerBody { font-size: 16px; }
+  .heroWrap { height: 260px; }
+
+  /* Content section */
+  .contentSection { padding: 48px 24px; gap: 48px; }
+  .richText { flex-direction: column; gap: 32px; }
+  .overviewCol { width: 100%; }
+  .colHeading { font-size: 20px; }
+  .colBody { font-size: 16px; }
+  .colBody p { font-size: 16px; }
+
+  /* Sub services */
+  .subServices { gap: 32px; }
+  .subServicesGrid { gap: 32px; }
   .subServiceCard { width: 100%; }
+  .subServiceTitle { font-size: 18px; }
+  .subServiceDesc { font-size: 16px; }
+
+  /* Case studies */
   .caseStudies { padding: 0 24px 60px; }
-  .caseStudiesGrid { flex-direction: column; }
-  .caseCard { height: auto; flex-direction: column; }
-  .caseCardImage { height: 240px; }
+  .caseStudiesHeader { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .caseStudiesGrid { flex-direction: column; gap: 24px; }
+  .caseCard { height: auto; flex-direction: column; gap: 0; }
+  .caseCardImageWrap { height: 220px; flex: none; }
   .caseCardContent { padding: 24px; }
+
+  /* FAQ */
   .faqSection { padding: 0 24px 60px; }
   .faqInner { flex-direction: column; gap: 40px; }
-  .faqLeft { width: 100%; }
+  .faqLeft { width: 100%; gap: 40px; order: 2; }
+  .faqRight { order: 1; }
+  .faqTitle { font-size: 20px; }
+  .faqQuestion { font-size: 16px; }
+
+  /* See Other Solutions */
   .otherSolutions { flex-direction: column; }
   .otherLeft { position: static; width: 100%; min-height: unset; padding: 48px 24px 32px; }
+  .otherTitle { font-size: 28px; }
   .otherCards { padding: 0 24px 48px; }
-  .otherCardWrapper { position: static; z-index: auto !important; }
-  .otherCard { height: auto; box-shadow: none; }
-  .otherCardBody { min-height: unset; padding: 24px; }
+  .otherCardWrapper { position: static; z-index: auto !important; padding-bottom: 40px; }
+  .otherCardWrapper:last-child { padding-bottom: 0; }
+  .otherCard { height: auto; overflow: hidden; }
+  .otherCardImageWrap { height: 220px; flex: none; }
+  .otherCardBody { min-height: unset; padding: 24px; overflow: hidden; }
+  .otherCardTitle { font-size: 20px; }
+  .otherCardDesc { font-size: 16px; }
+  .tags { gap: 6px; overflow: hidden; }
+  .tag { white-space: normal; word-break: break-word; }
 }

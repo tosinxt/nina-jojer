@@ -79,6 +79,27 @@ const CATEGORY_STYLES: Record<string, { bg: string; dot: string; text: string }>
 const DEFAULT_STYLE = { bg: 'rgba(97,2,3,0.10)', dot: '#610203', text: '#610203' };
 
 const portableTextComponents: PortableTextComponents = {
+  types: {
+    table: ({ value }: { value: { rows: { cells: string[] }[] } }) => (
+      <div style={{ overflowX: 'auto', margin: '24px 0' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '15px', lineHeight: '1.5' }}>
+          <tbody>
+            {value?.rows?.map((row, ri) => (
+              <tr key={ri}>
+                {row.cells.map((cell, ci) => (
+                  ri === 0 ? (
+                    <th key={ci} style={{ border: '1px solid #e0e0e0', padding: '10px 14px', background: '#f5f5f5', fontWeight: 700, textAlign: 'left' }}>{cell}</th>
+                  ) : (
+                    <td key={ci} style={{ border: '1px solid #e0e0e0', padding: '10px 14px' }}>{cell}</td>
+                  )
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    ),
+  },
   block: {
     h1: ({ children }) => <h1>{children}</h1>,
     h2: ({ children }) => <h2>{children}</h2>,

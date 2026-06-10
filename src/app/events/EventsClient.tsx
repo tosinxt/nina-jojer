@@ -219,6 +219,13 @@ export default function EventsClient({
                   </div>
                 </div>
 
+                {/* Speakers — mobile only, sits above VIEW EVENT */}
+                {event.speakers?.length > 0 && (
+                  <div className={styles.speakersMobile}>
+                    <SpeakersBlock speakers={event.speakers} slug={event.slug} />
+                  </div>
+                )}
+
                 {/* VIEW EVENT — mobile only, inside eventInfo so it sits at the bottom */}
                 {event.slug ? (
                   <Link href={`/events/${event.slug}`} className={styles.viewEventMobile}>
@@ -241,9 +248,11 @@ export default function EventsClient({
                 <img src={event.image} alt={event.title} className={styles.eventImage} />
               </div>
 
-              {/* Bottom-left: speakers */}
+              {/* Bottom-left: speakers — desktop only */}
               {event.speakers?.length > 0 && (
-                <SpeakersBlock speakers={event.speakers} slug={event.slug} />
+                <div className={styles.speakersDesktop}>
+                  <SpeakersBlock speakers={event.speakers} slug={event.slug} />
+                </div>
               )}
 
               {/* Bottom-right: actions — desktop only */}
@@ -277,8 +286,6 @@ export default function EventsClient({
             label="ARCHIVE"
             title="Past Events"
             subtitle="Revisit insights from our past gatherings"
-            linkLabel="view more"
-            linkHref="/events/past"
           />
           {visiblePast.length === 0 && (
             <p className={styles.noEvents}>No past events{q || activeFilter !== ALL ? ' matching your search' : ''}.</p>
@@ -337,6 +344,13 @@ export default function EventsClient({
               </article>
             ))}
           </div>
+          {pastEvents.length > 0 && (
+            <Link href="/events/past" className={styles.viewMore}>
+              <span>View more</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/events/arrow-circle-sm.svg" alt="" aria-hidden="true" width={25} height={25} />
+            </Link>
+          )}
         </div>
       </section>
     </>
