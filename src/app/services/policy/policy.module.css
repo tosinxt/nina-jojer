@@ -231,7 +231,7 @@
   background: #eee;
   display: flex;
   gap: 50px;
-  height: 510px;
+  height: 680px;
   overflow: hidden;
 }
 
@@ -278,7 +278,7 @@
 .caseCardText {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 12px;
 }
 
 .caseCardTitle {
@@ -327,7 +327,7 @@
 .faqInner {
   display: flex;
   gap: 78px;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 .faqLeft {
@@ -649,13 +649,15 @@
   .caseStudiesGrid { flex-direction: column; gap: 24px; }
   .caseCard { height: auto; flex-direction: column; gap: 0; }
   .caseCardImageWrap { height: 220px; flex: none; }
-  .caseCardContent { padding: 24px; }
+  .caseCardContent { padding: 32px 24px; min-height: 320px; }
 
   /* FAQ */
   .faqSection { padding: 0 24px 60px; }
-  .faqInner { flex-direction: column; gap: 40px; }
-  .faqLeft { width: 100%; gap: 40px; order: 2; }
-  .faqRight { order: 1; }
+  .faqInner { display: grid; grid-template-areas: "leftTop" "right" "cta"; gap: 40px; }
+  .faqLeft { display: contents; }
+  .faqRight { grid-area: right; }
+  .faqLeftTop { grid-area: leftTop; }
+  .faqCta { grid-area: cta; }
   .faqTitle { font-size: 20px; }
   .faqQuestion { font-size: 16px; }
 
