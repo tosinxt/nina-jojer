@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { canonicalUrl } from '@/lib/seo';
 import Navbar from '@/components/Navbar';
@@ -192,6 +193,7 @@ const sections = [
 ];
 
 export default function CookiesPage() {
+  notFound();
   return (
     <main className={styles.page}>
       <Navbar />
