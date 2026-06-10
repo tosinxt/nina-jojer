@@ -205,28 +205,34 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
                   : article.author
                   ? [{ name: article.author, photo: article.authorImage }]
                   : [];
-              return resolvedAuthors.map((au, i) => (
-                <div key={i} className={styles.authorInfo}>
-                  {au.photo && (
-                    <div className={styles.authorAvatarWrap}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={au.photo} alt={au.name} className={styles.authorAvatar} />
-                    </div>
-                  )}
-                  <div className={styles.authorDetails}>
-                    <div className={styles.authorNameRow}>
-                      <span className={styles.authorName}>{au.name}</span>
-                      <span className={styles.expertBadge}>NJ EXPERT</span>
-                    </div>
-                    {i === 0 && (
-                      <p className={styles.articleDate}>
-                        <span>{formatInsightDate(article.publishedAt, true)} . </span>
-                        <span className={styles.readTime}>{article.readTime}</span>
-                      </p>
-                    )}
+              return (
+                <div className={styles.authorsBlock}>
+                  <div className={styles.authorsList}>
+                    {resolvedAuthors.map((au, i) => (
+                      <div key={i} className={styles.authorInfo}>
+                        {au.photo ? (
+                          <div className={styles.authorAvatarWrap}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={au.photo} alt={au.name} className={styles.authorAvatar} />
+                          </div>
+                        ) : (
+                          <div className={styles.authorAvatarPlaceholder}>{au.name.charAt(0)}</div>
+                        )}
+                        <div className={styles.authorDetails}>
+                          <div className={styles.authorNameRow}>
+                            <span className={styles.authorName}>{au.name}</span>
+                            <span className={styles.expertBadge}>NJ EXPERT</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
+                  <p className={styles.articleDate}>
+                    <span>{formatInsightDate(article.publishedAt, true)} . </span>
+                    <span className={styles.readTime}>{article.readTime}</span>
+                  </p>
                 </div>
-              ));
+              );
             })()}
             <div className={styles.shareButtons}>
               <button className={styles.shareBtn} aria-label="Copy link"><LinkIcon /></button>
@@ -309,28 +315,32 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
                   : article.author
                   ? [{ name: article.author, photo: article.authorImage }]
                   : [];
-              return resolvedAuthors.map((au, i) => (
-                <div key={i} className={styles.authorBio}>
-                  <div className={styles.authorAvatarWrap}>
-                    {au.photo ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={au.photo} alt={au.name} className={styles.authorAvatar} />
-                    ) : (
-                      <div className={styles.authorAvatarPlaceholder}>{au.name.charAt(0)}</div>
-                    )}
-                  </div>
-                  <div className={styles.authorBioDetails}>
-                    <p className={styles.authorBioName}>{au.name}</p>
-                    {i === 0 && (
-                      <p className={styles.authorBioDate}>
-                        {article.publishedAt && <span>{formatInsightDate(article.publishedAt, true)}</span>}
-                        {article.publishedAt && article.readTime && <span> · </span>}
-                        {article.readTime && <span className={styles.authorBioReadTime}>{article.readTime}</span>}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              ));
+              return (
+                <>
+                  {resolvedAuthors.map((au, i) => (
+                    <div key={i} className={styles.authorBio}>
+                      <div className={styles.authorAvatarWrap}>
+                        {au.photo ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={au.photo} alt={au.name} className={styles.authorAvatar} />
+                        ) : (
+                          <div className={styles.authorAvatarPlaceholder}>{au.name.charAt(0)}</div>
+                        )}
+                      </div>
+                      <div className={styles.authorBioDetails}>
+                        <p className={styles.authorBioName}>{au.name}</p>
+                      </div>
+                    </div>
+                  ))}
+                  {(article.publishedAt || article.readTime) && (
+                    <p className={styles.authorBioDate}>
+                      {article.publishedAt && <span>{formatInsightDate(article.publishedAt, true)}</span>}
+                      {article.publishedAt && article.readTime && <span> · </span>}
+                      {article.readTime && <span className={styles.authorBioReadTime}>{article.readTime}</span>}
+                    </p>
+                  )}
+                </>
+              );
             })()}
           </div>
 
