@@ -1,10 +1,12 @@
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import CtaSection from '@/components/CtaSection';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
 import { client } from '@/sanity/client';
 import { teamMemberBySlugQuery } from '@/sanity/queries';
+import { siteConfig, canonicalUrl } from '@/lib/seo';
 import { PortableText } from '@portabletext/react';
 import styles from './staff.module.css';
 
@@ -28,6 +30,43 @@ const LinkedInIcon = () => (
     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="currentColor" />
   </svg>
 );
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  let member: TeamMember | null = null;
+  try {
+    member = await client.fetch<TeamMember>(teamMemberBySlugQuery(slug), {}, { next: { revalidate: 60 } });
+  } catch { /* Sanity not configured */ }
+
+  if (!member) return {};
+
+  const title = `${member.name} — ${member.role}`;
+  const description = member.credentials
+    ? `${member.name}, ${member.credentials}. ${member.role} at ${siteConfig.name}.`
+    : `${member.name}, ${member.role} at ${siteConfig.name}.`;
+  const imageUrl = member.photo ?? siteConfig.ogImage;
+  const url = canonicalUrl(`/about/team/${slug}`);
+
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: siteConfig.name,
+      type: 'profile',
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: member.name }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [imageUrl],
+    },
+  };
+}
 
 export default async function StaffDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

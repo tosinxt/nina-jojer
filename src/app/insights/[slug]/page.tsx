@@ -9,6 +9,7 @@ import Footer from '@/components/Footer';
 import { client } from '@/sanity/client';
 import { insightBySlugQuery, insightsQuery } from '@/sanity/queries';
 import { formatInsightDate } from '@/lib/formatDate';
+import { siteConfig, canonicalUrl } from '@/lib/seo';
 import styles from '../article/article.module.css';
 
 export const revalidate = 60;
@@ -138,25 +139,29 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const authorNames = article.authors?.map(a => a.name) ?? (article.author ? [article.author] : []);
   const description = article.excerpt ?? undefined;
-  const imageUrl = article.image ?? undefined;
+  const imageUrl = article.image ?? siteConfig.ogImage;
+  const url = canonicalUrl(`/insights/${slug}`);
 
   return {
     title: article.title,
     description,
     authors: authorNames.map(name => ({ name })),
+    alternates: { canonical: url },
     openGraph: {
       title: article.title,
       description,
+      url,
+      siteName: siteConfig.name,
       type: 'article',
       publishedTime: article.publishedAt,
       authors: authorNames,
-      images: imageUrl ? [{ url: imageUrl, width: 1200, height: 630, alt: article.title }] : [],
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: article.title }],
     },
     twitter: {
       card: 'summary_large_image',
       title: article.title,
       description,
-      images: imageUrl ? [imageUrl] : [],
+      images: [imageUrl],
     },
   };
 }

@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'Nina Jojer',
   url: 'https://www.ninajojer.com', // update when domain is live
-  ogImage: 'https://www.ninajojer.com/og-image.jpg',
+  ogImage: 'https://www.ninajojer.com/images/hero.png',
   twitterHandle: '@NinaJojer',
   locale: 'en_GB',
 

@@ -1,10 +1,12 @@
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import { client } from "@/sanity/client";
 import { caseStudyBySlugQuery } from "@/sanity/queries";
+import { siteConfig, canonicalUrl } from "@/lib/seo";
 import styles from "./case-study-detail.module.css";
 
 type Result = { title: string; body: string };
@@ -12,6 +14,7 @@ type Result = { title: string; body: string };
 type CaseStudy = {
   _id: string;
   title: string;
+  excerpt?: string;
   heroSubtitle?: string;
   aboutClient?: string;
   clientMission?: string;
@@ -19,6 +22,40 @@ type CaseStudy = {
   results?: Result[];
   image?: string;
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  let cs: CaseStudy | null = null;
+  try {
+    cs = await client.fetch<CaseStudy>(caseStudyBySlugQuery(slug));
+  } catch { /* Sanity not configured */ }
+
+  if (!cs) return {};
+
+  const description = cs.excerpt ?? cs.heroSubtitle ?? cs.aboutClient ?? undefined;
+  const imageUrl = cs.image ?? canonicalUrl('/images/case-studies/detail-hero.png');
+  const url = canonicalUrl(`/case-studies/${slug}`);
+
+  return {
+    title: cs.title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: cs.title,
+      description,
+      url,
+      siteName: siteConfig.name,
+      type: 'article',
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: cs.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: cs.title,
+      description,
+      images: [imageUrl],
+    },
+  };
+}
 
 export default async function CaseStudyDetailPage({
   params,

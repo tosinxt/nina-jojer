@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import Navbar from "@/components/Navbar";
 import CtaSection from "@/components/CtaSection";
@@ -7,6 +8,7 @@ import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import { client } from "@/sanity/client";
 import { eventBySlugQuery, upcomingEventsQuery } from "@/sanity/queries";
+import { siteConfig, canonicalUrl } from "@/lib/seo";
 import styles from "./event-detail.module.css";
 
 type Speaker = { name: string; avatar: string | null };
@@ -84,6 +86,43 @@ const fallbackEvents: Event[] = [
     registerLink: null,
   },
 ];
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  let event: Event | null = null;
+  try {
+    event = await client.fetch<Event>(eventBySlugQuery(slug));
+  } catch { /* Sanity not configured */ }
+  if (!event) {
+    event = fallbackEvents.find((e) => e.slug === slug) ?? null;
+  }
+
+  if (!event) return {};
+
+  const description = event.description ?? undefined;
+  const imageUrl = event.image ?? canonicalUrl('/images/events/event-detail-hero.png');
+  const url = canonicalUrl(`/events/${slug}`);
+
+  return {
+    title: event.title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: event.title,
+      description,
+      url,
+      siteName: siteConfig.name,
+      type: 'article',
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: event.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: event.title,
+      description,
+      images: [imageUrl],
+    },
+  };
+}
 
 export default async function EventDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
