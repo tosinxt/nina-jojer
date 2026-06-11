@@ -7,6 +7,7 @@ import { eventCategoryType } from './eventCategory';
 import { teamMemberType } from './teamMember';
 import { jobOpeningType } from './jobOpening';
 import { faqType } from './faq';
+import { partnerLogoType } from './partnerLogo';
 
 export const schemaTypes = [
   insightType,
@@ -18,4 +19,5 @@ export const schemaTypes = [
   teamMemberType,
   jobOpeningType,
   faqType,
+  partnerLogoType,
 ];

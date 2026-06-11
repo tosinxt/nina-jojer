@@ -1,7 +1,19 @@
 import Reveal from './Reveal';
+import { client } from '@/sanity/client';
+import { partnerLogosQuery } from '@/sanity/queries';
 import styles from './PartnerLogos.module.css';
 
-const logos = [
+type Logo = {
+  src: string;
+  alt: string;
+  w?: number | null;
+  h?: number | null;
+  dark?: boolean | null;
+  blend?: boolean;
+  fullColor?: boolean | null;
+};
+
+const fallbackLogos: Logo[] = [
   { src: '/logos/mtn.svg',    alt: 'MTN',                            w: 73,  h: 72  },
   { src: '/logos/lbs.svg',    alt: 'Lagos Business School',          w: 65,  h: 27,  dark: true },
   { src: '/logos/bt.svg',     alt: 'BT',                             w: 42,  h: 42  },
@@ -12,9 +24,16 @@ const logos = [
   { src: '/logos/abc.svg',    alt: 'American Business Council',      w: 160, h: 45, blend: true },
 ];
 
-const track = [...logos, ...logos];
+export default async function PartnerLogos() {
+  let logos: Logo[] = [];
+  try {
+    logos = await client.fetch<Logo[]>(partnerLogosQuery, {}, { next: { revalidate: 60 } });
+  } catch { /* Sanity not configured */ }
 
-export default function PartnerLogos() {
+  if (!logos?.length) logos = fallbackLogos;
+
+  const track = [...logos, ...logos];
+
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
@@ -35,16 +54,16 @@ export default function PartnerLogos() {
                   <img
                     src={logo.src}
                     alt={logo.alt}
-                    width={logo.w}
-                    height={logo.h}
+                    width={logo.w ?? undefined}
+                    height={logo.h ?? 48}
                     style={{
                       display: 'block',
-                      width: logo.w,
-                      height: logo.h,
+                      width: logo.w ?? 'auto',
+                      height: logo.h ?? 48,
                       objectFit: 'contain',
                       ...(logo.blend
                         ? { mixBlendMode: 'multiply' as const }
-                        : logo.dark
+                        : logo.dark || logo.fullColor
                         ? {}
                         : { filter: 'grayscale(1) brightness(0)' }),
                     }}

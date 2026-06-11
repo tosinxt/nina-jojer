@@ -191,3 +191,14 @@ export const faqsByServiceQuery = (service: string) =>
   question,
   answer,
 }`;
+
+/* ── Partner Logos (hero marquee) ── */
+export const partnerLogosQuery = `*[_type == "partnerLogo"] | order(coalesce(order, 999) asc, _createdAt asc) {
+  _id,
+  "alt": name,
+  "src": logo.asset->url,
+  "w": width,
+  "h": height,
+  "dark": darkBackground,
+  fullColor,
+}`;
