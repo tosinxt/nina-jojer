@@ -8,7 +8,7 @@ import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import { client } from "@/sanity/client";
 import { eventBySlugQuery, upcomingEventsQuery } from "@/sanity/queries";
-import { siteConfig, canonicalUrl } from "@/lib/seo";
+import { siteConfig, canonicalUrl, ogImageUrl } from "@/lib/seo";
 import styles from "./event-detail.module.css";
 
 type Speaker = { name: string; avatar: string | null };
@@ -100,7 +100,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!event) return {};
 
   const description = event.description ?? undefined;
-  const imageUrl = event.image ?? canonicalUrl('/images/events/event-detail-hero.png');
+  // Compressed copies of the static fallback images — WhatsApp drops og:image files over ~600KB
+  const ogOverrides: Record<string, string> = {
+    '/images/events/event-1.png': '/images/og/event-1.jpg',
+    '/images/events/event-2.png': '/images/og/event-2.jpg',
+  };
+  const image = event.image ? (ogOverrides[event.image] ?? event.image) : '/images/events/event-detail-hero.png';
+  const imageUrl = ogImageUrl(image);
   const url = canonicalUrl(`/events/${slug}`);
 
   return {

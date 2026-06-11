@@ -4,7 +4,7 @@ import { siteConfig, canonicalUrl } from '@/lib/seo';
 const title = "A Review of Nigeria's National Blockchain Policy";
 const description = "An in-depth review of Nigeria's National Blockchain Policy and what it means for innovation, regulation, and adoption.";
 const url = canonicalUrl('/insights/article');
-const imageUrl = canonicalUrl('/images/insights/article-hero.jpg');
+const imageUrl = canonicalUrl('/images/og/article-hero.jpg');
 
 export const metadata: Metadata = {
   title,

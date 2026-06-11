@@ -6,7 +6,7 @@ import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
 import { client } from '@/sanity/client';
 import { teamMemberBySlugQuery } from '@/sanity/queries';
-import { siteConfig, canonicalUrl } from '@/lib/seo';
+import { siteConfig, canonicalUrl, ogImageUrl } from '@/lib/seo';
 import { PortableText } from '@portabletext/react';
 import styles from './staff.module.css';
 
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const description = member.credentials
     ? `${member.name}, ${member.credentials}. ${member.role} at ${siteConfig.name}.`
     : `${member.name}, ${member.role} at ${siteConfig.name}.`;
-  const imageUrl = member.photo ?? siteConfig.ogImage;
+  const imageUrl = ogImageUrl(member.photo ?? siteConfig.ogImage);
   const url = canonicalUrl(`/about/team/${slug}`);
 
   return {

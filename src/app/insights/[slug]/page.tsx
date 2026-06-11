@@ -9,7 +9,7 @@ import Footer from '@/components/Footer';
 import { client } from '@/sanity/client';
 import { insightBySlugQuery, insightsQuery } from '@/sanity/queries';
 import { formatInsightDate } from '@/lib/formatDate';
-import { siteConfig, canonicalUrl } from '@/lib/seo';
+import { siteConfig, canonicalUrl, ogImageUrl } from '@/lib/seo';
 import styles from '../article/article.module.css';
 
 export const revalidate = 60;
@@ -139,7 +139,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const authorNames = article.authors?.map(a => a.name) ?? (article.author ? [article.author] : []);
   const description = article.excerpt ?? undefined;
-  const imageUrl = article.image ?? siteConfig.ogImage;
+  const imageUrl = ogImageUrl(article.image ?? siteConfig.ogImage);
   const url = canonicalUrl(`/insights/${slug}`);
 
   return {

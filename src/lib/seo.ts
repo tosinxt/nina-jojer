@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'Nina Jojer',
   url: 'https://www.ninajojer.com', // update when domain is live
-  ogImage: 'https://www.ninajojer.com/images/hero.png',
+  ogImage: 'https://www.ninajojer.com/images/og/site.jpg',
   twitterHandle: '@NinaJojer',
   locale: 'en_GB',
 
@@ -30,6 +30,18 @@ export const siteConfig = {
 /** Build a full canonical URL from a pathname */
 export function canonicalUrl(path = '') {
   return `${siteConfig.url}${path}`;
+}
+
+/**
+ * Social-preview-safe image URL. WhatsApp drops og:image files over ~600KB,
+ * so Sanity images are resized to 1200x630 JPEG via CDN params.
+ * Relative paths are made absolute.
+ */
+export function ogImageUrl(image: string) {
+  if (image.includes('cdn.sanity.io')) {
+    return `${image}?w=1200&h=630&fit=crop&fm=jpg&q=80`;
+  }
+  return image.startsWith('/') ? canonicalUrl(image) : image;
 }
 
 /** Merge page-level keywords with global keywords */

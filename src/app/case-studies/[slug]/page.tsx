@@ -6,7 +6,7 @@ import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import { client } from "@/sanity/client";
 import { caseStudyBySlugQuery } from "@/sanity/queries";
-import { siteConfig, canonicalUrl } from "@/lib/seo";
+import { siteConfig, canonicalUrl, ogImageUrl } from "@/lib/seo";
 import styles from "./case-study-detail.module.css";
 
 type Result = { title: string; body: string };
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!cs) return {};
 
   const description = cs.excerpt ?? cs.heroSubtitle ?? cs.aboutClient ?? undefined;
-  const imageUrl = cs.image ?? canonicalUrl('/images/case-studies/detail-hero.png');
+  const imageUrl = ogImageUrl(cs.image ?? '/images/og/case-study.jpg');
   const url = canonicalUrl(`/case-studies/${slug}`);
 
   return {
