@@ -3,6 +3,7 @@ import { Google_Sans_Flex } from 'next/font/google';
 import './globals.css';
 import Preloader from '@/components/Preloader';
 import CookieBanner from '@/components/CookieBanner';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 import { OrganizationJsonLd } from '@/components/JsonLd';
 import { siteConfig } from '@/lib/seo';
 
@@ -102,9 +103,10 @@ export default function RootLayout({
         <OrganizationJsonLd />
       </head>
       <body className={googleSansFlex.variable}>
+        <GoogleAnalytics />
         <Preloader />
         {children}
-        {/* <CookieBanner /> */}
+        <CookieBanner />
       </body>
     </html>
   );

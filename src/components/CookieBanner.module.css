@@ -108,6 +108,118 @@
   border-color: #440102;
 }
 
+.manage {
+  background: transparent;
+  border: 1px solid transparent;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.14px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: color 0.15s;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.manage:hover {
+  color: #fff;
+}
+
+.prefsInner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.prefRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.prefText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.prefLabel {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  margin: 0;
+}
+
+.prefDesc {
+  font-family: 'Google Sans Flex', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.toggle {
+  flex-shrink: 0;
+  width: 40px;
+  height: 22px;
+  border-radius: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.toggleOn {
+  background: #610203;
+  border-color: #610203;
+}
+
+.toggleThumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  display: block;
+  transition: transform 0.15s;
+}
+
+.toggleOn .toggleThumb {
+  transform: translateX(16px);
+}
+
+.lockedToggle {
+  flex-shrink: 0;
+  width: 40px;
+  height: 22px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.15);
+  display: block;
+  position: relative;
+}
+
+.lockedToggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+}
+
 @media (max-width: 768px) {
   .banner {
     bottom: 0;
@@ -132,11 +244,19 @@
 
   .actions {
     width: 100%;
+    flex-wrap: wrap;
   }
 
   .decline,
   .accept {
     flex: 1;
     text-align: center;
+  }
+
+  .manage {
+    flex: 1 1 100%;
+    text-align: center;
+    order: 3;
+    padding: 8px 12px;
   }
 }
