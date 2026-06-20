@@ -58,46 +58,12 @@ const portableTextComponents: PortableTextComponents = {
   },
 };
 
-const fallbackEvents: Event[] = [
-  {
-    _id: "1",
-    slug: "shaping-stisa-2034",
-    time: "8:00 am",
-    date: "Fri, 9th Feb",
-    location: "Addis Ababa, Ethiopia",
-    category: "Corporate",
-    title: "SHAPING STISA 2034 FROM STRATEGY TO EXECUTION",
-    description: "This dialogue brings together policymakers, development partners, and industry leaders to confront a critical question.",
-    body: "This dialogue brings together policymakers, development partners, and industry leaders to confront a critical question:\nHow do we move from ambitious STI frameworks to coordinated, bankable, and scalable implementation across African economies?",
-    speakers: [{ name: "Hon Chukwuemeka Ujam, PHD, MNI", avatar: "/images/events/speaker-ujam-cropped.png" }],
-    image: "/images/events/event-1.png",
-    registerLink: null,
-  },
-  {
-    _id: "2",
-    slug: "galvanizing-transformation",
-    time: "8:00 am",
-    date: "Fri, 9th Feb",
-    location: "Addis Ababa, Ethiopia",
-    category: "Corporate",
-    title: "GALVANIZING TRANSFORMATION-INTEGRATING AGRICULTURE, INDUSTRY AND MARKETS FOR SUSTAINABLE GROWTH",
-    description: "This event will be the first to focus on Agriculture, and its importance is timely and relevant.",
-    body: null,
-    speakers: [{ name: "Hon Chukwuemeka Ujam, PHD, MNI", avatar: "/images/events/speaker-ujam-cropped.png" }],
-    image: "/images/events/event-2.png",
-    registerLink: null,
-  },
-];
-
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   let event: Event | null = null;
   try {
     event = await client.fetch<Event>(eventBySlugQuery(slug));
   } catch { /* Sanity not configured */ }
-  if (!event) {
-    event = fallbackEvents.find((e) => e.slug === slug) ?? null;
-  }
 
   if (!event) return {};
 
@@ -144,13 +110,6 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
     ]);
   } catch { /* Sanity not configured */ }
 
-  // Always fall back to static data if Sanity returned nothing
-  if (!event) {
-    event = fallbackEvents.find((e) => e.slug === slug) ?? null;
-  }
-  if (!otherEvents?.length) {
-    otherEvents = fallbackEvents;
-  }
   otherEvents = otherEvents.filter((e) => e.slug !== slug);
 
   if (!event) notFound();

@@ -27,41 +27,6 @@ import EventsClient, { type UpcomingEvent, type PastEvent } from "./EventsClient
 import { client } from "@/sanity/client";
 import { upcomingEventsQuery, pastEventsQuery } from "@/sanity/queries";
 
-const fallbackUpcoming: UpcomingEvent[] = [
-  {
-    _id: "1",
-    slug: "shaping-stisa-2034",
-    time: "8:00 am",
-    date: "Fri, 9th Feb",
-    location: "Addis Ababa, Ethiopia",
-    category: "Corporate",
-    title: "SHAPING STISA 2034 FROM STRATEGY TO EXECUTION",
-    description: "This dialogue brings together policymakers, development partners, and industry leaders to confront a critical question:\nHow do we move from ambitious STI frameworks to coordinated, bankable, and scalable implementation across African economies?",
-    speakers: [{ name: "Hon Chukwuemeka Ujam, PHD, MNI", avatar: "/images/events/speaker-ujam-cropped.png" }],
-    image: "/images/events/event-1.png",
-    registerLink: null,
-  },
-  {
-    _id: "2",
-    slug: "galvanizing-transformation",
-    time: "8:00 am",
-    date: "Fri, 9th Feb",
-    location: "Addis Ababa, Ethiopia",
-    category: "Corporate",
-    title: "GALVANIZING TRANSFORMATION-INTEGRATING AGRICULTURE, INDUSTRY AND MARKETS FOR SUSTAINABLE GROWTH",
-    description: "This event will be the first to focus on Agriculture, and its importance is timely and relevant.",
-    speakers: [{ name: "Hon Chukwuemeka Ujam, PHD, MNI", avatar: "/images/events/speaker-ujam-cropped.png" }],
-    image: "/images/events/event-2.png",
-    registerLink: null,
-  },
-];
-
-const fallbackPast: PastEvent[] = [
-  { _id: "1", slug: "galvanizing-transformation", image: "/images/events/past-card.png", category: "Tech", title: "GALVANISING TRANSFORMATION - INTEGRATING AGRICULTURE, INDUSTRY AND MARKETS FOR SUSTAINABLE GROWTH", excerpt: "A conversation on regional commerce and economic cooperation", date: "Thu 08 Feb 2024", location: "Accra" },
-  { _id: "2", slug: "galvanizing-transformation", image: "/images/events/past-card.png", category: "Tech", title: "GALVANISING TRANSFORMATION - INTEGRATING AGRICULTURE, INDUSTRY AND MARKETS FOR SUSTAINABLE GROWTH", excerpt: "A conversation on regional commerce and economic cooperation", date: "Thu 08 Feb 2024", location: "Accra" },
-  { _id: "3", slug: "galvanizing-transformation", image: "/images/events/past-card.png", category: "Tech", title: "GALVANISING TRANSFORMATION - INTEGRATING AGRICULTURE, INDUSTRY AND MARKETS FOR SUSTAINABLE GROWTH", excerpt: "A conversation on regional commerce and economic cooperation", date: "Thu 08 Feb 2024", location: "Accra" },
-];
-
 export default async function EventsPage() {
   let upcomingEvents: UpcomingEvent[] = [];
   let pastEvents: PastEvent[] = [];
@@ -71,10 +36,8 @@ export default async function EventsPage() {
       client.fetch<PastEvent[]>(pastEventsQuery),
     ]);
   } catch {
-    /* Sanity not configured yet — use fallback */
+    /* Sanity not configured yet */
   }
-  if (!upcomingEvents?.length) upcomingEvents = fallbackUpcoming;
-  if (!pastEvents?.length) pastEvents = fallbackPast;
 
   return (
     <main className={styles.page}>
