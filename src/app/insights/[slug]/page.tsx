@@ -14,7 +14,7 @@ import styles from '../article/article.module.css';
 
 export const revalidate = 60;
 
-type InsightAuthor = { name: string; photo: string | null };
+type InsightAuthor = { name: string; photo: string | null; badge?: string | null };
 
 type Insight = {
   _id: string;
@@ -226,7 +226,7 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
                         <div className={styles.authorDetails}>
                           <div className={styles.authorNameRow}>
                             <span className={styles.authorName}>{au.name}</span>
-                            <span className={styles.expertBadge}>NJ EXPERT</span>
+                            {au.badge && <span className={styles.expertBadge}>{au.badge}</span>}
                           </div>
                         </div>
                       </div>

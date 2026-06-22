@@ -44,8 +44,16 @@ export const insightType = defineType({
               type: 'image',
               options: { hotspot: true },
             }),
+            defineField({
+              name: 'badge',
+              title: 'Badge',
+              type: 'string',
+              description: 'Label shown next to the author name (e.g. "NJ EXPERT"). Leave blank for guest/outside contributors who should not show a badge.',
+            }),
           ],
-          preview: { select: { title: 'name', media: 'photo' } },
+          preview: {
+            select: { title: 'name', subtitle: 'badge', media: 'photo' },
+          },
         },
       ],
       description: 'Add one or more authors for this article.',
