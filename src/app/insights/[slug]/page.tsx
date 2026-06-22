@@ -226,7 +226,15 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
                         <div className={styles.authorDetails}>
                           <div className={styles.authorNameRow}>
                             <span className={styles.authorName}>{au.name}</span>
-                            {au.badge && <span className={styles.expertBadge}>{au.badge}</span>}
+                            {au.badge && (
+                              <span
+                                className={`${styles.expertBadge} ${
+                                  au.badge.trim().toUpperCase() === 'NJ EXPERT' ? '' : styles.expertBadgeOutside
+                                }`}
+                              >
+                                {au.badge}
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
