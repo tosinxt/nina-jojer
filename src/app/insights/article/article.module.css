@@ -881,7 +881,7 @@
   .breadcrumbCurrent { display: none; }
 
   /* ── MORE FROM OUR TEAM — Figma 933:18013 ── */
-  .relatedArticlesSection { padding: 50px 30px; }
+  .relatedArticlesSection { padding: 50px 20px; }
 
   .relatedArticlesInner { gap: 20px; }
 
@@ -895,24 +895,26 @@
   /* Cards: single column, 24px gap, full width */
   .relatedGrid { flex-direction: column; gap: 24px; }
 
-  /* Card: auto height, gap-[35px] between image and content */
+  /* Card: auto height, no gap — content padding handles spacing */
   .relatedCard {
     height: auto;
-    gap: 35px;
+    gap: 0;
   }
 
   /* Image: 192px tall */
   .relatedCardImage { height: 192px; flex-shrink: 0; }
 
-  /* Content: no top padding (gap on card handles it), 35px sides+bottom */
+  /* Content: 16px sides so text doesn't hug the card edge */
   .relatedCardContent {
-    padding: 0 35px 35px;
+    padding: 20px 16px 24px;
     justify-content: space-between;
   }
 
-  .relatedCardTop { gap: 20px; }
+  .relatedCardTop { gap: 14px; }
   .relatedCardMeta { gap: 8px; }
   .relatedCardTexts { gap: 6px; }
   .relatedCardTitle { font-size: 16px; }
   .relatedCardExcerpt { font-size: 14px; -webkit-line-clamp: 4; }
+  .relatedAuthorName { white-space: normal; }
+  .categoryLabel { white-space: normal; }
 }
