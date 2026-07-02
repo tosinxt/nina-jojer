@@ -321,40 +321,13 @@ export default async function InsightDetailPage({ params }: { params: Promise<{ 
 
             <hr className={styles.divider} />
 
-            {(() => {
-              const resolvedAuthors: InsightAuthor[] =
-                article.authors && article.authors.length > 0
-                  ? article.authors
-                  : article.author
-                  ? [{ name: article.author, photo: article.authorImage }]
-                  : [];
-              return (
-                <>
-                  {resolvedAuthors.map((au, i) => (
-                    <div key={i} className={styles.authorBio}>
-                      <div className={styles.authorAvatarWrap}>
-                        {au.photo ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={au.photo} alt={au.name} className={styles.authorAvatar} />
-                        ) : (
-                          <div className={styles.authorAvatarPlaceholder}>{au.name.charAt(0)}</div>
-                        )}
-                      </div>
-                      <div className={styles.authorBioDetails}>
-                        <p className={styles.authorBioName}>{au.name}</p>
-                      </div>
-                    </div>
-                  ))}
-                  {(article.publishedAt || article.readTime) && (
-                    <p className={styles.authorBioDate}>
-                      {article.publishedAt && <span>{formatInsightDate(article.publishedAt, true)}</span>}
-                      {article.publishedAt && article.readTime && <span> · </span>}
-                      {article.readTime && <span className={styles.authorBioReadTime}>{article.readTime}</span>}
-                    </p>
-                  )}
-                </>
-              );
-            })()}
+            {(article.publishedAt || article.readTime) && (
+              <p className={styles.authorBioDate}>
+                {article.publishedAt && <span>{formatInsightDate(article.publishedAt, true)}</span>}
+                {article.publishedAt && article.readTime && <span> · </span>}
+                {article.readTime && <span className={styles.authorBioReadTime}>{article.readTime}</span>}
+              </p>
+            )}
           </div>
 
         </div>
