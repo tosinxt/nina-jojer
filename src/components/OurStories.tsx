@@ -10,23 +10,6 @@ const ArrowIcon = () => (
   </svg>
 );
 
-const fallbackCases = [
-  {
-    _id: '1',
-    image: '/images/Layout/484/Gemini_Generated_Image_mrnhjfmrnhjfmrnh 1.png',
-    title: 'Enhancing National Security through E-Borders Infrastructure Modernization',
-    excerpt: 'A government border agency successfully modernized its E-Borders infrastructure through strategic leadership, secure networks, and virtualization, enhancing national security and operational efficiency.',
-    slug: 'e-borders',
-  },
-  {
-    _id: '2',
-    image: '/images/Layout/484/NqA6w 1.png',
-    title: 'Strategic Network Transformation and Security Enhancement for Global Financial Institutions',
-    excerpt: 'A global financial provider successfully deployed a secure IP-VPN across 5000 sites, achieving enhanced network security, major cost savings, and smooth merger integration.',
-    slug: 'financial-network',
-  },
-];
-
 type FeaturedCase = { _id: string; title: string; excerpt: string; image: string; slug: { current: string } | string };
 
 export default async function OurStories() {
@@ -34,7 +17,8 @@ export default async function OurStories() {
   try {
     cases = await client.fetch<FeaturedCase[]>(featuredCaseStudiesQuery);
   } catch { /* Sanity not configured yet */ }
-  if (!cases?.length) cases = fallbackCases as FeaturedCase[];
+
+  if (!cases.length) return null;
 
   return (
     <section className={styles.section}>

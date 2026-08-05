@@ -52,7 +52,7 @@ export default async function StrategicCommunicationsPage() {
         <div className={styles.richText}>
           <div className={styles.overviewCol}>
             <h2 className={styles.colHeading}>Overview</h2>
-            <p className={styles.colBody}>Strategic communications is not a support function at NINA JOJER — it is a core advisory capability. In Africa's political and regulatory environments, how a message is framed, when it is delivered, and through which channels it reaches decision-makers often determines the outcome of an engagement more than the substance of the argument itself. We help clients communicate with precision and impact at the moments that matter most.</p>
+            <p className={styles.colBody}>Strategic communications is not a support function at NINA JOJER — it is a core advisory capability. In Africa&apos;s political and regulatory environments, how a message is framed, when it is delivered, and through which channels it reaches decision-makers often determines the outcome of an engagement more than the substance of the argument itself. We help clients communicate with precision and impact at the moments that matter most.</p>
           </div>
           <div className={styles.practiceCol}>
             <h2 className={styles.colHeading}>What this means in practice</h2>
@@ -86,7 +86,7 @@ export default async function StrategicCommunicationsPage() {
             </div>
             <div className={styles.faqCta}>
               <h3 className={styles.faqCtaTitle}>Need more clarity?</h3>
-              <p className={styles.faqCtaBody}>Reach out and let's talk about your specific situation.</p>
+              <p className={styles.faqCtaBody}>Reach out and let&apos;s talk about your specific situation.</p>
               <Link href="/contact" className={styles.faqCtaBtn}>Contact</Link>
             </div>
           </div>

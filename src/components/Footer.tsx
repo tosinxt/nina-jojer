@@ -93,7 +93,7 @@ export default function Footer() {
             <div className={styles.badge}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/Footer/3/Screenshot 2026-05-13 at 11.01.47 PM 1.png"
+                src="/images/Footer/3/NDPR-2025-Trustmark.png"
                 alt="NDPR Audit Compliant Badge"
                 className={styles.badgeImg}
               />

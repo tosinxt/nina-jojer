@@ -57,7 +57,7 @@ export default async function PolicyAdvocacyPage() {
           <div className={styles.practiceCol}>
             <h2 className={styles.colHeading}>What this means in practice</h2>
             <div className={styles.colBody}>
-              <p>Policy is rarely static in Africa's fastest-growing markets. Legislation moves quickly, political transitions shift regulatory priorities overnight, and the difference between a favourable outcome and an adverse one often comes down to who is in the room and when. NINA JOJER provides the intelligence, access, and advocacy capability to ensure our clients are not reacting to change — they are participating in its design.</p>
+              <p>Policy is rarely static in Africa&apos;s fastest-growing markets. Legislation moves quickly, political transitions shift regulatory priorities overnight, and the difference between a favourable outcome and an adverse one often comes down to who is in the room and when. NINA JOJER provides the intelligence, access, and advocacy capability to ensure our clients are not reacting to change — they are participating in its design.</p>
               <p>Our work spans the full policy lifecycle: from early-stage monitoring and risk identification, through active engagement with regulators and legislators, to the drafting and review of frameworks that shape how industries are governed.</p>
             </div>
           </div>
@@ -86,7 +86,7 @@ export default async function PolicyAdvocacyPage() {
             </div>
             <div className={styles.faqCta}>
               <h3 className={styles.faqCtaTitle}>Need more clarity?</h3>
-              <p className={styles.faqCtaBody}>Reach out and let's talk about your specific situation.</p>
+              <p className={styles.faqCtaBody}>Reach out and let&apos;s talk about your specific situation.</p>
               <Link href="/contact" className={styles.faqCtaBtn}>Contact</Link>
             </div>
           </div>

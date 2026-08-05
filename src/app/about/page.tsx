@@ -302,7 +302,7 @@ export default async function AboutPage() {
           <div className={styles.joinTeam}>
             <div className={styles.joinTeamText}>
               <h3 className={styles.joinTeamTitle}>Join our team</h3>
-              <p className={styles.joinTeamBody}>We're building something that matters. If you think like we do, we want to hear from you.</p>
+              <p className={styles.joinTeamBody}>We&apos;re building something that matters. If you think like we do, we want to hear from you.</p>
             </div>
             <Link href="/careers" className={styles.joinTeamBtn}>View Careers</Link>
           </div>

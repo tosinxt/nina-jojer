@@ -92,7 +92,7 @@ export default async function TechnologySolutionsPage() {
           <div className={styles.overviewCol}>
             <h2 className={styles.colHeading}>Overview</h2>
             <p className={styles.colBody}>
-              NINA JOJER's Technology Solutions practice sits at the intersection of critical infrastructure, institutional capacity, and the digital economy. We design, implement, and secure technology systems for governments, development organisations, and private sector clients — with a particular focus on the identity, border, connectivity, and cybersecurity infrastructure that underpins Africa's digital transformation.
+              NINA JOJER&apos;s Technology Solutions practice sits at the intersection of critical infrastructure, institutional capacity, and the digital economy. We design, implement, and secure technology systems for governments, development organisations, and private sector clients — with a particular focus on the identity, border, connectivity, and cybersecurity infrastructure that underpins Africa&apos;s digital transformation.
             </p>
           </div>
           <div className={styles.practiceCol}>
@@ -139,7 +139,7 @@ export default async function TechnologySolutionsPage() {
             </div>
             <div className={styles.faqCta}>
               <h3 className={styles.faqCtaTitle}>Need more clarity?</h3>
-              <p className={styles.faqCtaBody}>Reach out and let's talk about your specific situation.</p>
+              <p className={styles.faqCtaBody}>Reach out and let&apos;s talk about your specific situation.</p>
               <Link href="/contact" className={styles.faqCtaBtn}>Contact</Link>
             </div>
           </div>

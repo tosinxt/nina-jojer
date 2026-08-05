@@ -44,7 +44,7 @@ export default function ServicesPage() {
           <BlurText as="h2" text="Ready to move forward?" direction="bottom" delay={120} className={styles.ctaTitle} />
           <BlurText text="Let us help you navigate what comes next" direction="bottom" delay={100} stepDuration={0.4} className={styles.ctaBody} />
           <Link href="/contact" className={styles.ctaButton}>
-            LET'S TALK
+            LET&apos;S TALK
           </Link>
         </div>
       </section>

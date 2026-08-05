@@ -60,7 +60,7 @@ export default async function CorporateSolutionsPage() {
           <div className={styles.practiceCol}>
             <h2 className={styles.colHeading}>What this means in practice</h2>
             <div className={styles.colBody}>
-              <p>Africa's fastest-growing markets are defined by institutional complexity, infrastructure variability, and political dynamics that conventional advisory frameworks are not built to handle. Our corporate advisory practice is designed specifically for these environments — combining deep local knowledge with strategic rigour to help clients make better decisions, faster.</p>
+              <p>Africa&apos;s fastest-growing markets are defined by institutional complexity, infrastructure variability, and political dynamics that conventional advisory frameworks are not built to handle. Our corporate advisory practice is designed specifically for these environments — combining deep local knowledge with strategic rigour to help clients make better decisions, faster.</p>
               <p>Whether we are guiding a first-time market entrant through a structured entry process, helping an established business navigate a transformation, or providing the intelligence needed to make a high-stakes investment decision, we bring the same commitment: to understand the environment as it actually is, not as it appears from a distance.</p>
             </div>
           </div>
@@ -89,7 +89,7 @@ export default async function CorporateSolutionsPage() {
             </div>
             <div className={styles.faqCta}>
               <h3 className={styles.faqCtaTitle}>Need more clarity?</h3>
-              <p className={styles.faqCtaBody}>Reach out and let's talk about your specific situation.</p>
+              <p className={styles.faqCtaBody}>Reach out and let&apos;s talk about your specific situation.</p>
               <Link href="/contact" className={styles.faqCtaBtn}>Contact</Link>
             </div>
           </div>
