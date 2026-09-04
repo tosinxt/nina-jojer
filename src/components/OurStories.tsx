@@ -15,7 +15,7 @@ type FeaturedCase = { _id: string; title: string; excerpt: string; image: string
 export default async function OurStories() {
   let cases: FeaturedCase[] = [];
   try {
-    cases = await client.fetch<FeaturedCase[]>(featuredCaseStudiesQuery);
+    cases = await client.fetch<FeaturedCase[]>(featuredCaseStudiesQuery, {}, { next: { revalidate: 60 } });
   } catch { /* Sanity not configured yet */ }
 
   if (!cases.length) return null;

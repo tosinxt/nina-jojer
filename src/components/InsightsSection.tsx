@@ -51,7 +51,7 @@ type FeaturedInsight = {
 export default async function InsightsSection() {
   let insights: FeaturedInsight[] = [];
   try {
-    insights = await client.fetch<FeaturedInsight[]>(featuredInsightsQuery);
+    insights = await client.fetch<FeaturedInsight[]>(featuredInsightsQuery, {}, { next: { revalidate: 60 } });
   } catch { /* Sanity not configured yet */ }
   if (!insights?.length) return null;
 

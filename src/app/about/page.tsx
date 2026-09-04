@@ -115,7 +115,7 @@ type TeamMember = { _id: string; name: string; slug: string; credentials: string
 export default async function AboutPage() {
   let team: TeamMember[] = [];
   try {
-    const raw = await client.fetch<TeamMember[]>(teamMembersQuery);
+    const raw = await client.fetch<TeamMember[]>(teamMembersQuery, {}, { next: { revalidate: 60 } });
     team = (raw ?? []).filter((m) => m.slug);
   } catch { /* Sanity not configured yet */ }
 

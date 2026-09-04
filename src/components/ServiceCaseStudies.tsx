@@ -25,7 +25,7 @@ type Props = {
 export default async function ServiceCaseStudies({ category, heading, styles }: Props) {
   let studies: CaseStudy[] = [];
   try {
-    studies = await client.fetch<CaseStudy[]>(caseStudiesByCategoryQuery(category));
+    studies = await client.fetch<CaseStudy[]>(caseStudiesByCategoryQuery(category), {}, { next: { revalidate: 60 } });
   } catch { /* Sanity unavailable */ }
 
   if (!studies.length) return null;

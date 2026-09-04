@@ -28,7 +28,7 @@ import { caseStudiesQuery } from "@/sanity/queries";
 export default async function CaseStudiesPage() {
   let caseStudies: CaseStudy[] = [];
   try {
-    caseStudies = await client.fetch<CaseStudy[]>(caseStudiesQuery);
+    caseStudies = await client.fetch<CaseStudy[]>(caseStudiesQuery, {}, { next: { revalidate: 60 } });
   } catch {
     /* Sanity unavailable */
   }
